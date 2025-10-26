@@ -20,6 +20,8 @@
     <!-- Custom styles for this template-->
     <link href="Admin/css/sb-admin-2.min.css" rel="stylesheet">
 
+    <link href="Admin/css/estilos.css" rel="stylesheet">
+
     <link rel="icon" type="image/png" href="img/EducaSex_Pro.png">
 
     <style>
@@ -104,8 +106,8 @@
                                     <select name="Cmb_rol" class="form-control" id="" placeholder="Id_rol" required>
                                         <option value="">Seleccione</option>
                                         <option value="1">Administrador</option>
-                                        <option value="2">Operario</option>
-                                        <option value="3">Asesor</option>
+                                        <option value="2">Estudiante</option>
+                                        <option value="3">Psicólogo</option>
                                     </select>
                                 </div>
                                 

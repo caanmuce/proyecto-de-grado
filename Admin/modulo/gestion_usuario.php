@@ -58,7 +58,7 @@ echo "<script>window.location='dashboard.php?mod=gestion_usuario';</script>";
                     include "../conexion.php";
                     $dato = $_POST['txt_nom'];
 
-                    $consulta = mysqli_query($conexion,"SELECT * FROM usuarios WHERE primer_nombre LIKE '%$dato%'") or die ($conexion."Error en la consulta");
+                    $consulta = mysqli_query($conexion,"SELECT u.*, r.nombre_rol FROM usuarios u INNER JOIN rol r ON u.ID_rol = r.ID_rol WHERE u.primer_nombre LIKE '%$dato%'ORDER BY u.documento ASC") or die("Error en la consulta: " . mysqli_error($conexion));
             ?>
 
             
@@ -94,7 +94,7 @@ echo "<script>window.location='dashboard.php?mod=gestion_usuario';</script>";
                             <td><?php echo $row['segundo_apellido']; ?></td>
                             <td><?php echo $row['correo']; ?></td>
                             <td><?php echo $row['telefono']; ?></td>
-                            <td><?php echo $row['ID_rol']; ?></td>
+                            <td><?php echo $row['nombre_rol']; ?></td>
                             <td>
                                 <center>
                                     <form action="dashboard.php?mod=gestion_usuario" method="post">
@@ -112,7 +112,7 @@ echo "<script>window.location='dashboard.php?mod=gestion_usuario';</script>";
                                 <center>
                                     <form action="dashboard.php?mod=gestion_usuario" method="post">
                                         <input type="text" name="doc" value="<?php echo $row['documento']; ?>" hidden>
-                                            <button type="submit" style="background-color:#ccc; border: 0px;" name="btn_eliminar">
+                                            <button type="submit" style="background-color:#ccc; border: 0px;" name="btn_eliminar" onclick="return confirm('¿Estás seguro de eliminar este usuario?')">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
                                                 <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
@@ -137,7 +137,7 @@ echo "<script>window.location='dashboard.php?mod=gestion_usuario';</script>";
     include "../conexion.php";
         $dato2 = $_POST['doc'];
 
-        $consulta2 = mysqli_query($conexion,"SELECT * FROM usuarios WHERE documento = '$dato2'") or die ($conexion."Error en la consulta");
+        $consulta2 = mysqli_query($conexion,"SELECT u.*, r.nombre_rol FROM usuarios u INNER JOIN rol r ON u.ID_rol = r.ID_rol WHERE u.documento = '$dato2'");
         
     while ($row2 = mysqli_fetch_array($consulta2)){
 ?>
@@ -158,13 +158,10 @@ echo "<script>window.location='dashboard.php?mod=gestion_usuario';</script>";
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <label>Tipo de Documento</label>
-                                        <select name="Tipo_documento" class="form-control" id="" required readonly>
-                                        <option value=""><?php echo $row2['tipo_documento'] ?></option>
-                                        <option value="">Seleccione</option>
-                                        <option value="TI">TI</option>
-                                        <option value="CC">CC</option>
-                                        <option value="RC">RC</option>
-                                    </select>
+                                            <select name="Tipo_documento_display" class="form-control" disabled>
+                                            <option><?php echo $row2['tipo_documento']; ?></option>
+                                            </select>
+                                            <input type="hidden" name="Tipo_documento" value="<?php echo $row2['tipo_documento']; ?>">
                                     </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         Número de Documento
@@ -209,11 +206,11 @@ echo "<script>window.location='dashboard.php?mod=gestion_usuario';</script>";
                                 <div class="form-group">
                                     <label>Rol</label>
                                     <select name="Cmb_rol" class="form-control" id="" placeholder="Id_rol" required>
-                                        <option value=""><?php echo $row2['ID_rol'] ?></option>
+                                        <option value=""><?php echo $row2['nombre_rol'] ?></option>
                                         <option value="">Seleccione</option>
-                                        <option value="1">Administrador(1)</option>
-                                        <option value="2">Operario(2)</option>
-                                        <option value="3">Asesor(3)</option>
+                                        <option value="1">Administrador</option>
+                                        <option value="2">Estudiante</option>
+                                        <option value="3">Psicólogo</option>
                                     </select>
                                 </div>
                                 

@@ -13,7 +13,7 @@
         </center>
         <h1 class="h3 mb-4 text-gray-800">Comentarios</h1>
 
-        <!-- Formulario de nuevo comentario -->
+        
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Dejar un comentario</h6>
@@ -29,13 +29,12 @@
             </div>
         </div>
 
-        <!-- Lista de comentarios -->
+        
         <div class="card shadow mb-4">
             <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Comentarios recientes</h6>
             </div>
             <div class="card-body">
-            <!-- Comentario individual -->
             <div class="media mb-4">
                 <img class="mr-3 rounded-circle" src="img/undraw_profile.svg" width="50" alt="Avatar">
                 <div class="media-body">

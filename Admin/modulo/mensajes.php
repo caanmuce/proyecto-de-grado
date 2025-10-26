@@ -24,7 +24,7 @@
         <input type="text" class="form-control form-control-sm" placeholder="Buscar amigos…">
       </div>
       <div class="card-body p-0" style="height: 600px; overflow-y: auto;">
-        <!-- Conversación 1 -->
+        
         <a href="#" class="d-flex align-items-center px-3 py-2 text-decoration-none text-dark border-bottom">
           <img src="img/undraw_profile.svg" alt="Carlos" class="rounded-circle mr-3" style="width:50px; height:50px;">
           <div>
@@ -33,7 +33,7 @@
           </div>
           <span class="ml-auto badge badge-danger badge-pill">2</span>
         </a>
-        <!-- Conversación 2 -->
+        
         <a href="#" class="d-flex align-items-center px-3 py-2 text-decoration-none text-dark border-bottom">
           <img src="img/undraw_profile.svg" alt="María" class="rounded-circle mr-3" style="width:50px; height:50px;">
           <div>
@@ -41,7 +41,7 @@
             <small class="text-muted">¡Gracias!</small>
           </div>
         </a>
-        <!-- Conversación 3 -->
+        
         <a href="#" class="d-flex align-items-center px-3 py-2 text-decoration-none text-dark border-bottom">
           <img src="img/undraw_profile.svg" alt="Ana" class="rounded-circle mr-3" style="width:50px; height:50px;">
           <div>
@@ -50,7 +50,7 @@
           </div>
           <span class="ml-auto text-muted"><small>5h</small></span>
         </a>
-        <!-- Conversación 4 -->
+        
         <a href="#" class="d-flex align-items-center px-3 py-2 text-decoration-none text-dark border-bottom">
           <img src="img/undraw_profile.svg" alt="Luis" class="rounded-circle mr-3" style="width:50px; height:50px;">
           <div>
@@ -58,7 +58,7 @@
             <small class="text-muted">OK</small>
           </div>
         </a>
-        <!-- Conversación 5 -->
+        
         <a href="#" class="d-flex align-items-center px-3 py-2 text-decoration-none text-dark">
           <img src="img/undraw_profile.svg" alt="Sofía" class="rounded-circle mr-3" style="width:50px; height:50px;">
           <div>
@@ -70,10 +70,9 @@
     </div>
   </div>
 
- <!-- ventana chat -->
+ 
   <div class="col-lg-8 mb-4">
     <div class="card shadow-sm" style="height: 650px; display: flex; flex-direction: column;">
-      <!-- Header del chat -->
       <div class="card-header d-flex align-items-center py-2">
         <img src="img/undraw_profile.svg" alt="Carlos" class="rounded-circle mr-3" style="width:50px; height:50px;">
         <div>
@@ -90,9 +89,8 @@
         </div>
       </div>
 
-      <!-- Cuerpo del chat -->
+      
       <div class="card-body" style="flex: 1; overflow-y: auto; background-color: #f7f7f7;">
-        <!-- Mensaje recibido -->
         <div class="d-flex mb-3">
           <img src="img/undraw_profile.svg" alt="Carlos" class="rounded-circle mr-2" style="width:40px; height:40px;">
           <div>
@@ -103,7 +101,7 @@
           </div>
         </div>
 
-        <!-- Mensaje enviado -->
+        
         <div class="d-flex justify-content-end mb-3">
           <div>
             <div class="bg-primary text-white p-2 rounded-left rounded-bottom" style="max-width: 70%;">
@@ -114,7 +112,7 @@
           <img src="img/undraw_profile.svg" alt="Tu Avatar" class="rounded-circle ml-2" style="width:40px; height:40px;">
         </div>
 
-        <!-- Mensaje recibido con imagen -->
+        
         <div class="d-flex mb-3">
           <img src="img/undraw_profile.svg" alt="Carlos" class="rounded-circle mr-2" style="width:40px; height:40px;">
           <div>
@@ -126,7 +124,7 @@
           </div>
         </div>
 
-        <!-- Mensaje enviado -->
+        
         <div class="d-flex justify-content-end mb-3">
           <div>
             <div class="bg-primary text-white p-2 rounded-left rounded-bottom" style="max-width: 70%;">
@@ -138,7 +136,7 @@
         </div>
       </div>
 
-      <!-- Barra de envío de mensaje -->
+      
       <div class="card-footer py-2">
         <form class="d-flex align-items-center">
           <button class="btn btn-link text-muted mr-2">

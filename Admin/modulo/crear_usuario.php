@@ -7,6 +7,10 @@
 </head>
 <body>
     <center>
+        <?php if ($rol == 1 || $rol == 3) { ?>
+            <a href="dashboard.php?mod=crear_usuario">Crear</a> | <a href="dashboard.php?mod=gestion_usuario">Gestión</a>
+            <br><br>
+        <?php } ?>
         <h1>Crear usuario</h1>
     </center>
     <div class="container">
@@ -76,8 +80,8 @@
                                     <select name="Cmb_rol" class="form-control" id="" placeholder="Id_rol" required>
                                         <option value="">Seleccione</option>
                                         <option value="1">Administrador</option>
-                                        <option value="2">Operario</option>
-                                        <option value="3">Asesor</option>
+                                        <option value="2">Estudiante</option>
+                                        <option value="3">Psicólogo</option>
                                     </select>
                                 </div>
                                 

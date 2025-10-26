@@ -1,158 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio - EducaSex</title>
+
+  <style>
+    body {
+      background-color: #f8f9fc;
+    }
+    .card-img-top {
+      height: 150px;
+      object-fit: cover;
+    }
+    .post {
+      background: #fff;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0px 2px 8px rgba(0,0,0,0.05);
+    }
+    .post img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .bot:hover{
+      transform: scale(1.2);
+      transition: .4s;
+
+    }
+  </style>
 </head>
 <body>
+<div class="container mt-4">
+  <h1 class="text-center mb-4">Bienvenido a <span class="text-primary">EducaSex</span></h1>
 
-    <div class="container-fluid">
-        <center>
-            <h1>Inicio</h1>
-        </center>
-        
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Bienvenido a EducaSex</h1>
+  <!-- Tarjetas principales -->
+  <div class="row text-center mb-4">
+    <div class="col-md-3">
+      <div class="card shadow-sm">
+        <img src="img/salud.jpeg" class="card-img-top" alt="Recursos">
+        <div class="card-body">
+          <h5 class="card-title"><i class="fas fa-book-open text-primary"></i> Recursos</h5>
+          <p class="card-text">Artículos y videos sobre salud sexual.</p>
+          <a href="dashboard.php?mod=recursos_educativos" class="btn btn-primary btn-sm bot">Ver más</a>
         </div>
-
-        
-        <div class="row">
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    Recursos
-                                </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                    Ver Recursos
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                            <i class="fas fa-book-open fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="dashboard.php?mod=recursos_educativos" class="card-footer text-decoration-none small">
-                    <span class="text-primary">Ir a Recursos &rarr;</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Foro de dudas -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-success shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Foro de dudas
-                                </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">Participar en Foro</div>
-                                </div>
-                            <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="dashboard.php?mod=foro_dudas" class="card-footer text-decoration-none small">
-                    <span class="text-success">Ir al Foro &rarr;</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Asistente Virtual -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-info shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Asistente Virtual
-                                </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">Chatea Ahora
-
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                            <i class="fas fa-robot fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="dashboard.php?mod=chatbot" class="card-footer text-decoration-none small">
-                    <span class="text-info">Ir al Chatbot &rarr;</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Agenda con Psicóloga -->
-            <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                        Cita con Psicóloga</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">Agendar Cita</div>
-                    </div>
-                    <div class="col-auto">
-                    <i class="fas fa-calendar-alt fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-                </div>
-                <a href="dashboard.php?mod=agendar_cita" class="card-footer text-decoration-none small">
-                <span class="text-warning">Agendar &rarr;</span>
-                </a>
-            </div>
-            </div>
-
-        </div>
-        <!-- Fin primera fila -->
-
-        <!-- Segunda fila: Texto informativo y novedades -->
-        <div class="row">
-
-            <!-- Columna izquierda: descripción de la plataforma -->
-            <div class="col-lg-8">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">¿Por qué EducaSex?</h6>
-                </div>
-                <div class="card-body">
-                <p>
-                    EducaSex es una plataforma diseñada para ofrecer información confiable y acompañamiento
-                    en temas de sexualidad y salud emocional. Aquí encontrarás:
-                </p>
-                <ul>
-                    <li><strong>Recursos educativos:</strong> Artículos, guías y videos sobre salud sexual, consentimiento, métodos anticonceptivos, etc.</li>
-                    <li><strong>Foro de dudas:</strong> Un espacio donde preguntar y compartir experiencias con otros usuarios y expertos.</li>
-                    <li><strong>Asistente Virtual:</strong> Un chatbot para resolver consultas rápidas y sugerir contenidos relevantes.</li>
-                    <li><strong>Psicóloga escolar:</strong> Agenda tus citas, recibe orientación personalizada y apoyo emocional.</li>
-                </ul>
-                <p>
-                    Utiliza el menú lateral para navegar entre cada sección y acceder a las funcionalidades específicas.
-                </p>
-                </div>
-            </div>
-            </div>
-
-            <!-- Columna derecha: tarjetas de novedades y estadísticas simples -->
-            <div class="col-lg-4">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-success">Novedades</h6>
-                </div>
-                <div class="card-body">
-                <p><i class="fas fa-check-circle text-success"></i> 10 nuevos artículos publicados esta semana</p>
-                <p><i class="fas fa-users text-info"></i> 5 usuarios participaron en el foro hoy</p>
-                <p><i class="fas fa-calendar-check text-warning"></i> 2 citas ya agendadas con la psicóloga</p>
-                </div>
-            </div>
-            </div>
-
-        </div>
-    <!-- Fin segunda fila -->
-
+      </div>
     </div>
+    <div class="col-md-3">
+      <div class="card shadow-sm">
+        <img src="img/foro.jpg" class="card-img-top" alt="Foro">
+        <div class="card-body">
+          <h5 class="card-title"><i class="fas fa-comments text-success"></i> Foro</h5>
+          <p class="card-text">Participa y comparte tus dudas.</p>
+          <a href="dashboard.php?mod=ver_foro" class="btn btn-success btn-sm bot">Entrar</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card shadow-sm">
+        <img src="img/chatbot.jpeg" class="card-img-top" alt="Asistente Virtual">
+        <div class="card-body">
+          <h5 class="card-title"><i class="fas fa-robot text-info"></i> Asistente Virtual</h5>
+          <p class="card-text">Chatea ahora con nuestro bot.</p>
+          <a href="dashboard.php?mod=chatbot" class="btn btn-info btn-sm text-white bot">Abrir</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card shadow-sm">
+        <img src="img/cita.jpg" class="card-img-top" alt="Cita">
+        <div class="card-body">
+          <h5 class="card-title"><i class="fas fa-calendar-alt text-warning"></i> Agendar cita</h5>
+          <p class="card-text">Agenda tu cita con el psicólogo.</p>
+          <a href="dashboard.php?mod=agendar_cita" class="btn btn-warning btn-sm bot">Agendar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección estilo "red social" -->
+  <div class="row">
+    <div class="col-md-8">
+      <h5 class="mb-3"><i class="fas fa-rss text-danger"></i> Lo que está pasando ahora</h5>
+      
+      <div class="post">
+        <div class="d-flex align-items-center mb-2">
+          <img src="img/laura.jpeg" alt="user">
+          <strong>@Laura</strong>
+        </div>
+        <p>Hoy aprendí sobre métodos anticonceptivos naturales en los recursos de EducaSex 🌱 ¡Súper útil!</p>
+      </div>
+
+      <div class="post">
+        <div class="d-flex align-items-center mb-2">
+          <img src="img/carlos.jpeg" alt="user">
+          <strong>@Carlos</strong>
+        </div>
+        <p>Me animé a participar en el foro y recibí muy buenos consejos. Recomiendo mucho unirse 💬</p>
+      </div>
+    </div>
+
+    <!-- Columna derecha -->
+    <div class="col-md-4">
+      <div class="card shadow-sm mb-3">
+        <div class="card-header bg-success text-white">Novedades</div>
+        <div class="card-body">
+          <p><i class="fas fa-check-circle text-success"></i> 10 nuevos artículos publicados esta semana</p>
+          <p><i class="fas fa-users text-info"></i> 5 usuarios participaron en el foro hoy</p>
+          <p><i class="fas fa-calendar-check text-warning"></i> 2 citas ya agendadas con la psicóloga</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

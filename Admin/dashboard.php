@@ -1,11 +1,12 @@
-<!DOCTYPE html>
 <?php
+ob_start();
 //Abro sesiones
 session_start();
 if (isset($_SESSION['user'])){
     
 
 ?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -25,7 +26,10 @@ if (isset($_SESSION['user'])){
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
+
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <link href="css/estilos.css" rel="stylesheet">
 
     <link rel="icon" type="image/png" href="img/EducaSex_Pro.png">
 
@@ -48,10 +52,12 @@ if (isset($_SESSION['user'])){
             </a>
 
             <br>
-            <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
+            <?php $rol = $_SESSION['rol']; ?>
+
+
+            <!-- Inicio -->
             <li class="nav-item active">
                 <a class="nav-link" href="dashboard.php">
                     <i class="fas fa-fw fa-home"></i>
@@ -59,39 +65,47 @@ if (isset($_SESSION['user'])){
             </li>
 
             <hr class="sidebar-divider">
+            <div class="sidebar-heading">Participa</div>
 
-            <div class="sidebar-heading">
-                Participa
-            </div>
+            <!-- Usuarios (solo admin y psicólogo) -->
+                <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuarios"
+                            aria-expanded="true" aria-controls="collapseUsuarios">
+                            <i class="fas fa-fw fa-users"></i>
+                            <span>Usuarios</span>
+                        </a>
+                        <div id="collapseUsuarios" class="collapse" aria-labelledby="headingUtilities"
+                            data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <a class="collapse-item" href="dashboard.php?mod=crear_usuario">Crear usuario</a>
+                                <?php if ($rol == 1 || $rol == 3) { ?>
+                                    <a class="collapse-item" href="dashboard.php?mod=gestion_usuario">Gestion usuario</a>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </li>
 
-            <!-- Nav Item - Charts -->
+            <!-- Foros -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>Usuarios</span>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForos"
+                    aria-expanded="true" aria-controls="collapseForos">
+                    <i class="fas fa-fw fa-comments"></i>
+                    <span>Foros</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseForos" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="dashboard.php?mod=crear_usuario">Crear usuario</a>
-                        <a class="collapse-item" href="dashboard.php?mod=gestion_usuario">Gestion usuario</a>
+                        <a class="collapse-item" href="dashboard.php?mod=ver_foro">Ver foro</a>
+                        <a class="collapse-item" href="dashboard.php?mod=crear_foro">Crear foro</a>
+                        <?php if ($rol == 1 || $rol == 3) { ?>
+                            <a class="collapse-item" href="dashboard.php?mod=foro">Gestionar foros</a>
+                        <?php } ?>
                     </div>
                 </div>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="dashboard.php?mod=foro_dudas">
-                    <i class="fas fa-fw fa-comments"></i>
-                    <span>Foro de dudas</span></a>
-            </li>
-
             <hr class="sidebar-divider">
-
-
-            <div class="sidebar-heading">
-                Acompañamiento
-            </div>
+            <div class="sidebar-heading">Acompañamiento</div>
 
             <li class="nav-item">
                 <a class="nav-link" href="dashboard.php?mod=chatbot">
@@ -99,17 +113,27 @@ if (isset($_SESSION['user'])){
                     <span>Chatbot</span></a>
             </li>
 
+            <!-- Recursos educativos -->
             <li class="nav-item">
-                <a class="nav-link" href="dashboard.php?mod=recursos_educativos">
-                    <i class="fas fa-fw fa-book"></i>
-                    <span>Recursos educativos</span></a>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRecursos"
+                    aria-expanded="true" aria-controls="collapseRecursos">
+                    <i class="fas fa-fw fa-calendar"></i>
+                    <span>Recursos educativos</span>
+                </a>
+                <div id="collapseRecursos" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="dashboard.php?mod=recursos_educativos">Ver</a>
+                        <?php if ($rol == 1 || $rol == 3) { ?>
+                            <a class="collapse-item" href="dashboard.php?mod=crear_recurso">Crear</a>
+                            <a class="collapse-item" href="dashboard.php?mod=consultar_recurso">Consultar</a>
+                        <?php } ?>
+                    </div>
+                </div>
             </li>
 
             <hr class="sidebar-divider">
-
-            <div class="sidebar-heading">
-                Social
-            </div>
+            <div class="sidebar-heading">Social</div>
 
             <li class="nav-item">
                 <a class="nav-link" href="dashboard.php?mod=interacciones">
@@ -124,36 +148,39 @@ if (isset($_SESSION['user'])){
             </li>
 
             <hr class="sidebar-divider">
+            <div class="sidebar-heading">Otros</div>
 
-            <div class="sidebar-heading">
-                Otros
-            </div>
-
-            <!-- Nav Item - Tables -->
+            <!-- Citas -->
             <li class="nav-item">
-                <a class="nav-link" href="dashboard.php?mod=agendar_cita">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCitas"
+                    aria-expanded="true" aria-controls="collapseCitas">
                     <i class="fas fa-fw fa-calendar"></i>
-                    <span>Agendar cita</span></a>
+                    <span>Citas</span>
+                </a>
+                <div id="collapseCitas" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="dashboard.php?mod=agendar_cita">Agendar cita</a>
+                        <?php if ($rol == 1 || $rol == 3) { ?>
+                            <a class="collapse-item" href="dashboard.php?mod=consultar_citas">Consultar citas</a>
+                        <?php } ?>
+                    </div>
+                </div>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="dashboard.php?mod=casos_estudio">
-                    <i class="fas fa-fw fa-"></i>
+                    <i class="fas fa-fw fa-book"></i>
                     <span>Casos de estudio</span></a>
             </li>
 
-            <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
-            <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
-            <!-- Sidebar Message -->
-            
-
         </ul>
+
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -304,14 +331,7 @@ if (isset($_SESSION['user'])){
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Perfil
                                 </a>
-                                <a class="dropdown-item" href="dashboard.php?mod=configuracion">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Configuración
-                                </a>
-                                <a class="dropdown-item" href="dashboard.php?mod=centro_actividad">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Centro de actividad
-                                </a>
+                
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -348,9 +368,9 @@ if (isset($_SESSION['user'])){
                             require_once("modulo/gestion_usuario.php");
                         }
                     else
-                        if(@ $_GET['mod']=="foro_dudas")
+                        if(@ $_GET['mod']=="foro")
                         {
-                            require_once("modulo/foro_dudas.php");
+                            require_once("modulo/foro.php");
                         }
                     else
                         if(@ $_GET['mod']=="chatbot")
@@ -396,6 +416,36 @@ if (isset($_SESSION['user'])){
                         if(@ $_GET['mod']=="casos_estudio")
                         {
                             require_once("modulo/casos_estudio.php");
+                        }
+                    else
+                        if(@ $_GET['mod']=="consultar_citas")
+                        {
+                            require_once("modulo/consultar_citas.php");
+                        }
+                    else
+                        if(@ $_GET['mod']=="crear_recurso")
+                        {
+                            require_once("modulo/crear_recurso.php");
+                        }
+                    else
+                        if(@ $_GET['mod']=="consultar_recurso")
+                        {
+                            require_once("modulo/consultar_recurso.php");
+                        }
+                    else
+                        if(@ $_GET['mod']=="crear_foro")
+                        {
+                            require_once("modulo/crear_foro.php");
+                        }
+                    else
+                        if(@ $_GET['mod']=="ver_foro")
+                        {
+                            require_once("modulo/ver_foro.php");
+                        }
+                    else
+                        if(@ $_GET['mod']=="foro_detalle")
+                        {
+                            require_once("modulo/foro_detalle.php");
                         }
                 ?>
 
@@ -471,4 +521,5 @@ if (isset($_SESSION['user'])){
 }else{
     echo "<script>window.location='../index.php';</script>";
 }
+ob_end_flush();
 ?>

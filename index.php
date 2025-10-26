@@ -29,6 +29,8 @@ if(isset($_SESSION['user'])){
     <!-- Custom styles for this template-->
     <link href="Admin/css/sb-admin-2.min.css" rel="stylesheet">
 
+    <link href="Admin/css/estilos.css" rel="stylesheet">
+
     <link rel="icon" type="image/png" href="img/EducaSex_Pro.png">
     
     <style>
@@ -72,6 +74,7 @@ if(isset($_SESSION['user'])){
                     $_SESSION['user'] = $fila['documento'];
                     $_SESSION['pn'] = $fila['primer_nombre'];
                     $_SESSION['pa'] = $fila['primer_apellido'];
+                    $_SESSION['rol'] = $fila['ID_rol'];
 
                     // Redirigir al dashboard
                     echo "<script> window.location='Admin/dashboard.php' </script>";
