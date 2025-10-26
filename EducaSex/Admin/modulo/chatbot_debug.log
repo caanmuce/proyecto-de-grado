@@ -1,0 +1,375 @@
+[2025-09-02 18:53:50] API iniciada. REMOTE=::1
+[2025-09-02 19:00:09] API iniciada. REMOTE=::1
+[2025-09-02 19:05:54] API iniciada. REMOTE=::1
+[2025-09-02 20:40:42] API iniciada. REMOTE=::1
+[2025-09-02 20:40:52] API iniciada. REMOTE=::1
+[2025-09-02 20:40:52] generateResponse original="¿Qué métodos anticonceptivos existen?" processed="que metodos anticonceptivos existen"
+[2025-09-02 20:40:52] EXCEPTION: PROCEDURE kaboom.FindKnowledgeMatches does not exist
+[2025-09-02 20:41:12] API iniciada. REMOTE=::1
+[2025-09-02 20:41:16] API iniciada. REMOTE=::1
+[2025-09-02 20:41:16] generateResponse original="¿Qué es el consentimiento?" processed="que es el consentimiento"
+[2025-09-02 20:41:16] EXCEPTION: PROCEDURE kaboom.FindKnowledgeMatches does not exist
+[2025-09-02 20:41:42] API iniciada. REMOTE=::1
+[2025-09-02 20:42:12] API iniciada. REMOTE=::1
+[2025-09-02 20:42:42] API iniciada. REMOTE=::1
+[2025-09-02 20:43:12] API iniciada. REMOTE=::1
+[2025-09-02 20:43:42] API iniciada. REMOTE=::1
+[2025-09-02 20:44:12] API iniciada. REMOTE=::1
+[2025-09-02 20:45:13] API iniciada. REMOTE=::1
+[2025-09-02 20:46:14] API iniciada. REMOTE=::1
+[2025-09-02 20:47:15] API iniciada. REMOTE=::1
+[2025-09-02 20:48:08] API iniciada. REMOTE=::1
+[2025-09-02 20:48:12] API iniciada. REMOTE=::1
+[2025-09-02 20:48:15] API iniciada. REMOTE=::1
+[2025-09-02 20:48:15] generateResponse original="¿Qué es el consentimiento?" processed="que es el consentimiento"
+[2025-09-02 20:48:15] EXCEPTION: PROCEDURE kaboom.FindKnowledgeMatches does not exist
+[2025-09-02 20:48:42] API iniciada. REMOTE=::1
+[2025-09-02 20:49:12] API iniciada. REMOTE=::1
+[2025-09-02 20:49:42] API iniciada. REMOTE=::1
+[2025-09-02 20:50:07] API iniciada. REMOTE=::1
+[2025-09-02 20:50:07] generateResponse original="Salud emocional y sexual" processed="salud emocional y sexual"
+[2025-09-02 20:50:07] EXCEPTION: PROCEDURE kaboom.FindKnowledgeMatches does not exist
+[2025-09-02 20:50:12] API iniciada. REMOTE=::1
+[2025-09-02 20:50:42] API iniciada. REMOTE=::1
+[2025-09-02 20:51:12] API iniciada. REMOTE=::1
+[2025-09-02 20:51:42] API iniciada. REMOTE=::1
+[2025-09-02 20:52:40] API iniciada. REMOTE=::1
+[2025-09-02 20:53:40] API iniciada. REMOTE=::1
+[2025-09-02 20:54:40] API iniciada. REMOTE=::1
+[2025-09-02 20:54:52] API iniciada. REMOTE=::1
+[2025-09-02 22:17:08] API iniciada. REMOTE=::1
+[2025-09-02 22:17:13] API iniciada. REMOTE=::1
+[2025-09-02 22:17:13] generateResponse original="Salud emocional y sexual" processed="salud emocional y sexual"
+[2025-09-02 22:17:13] EXCEPTION: PROCEDURE kaboom.FindKnowledgeMatches does not exist
+[2025-09-06 02:50:08] API iniciada. REMOTE=::1
+[2025-09-06 02:50:12] API iniciada. REMOTE=::1
+[2025-09-06 02:50:12] generateResponse original="¿Qué métodos anticonceptivos existen?" processed="que metodos anticonceptivos existen"
+[2025-09-06 02:50:12] EXCEPTION: PROCEDURE kaboom.FindKnowledgeMatches does not exist
+[2025-09-07 20:51:42] API iniciada. REMOTE=::1
+[2025-09-07 20:51:49] API iniciada. REMOTE=::1
+[2025-09-07 20:51:49] generateResponse original="Salud emocional y sexual" processed="salud emocional y sexual"
+[2025-09-07 20:51:49] EXCEPTION: PROCEDURE kaboom.FindKnowledgeMatches does not exist
+[2025-09-07 21:47:49] API iniciada. REMOTE=::1
+[2025-09-07 21:51:46] API iniciada. REMOTE=::1
+[2025-09-08 01:03:33] API iniciada. REMOTE=::1
+[2025-09-08 01:04:03] API iniciada. REMOTE=::1
+[2025-09-09 20:58:15] API iniciada. REMOTE=::1
+[2025-09-09 20:58:29] API iniciada. REMOTE=::1
+[2025-09-09 20:58:30] generateResponse original="¿Qué es el consentimiento?" processed="que es el consentimiento"
+[2025-09-09 20:58:30] EXCEPTION: PROCEDURE kaboom.FindKnowledgeMatches does not exist
+[2025-09-09 20:58:45] API iniciada. REMOTE=::1
+[2025-09-09 21:57:55] API iniciada. REMOTE=::1
+[2025-09-09 21:57:58] API iniciada. REMOTE=::1
+[2025-09-09 21:57:58] generateResponse original="¿Qué es el consentimiento?" processed="que es el consentimiento"
+[2025-09-09 21:57:58] EXCEPTION: Storage engine MEMORY doesn't support BLOB/TEXT columns
+[2025-09-09 21:58:25] API iniciada. REMOTE=::1
+[2025-09-09 21:58:55] API iniciada. REMOTE=::1
+[2025-09-09 21:59:25] API iniciada. REMOTE=::1
+[2025-09-09 21:59:55] API iniciada. REMOTE=::1
+[2025-09-09 22:00:25] API iniciada. REMOTE=::1
+[2025-09-09 22:00:55] API iniciada. REMOTE=::1
+[2025-09-09 22:01:25] API iniciada. REMOTE=::1
+[2025-09-09 22:02:16] API iniciada. REMOTE=::1
+[2025-09-09 22:02:23] API iniciada. REMOTE=::1
+[2025-09-09 22:02:23] generateResponse original="¿Qué es el consentimiento?" processed="que es el consentimiento"
+[2025-09-09 22:02:23] EXCEPTION: Storage engine MEMORY doesn't support BLOB/TEXT columns
+[2025-09-09 22:02:25] API iniciada. REMOTE=::1
+[2025-09-09 22:02:26] API iniciada. REMOTE=::1
+[2025-09-09 22:02:26] generateResponse original="¿Qué es el consentimiento?" processed="que es el consentimiento"
+[2025-09-09 22:02:26] EXCEPTION: Storage engine MEMORY doesn't support BLOB/TEXT columns
+[2025-09-09 22:02:55] API iniciada. REMOTE=::1
+[2025-09-09 22:03:00] API iniciada. REMOTE=::1
+[2025-09-09 22:03:01] generateResponse original="Salud emocional y sexual" processed="salud emocional y sexual"
+[2025-09-09 22:03:01] EXCEPTION: Storage engine MEMORY doesn't support BLOB/TEXT columns
+[2025-09-09 22:03:25] API iniciada. REMOTE=::1
+[2025-09-09 22:03:55] API iniciada. REMOTE=::1
+[2025-09-09 22:04:56] API iniciada. REMOTE=::1
+[2025-09-09 22:05:31] API iniciada. REMOTE=::1
+[2025-09-09 22:05:32] API iniciada. REMOTE=::1
+[2025-09-09 22:05:40] API iniciada. REMOTE=::1
+[2025-09-09 22:05:40] generateResponse original="¿Qué es el consentimiento?" processed="que es el consentimiento"
+[2025-09-09 22:05:40] EXCEPTION: Storage engine MEMORY doesn't support BLOB/TEXT columns
+[2025-09-09 22:06:03] API iniciada. REMOTE=::1
+[2025-09-09 22:06:16] API iniciada. REMOTE=::1
+[2025-09-09 22:06:18] API iniciada. REMOTE=::1
+[2025-09-09 22:06:19] generateResponse original="Información sobre ITS/ETS" processed="informacion sobre its ets"
+[2025-09-09 22:06:19] EXCEPTION: Storage engine MEMORY doesn't support BLOB/TEXT columns
+[2025-09-09 22:06:21] API iniciada. REMOTE=::1
+[2025-09-09 22:06:38] API iniciada. REMOTE=::1
+[2025-09-09 22:06:38] generateResponse original="Salud emocional y sexual" processed="salud emocional y sexual"
+[2025-09-09 22:06:38] EXCEPTION: Storage engine MEMORY doesn't support BLOB/TEXT columns
+[2025-09-09 22:06:51] API iniciada. REMOTE=::1
+[2025-09-09 22:07:22] API iniciada. REMOTE=::1
+[2025-09-09 22:07:52] API iniciada. REMOTE=::1
+[2025-09-09 22:08:22] API iniciada. REMOTE=::1
+[2025-09-09 22:08:52] API iniciada. REMOTE=::1
+[2025-09-09 22:09:22] API iniciada. REMOTE=::1
+[2025-09-09 22:09:52] API iniciada. REMOTE=::1
+[2025-09-09 22:10:53] API iniciada. REMOTE=::1
+[2025-09-09 22:11:46] API iniciada. REMOTE=::1
+[2025-09-09 22:11:48] API iniciada. REMOTE=::1
+[2025-09-09 22:12:37] API iniciada. REMOTE=::1
+[2025-09-09 22:13:08] API iniciada. REMOTE=::1
+[2025-09-09 22:13:38] API iniciada. REMOTE=::1
+[2025-09-09 22:13:43] API iniciada. REMOTE=::1
+[2025-09-09 22:13:44] API iniciada. REMOTE=::1
+[2025-09-09 22:13:45] API iniciada. REMOTE=::1
+[2025-09-09 22:13:45] generateResponse original="Salud emocional y sexual" processed="salud emocional y sexual"
+[2025-09-09 22:13:45] Decision: DB KB response topic=abuso_sexual score=2.6792988777160645
+[2025-09-09 22:13:45] API iniciada. REMOTE=::1
+[2025-09-09 22:13:49] API iniciada. REMOTE=::1
+[2025-09-09 22:13:49] generateResponse original="¿Qué es el consentimiento?" processed="que es el consentimiento"
+[2025-09-09 22:13:50] Decision: DB KB response topic=consentimiento_intoxicacion score=6.568047523498535
+[2025-09-09 22:13:50] API iniciada. REMOTE=::1
+[2025-09-09 23:05:23] API iniciada. REMOTE=::1
+[2025-09-09 23:05:26] API iniciada. REMOTE=::1
+[2025-09-09 23:05:26] generateResponse original="¿Qué métodos anticonceptivos existen?" processed="que metodos anticonceptivos existen"
+[2025-09-09 23:05:26] Decision: DB KB response topic=anticonceptivos score=10.667529106140137
+[2025-09-09 23:05:27] API iniciada. REMOTE=::1
+[2025-09-09 23:24:22] API iniciada. REMOTE=::1
+[2025-09-09 23:36:35] API iniciada. REMOTE=::1
+[2025-09-09 23:36:45] API iniciada. REMOTE=::1
+[2025-09-09 23:36:45] generateResponse original="¿Qué es el consentimiento?" processed="que es el consentimiento"
+[2025-09-09 23:36:46] Decision: DB KB response topic=consentimiento_intoxicacion score=6.568047523498535
+[2025-09-09 23:36:46] API iniciada. REMOTE=::1
+[2025-09-09 23:37:00] API iniciada. REMOTE=::1
+[2025-09-09 23:37:00] generateResponse original="hola. como estas?" processed="hola como estas"
+[2025-09-09 23:37:00] Decision: DB KB response topic=salir_relacion_toxica score=1.7445074319839478
+[2025-09-09 23:37:00] API iniciada. REMOTE=::1
+[2025-09-09 23:37:05] API iniciada. REMOTE=::1
+[2025-09-09 23:37:35] API iniciada. REMOTE=::1
+[2025-09-09 23:38:05] API iniciada. REMOTE=::1
+[2025-09-09 23:38:35] API iniciada. REMOTE=::1
+[2025-09-09 23:39:05] API iniciada. REMOTE=::1
+[2025-09-09 23:39:35] API iniciada. REMOTE=::1
+[2025-09-09 23:40:05] API iniciada. REMOTE=::1
+[2025-09-09 23:40:35] API iniciada. REMOTE=::1
+[2025-09-09 23:41:05] API iniciada. REMOTE=::1
+[2025-09-09 23:41:35] API iniciada. REMOTE=::1
+[2025-09-09 23:42:05] API iniciada. REMOTE=::1
+[2025-09-09 23:42:35] API iniciada. REMOTE=::1
+[2025-09-09 23:43:05] API iniciada. REMOTE=::1
+[2025-09-09 23:43:35] API iniciada. REMOTE=::1
+[2025-09-09 23:44:05] API iniciada. REMOTE=::1
+[2025-09-09 23:44:35] API iniciada. REMOTE=::1
+[2025-09-09 23:45:05] API iniciada. REMOTE=::1
+[2025-09-09 23:45:35] API iniciada. REMOTE=::1
+[2025-09-09 23:46:05] API iniciada. REMOTE=::1
+[2025-09-09 23:46:35] API iniciada. REMOTE=::1
+[2025-09-09 23:47:05] API iniciada. REMOTE=::1
+[2025-09-09 23:47:35] API iniciada. REMOTE=::1
+[2025-09-09 23:48:05] API iniciada. REMOTE=::1
+[2025-09-09 23:48:35] API iniciada. REMOTE=::1
+[2025-09-09 23:49:05] API iniciada. REMOTE=::1
+[2025-09-09 23:49:35] API iniciada. REMOTE=::1
+[2025-09-09 23:50:05] API iniciada. REMOTE=::1
+[2025-09-09 23:50:35] API iniciada. REMOTE=::1
+[2025-09-09 23:51:05] API iniciada. REMOTE=::1
+[2025-09-09 23:51:15] API iniciada. REMOTE=::1
+[2025-09-09 23:51:15] generateResponse original="estoy embarazada" processed="estoy embarazada"
+[2025-09-09 23:51:15] Decision: DB KB response topic=embarazo_prueba score=3.917436122894287
+[2025-09-09 23:51:15] API iniciada. REMOTE=::1
+[2025-09-09 23:51:36] API iniciada. REMOTE=::1
+[2025-09-09 23:52:06] API iniciada. REMOTE=::1
+[2025-09-09 23:53:07] API iniciada. REMOTE=::1
+[2025-09-09 23:54:08] API iniciada. REMOTE=::1
+[2025-09-09 23:55:09] API iniciada. REMOTE=::1
+[2025-09-09 23:56:10] API iniciada. REMOTE=::1
+[2025-09-09 23:57:11] API iniciada. REMOTE=::1
+[2025-09-13 01:51:13] API iniciada. REMOTE=::1
+[2025-09-13 03:43:09] API iniciada. REMOTE=::1
+[2025-09-13 03:43:39] API iniciada. REMOTE=::1
+[2025-09-13 03:44:09] API iniciada. REMOTE=::1
+[2025-09-14 01:01:03] API iniciada. REMOTE=::1
+[2025-09-14 01:01:33] API iniciada. REMOTE=::1
+[2025-09-14 01:02:03] API iniciada. REMOTE=::1
+[2025-09-14 01:02:33] API iniciada. REMOTE=::1
+[2025-09-14 01:12:16] API iniciada. REMOTE=::1
+[2025-09-14 01:12:34] API iniciada. REMOTE=::1
+[2025-09-21 00:43:40] API iniciada. REMOTE=::1
+[2025-09-21 00:44:32] API iniciada. REMOTE=::1
+[2025-09-21 00:49:03] API iniciada. REMOTE=::1
+[2025-09-29 00:21:02] API iniciada. REMOTE=::1
+[2025-09-29 00:21:08] API iniciada. REMOTE=::1
+[2025-09-29 00:21:08] generateResponse original="Información sobre ITS/ETS" processed="informacion sobre its ets"
+[2025-09-29 00:21:08] Decision: DB KB response topic=its_definicion score=6.486345291137695
+[2025-09-29 00:21:08] API iniciada. REMOTE=::1
+[2025-09-29 00:21:27] API iniciada. REMOTE=::1
+[2025-09-29 00:21:27] generateResponse original="explicame el ciclo menstrual" processed="explicame el ciclo menstrual"
+[2025-09-29 00:21:27] Decision: DB KB response topic=menstruacion score=11.055299758911133
+[2025-09-29 00:21:27] API iniciada. REMOTE=::1
+[2025-09-29 00:21:32] API iniciada. REMOTE=::1
+[2025-09-29 00:31:59] API iniciada. REMOTE=::1
+[2025-09-29 00:32:51] API iniciada. REMOTE=::1
+[2025-10-11 23:23:36] API iniciada. REMOTE=::1
+[2025-10-11 23:28:01] API iniciada. REMOTE=::1
+[2025-10-11 23:28:50] API iniciada. REMOTE=::1
+[2025-10-11 23:39:57] API iniciada. REMOTE=::1
+[2025-10-11 23:40:44] API iniciada. REMOTE=::1
+[2025-10-11 23:41:14] API iniciada. REMOTE=::1
+[2025-10-11 23:41:44] API iniciada. REMOTE=::1
+[2025-10-11 23:41:52] API iniciada. REMOTE=::1
+[2025-10-12 23:57:37] API iniciada. REMOTE=::1
+[2025-10-12 23:57:54] API iniciada. REMOTE=::1
+[2025-10-12 23:58:08] API iniciada. REMOTE=::1
+[2025-10-13 23:31:36] API iniciada. REMOTE=::1
+[2025-10-13 23:36:16] API iniciada. REMOTE=::1
+[2025-10-14 21:13:33] API iniciada. REMOTE=::1
+[2025-10-14 21:14:45] API iniciada. REMOTE=::1
+[2025-10-14 21:14:51] API iniciada. REMOTE=::1
+[2025-10-14 21:14:52] generateResponse original="pene" processed="pene"
+[2025-10-14 21:14:52] Decision: DB KB response topic=anatomia score=6.112322807312012
+[2025-10-14 21:14:52] API iniciada. REMOTE=::1
+[2025-10-14 22:24:43] API iniciada. REMOTE=::1
+[2025-10-14 22:25:13] API iniciada. REMOTE=::1
+[2025-10-14 22:25:43] API iniciada. REMOTE=::1
+[2025-10-14 22:26:13] API iniciada. REMOTE=::1
+[2025-10-14 23:01:21] API iniciada. REMOTE=::1
+[2025-10-14 23:01:48] API iniciada. REMOTE=::1
+[2025-10-14 23:06:06] API iniciada. REMOTE=::1
+[2025-10-14 23:34:39] API iniciada. REMOTE=::1
+[2025-10-14 23:34:58] API iniciada. REMOTE=::1
+[2025-10-15 13:52:14] API iniciada. REMOTE=::1
+[2025-10-15 13:52:26] API iniciada. REMOTE=::1
+[2025-10-15 13:52:26] API iniciada. REMOTE=::1
+[2025-10-15 13:52:26] API iniciada. REMOTE=::1
+[2025-10-15 13:52:26] API iniciada. REMOTE=::1
+[2025-10-15 13:52:26] API iniciada. REMOTE=::1
+[2025-10-15 13:52:26] API iniciada. REMOTE=::1
+[2025-10-15 13:52:26] API iniciada. REMOTE=::1
+[2025-10-15 13:52:26] API iniciada. REMOTE=::1
+[2025-10-15 13:52:26] API iniciada. REMOTE=::1
+[2025-10-15 13:52:26] API iniciada. REMOTE=::1
+[2025-10-15 13:52:27] API iniciada. REMOTE=::1
+[2025-10-15 13:52:27] API iniciada. REMOTE=::1
+[2025-10-15 13:52:27] API iniciada. REMOTE=::1
+[2025-10-15 13:52:27] API iniciada. REMOTE=::1
+[2025-10-15 13:52:27] API iniciada. REMOTE=::1
+[2025-10-15 13:52:27] API iniciada. REMOTE=::1
+[2025-10-15 13:52:27] API iniciada. REMOTE=::1
+[2025-10-15 13:52:27] API iniciada. REMOTE=::1
+[2025-10-15 13:52:27] API iniciada. REMOTE=::1
+[2025-10-15 13:52:27] API iniciada. REMOTE=::1
+[2025-10-15 13:52:27] API iniciada. REMOTE=::1
+[2025-10-15 13:52:27] API iniciada. REMOTE=::1
+[2025-10-15 13:52:27] API iniciada. REMOTE=::1
+[2025-10-15 13:52:27] API iniciada. REMOTE=::1
+[2025-10-15 13:52:28] API iniciada. REMOTE=::1
+[2025-10-15 13:52:28] API iniciada. REMOTE=::1
+[2025-10-15 13:52:28] API iniciada. REMOTE=::1
+[2025-10-15 13:52:28] API iniciada. REMOTE=::1
+[2025-10-15 13:52:28] API iniciada. REMOTE=::1
+[2025-10-15 13:52:29] API iniciada. REMOTE=::1
+[2025-10-15 13:52:29] API iniciada. REMOTE=::1
+[2025-10-15 13:52:29] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:30] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:31] API iniciada. REMOTE=::1
+[2025-10-15 13:52:32] API iniciada. REMOTE=::1
+[2025-10-15 13:52:32] API iniciada. REMOTE=::1
+[2025-10-15 13:52:32] API iniciada. REMOTE=::1
+[2025-10-15 13:52:32] API iniciada. REMOTE=::1
+[2025-10-15 13:52:32] API iniciada. REMOTE=::1
+[2025-10-15 13:52:32] API iniciada. REMOTE=::1
+[2025-10-15 13:52:32] API iniciada. REMOTE=::1
+[2025-10-15 13:52:33] API iniciada. REMOTE=::1
+[2025-10-15 13:52:33] API iniciada. REMOTE=::1
+[2025-10-15 13:52:33] API iniciada. REMOTE=::1
+[2025-10-15 13:52:33] API iniciada. REMOTE=::1
+[2025-10-15 13:52:33] API iniciada. REMOTE=::1
+[2025-10-15 13:52:33] API iniciada. REMOTE=::1
+[2025-10-15 13:52:33] API iniciada. REMOTE=::1
+[2025-10-15 13:52:33] API iniciada. REMOTE=::1
+[2025-10-15 13:52:33] API iniciada. REMOTE=::1
+[2025-10-15 13:52:33] API iniciada. REMOTE=::1
+[2025-10-15 13:52:33] API iniciada. REMOTE=::1
+[2025-10-15 13:52:44] API iniciada. REMOTE=::1
+[2025-10-15 13:53:14] API iniciada. REMOTE=::1
+[2025-10-15 13:53:22] API iniciada. REMOTE=::1
+[2025-10-15 14:46:45] API iniciada. REMOTE=::1
+[2025-10-15 14:47:15] API iniciada. REMOTE=::1
+[2025-10-15 14:47:37] API iniciada. REMOTE=::1
+[2025-10-15 14:47:37] generateResponse original="¿Qué métodos anticonceptivos existen?" processed="que metodos anticonceptivos existen"
+[2025-10-15 14:47:37] Decision: DB KB response topic=anticonceptivos score=10.667529106140137
+[2025-10-15 14:47:38] API iniciada. REMOTE=::1
+[2025-10-15 14:47:45] API iniciada. REMOTE=::1
+[2025-10-21 23:23:50] API iniciada. REMOTE=::1
+[2025-10-21 23:24:20] API iniciada. REMOTE=::1
+[2025-10-21 23:24:50] API iniciada. REMOTE=::1
+[2025-10-23 17:51:36] API iniciada. REMOTE=::1
+[2025-10-23 19:08:14] API iniciada. REMOTE=::1
+[2025-10-25 23:47:37] API iniciada. REMOTE=::1
+[2025-10-26 21:55:28] API iniciada. REMOTE=::1
+[2025-10-26 22:14:47] API iniciada. REMOTE=::1
