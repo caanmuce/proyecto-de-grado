@@ -485,7 +485,7 @@
       MIN_STEPS: 2,
       MAX_STEPS: 5,
       MAX_OPTIONS: 4,
-      API_BASE_URL: ' http://localhost/educasex/admin/api/' 
+      API_BASE_URL: 'http://localhost/EducaSex/Admin/api/'
     };
 
     // ==================== SISTEMA DE API ====================
@@ -493,6 +493,8 @@
       async request(endpoint, options = {}) {
         const url = CONFIG.API_BASE_URL + endpoint;
         try {
+          console.log('Making API request to:', url); // Debug log
+          
           const response = await fetch(url, {
             headers: {
               'Content-Type': 'application/json',
@@ -502,12 +504,20 @@
           });
           
           if (!response.ok) {
-            throw new Error(`Error ${response.status}: ${response.statusText}`);
+            throw new Error(`HTTP Error ${response.status}: ${response.statusText}`);
+          }
+          
+          const contentType = response.headers.get('content-type');
+          if (!contentType || !contentType.includes('application/json')) {
+            const text = await response.text();
+            console.error('Respuesta no es JSON:', text);
+            throw new Error('La respuesta del servidor no es JSON válido');
           }
           
           return await response.json();
         } catch (error) {
           console.error('API request failed:', error);
+          console.error('URL:', url);
           throw error;
         }
       },

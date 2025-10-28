@@ -2,6 +2,11 @@
 require_once 'config.php';
 
 try {
+    // Verificar que la conexión PDO existe
+    if (!isset($pdo)) {
+        throw new Exception('Error de conexión a la base de datos');
+    }
+
     $stmt = $pdo->query("
         SELECT c.*, 
                GROUP_CONCAT(
@@ -35,11 +40,16 @@ try {
         
         if ($row['pasos_json']) {
             $steps = json_decode('[' . $row['pasos_json'] . ']', true);
-            foreach ($steps as $step) {
-                $case['steps'][] = [
-                    'desc' => $step['descripcion'],
-                    'options' => json_decode('[' . $step['opciones'] . ']', true)
-                ];
+            if ($steps && is_array($steps)) {
+                foreach ($steps as $step) {
+                    if (isset($step['descripcion']) && isset($step['opciones'])) {
+                        $opciones = json_decode('[' . $step['opciones'] . ']', true);
+                        $case['steps'][] = [
+                            'desc' => $step['descripcion'],
+                            'options' => is_array($opciones) ? $opciones : []
+                        ];
+                    }
+                }
             }
         }
         
@@ -47,7 +57,12 @@ try {
     }
     
     echo json_encode($cases);
+
 } catch (PDOException $e) {
+    http_response_code(500);
+    echo json_encode(['error' => 'Error de base de datos: ' . $e->getMessage()]);
+} catch (Exception $e) {
+    http_response_code(500);
     echo json_encode(['error' => $e->getMessage()]);
 }
 ?>
