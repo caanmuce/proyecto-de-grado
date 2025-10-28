@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Casos de estudio — Con Recap</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   
   <style>
     :root {
@@ -475,7 +476,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Constants and Configuration
+    // ==================== CONFIGURACIÓN Y CONSTANTES ====================
     const CONFIG = {
       DEFAULT_META: 100,
       NOTIFICATION_DURATION: 3000,
@@ -483,12 +484,122 @@
       DEFAULT_REWARD_IMG: 'https://placehold.co/150x150',
       MIN_STEPS: 2,
       MAX_STEPS: 5,
-      MAX_OPTIONS: 4
+      MAX_OPTIONS: 4,
+      API_BASE_URL: ' http://localhost/educasex/admin/api/' 
     };
 
-    // In-memory storage (replacing localStorage)
+    // ==================== SISTEMA DE API ====================
+    const DatabaseAPI = {
+      async request(endpoint, options = {}) {
+        const url = CONFIG.API_BASE_URL + endpoint;
+        try {
+          const response = await fetch(url, {
+            headers: {
+              'Content-Type': 'application/json',
+              ...options.headers
+            },
+            ...options
+          });
+          
+          if (!response.ok) {
+            throw new Error(`Error ${response.status}: ${response.statusText}`);
+          }
+          
+          return await response.json();
+        } catch (error) {
+          console.error('API request failed:', error);
+          throw error;
+        }
+      },
+
+      // Estudiantes
+      async getStudent() {
+        return this.request('get_student.php');
+      },
+
+      async saveStudent(studentData) {
+        return this.request('save_student.php', {
+          method: 'POST',
+          body: JSON.stringify(studentData)
+        });
+      },
+
+      // Casos
+      async getCases() {
+        return this.request('get_cases.php');
+      },
+
+      async saveCase(caseData) {
+        const dataToSend = {
+          title: caseData.title,
+          steps: caseData.steps,
+          categoria: 'educacion_sexual',
+          dificultad: 'media',
+          creado_por: 1
+        };
+        
+        // Solo incluir ID si es numérico (para actualización)
+        if (caseData.id && !isNaN(caseData.id)) {
+          dataToSend.id = parseInt(caseData.id);
+        }
+        
+        return this.request('save_case.php', {
+          method: 'POST',
+          body: JSON.stringify(dataToSend)
+        });
+      },
+
+      async deleteCase(caseId) {
+        return this.request('delete_case.php', {
+          method: 'POST',
+          body: JSON.stringify({ id: caseId })
+        });
+      },
+
+      // Recompensas
+      async getRewards() {
+        return this.request('get_rewards.php');
+      },
+
+      async saveReward(rewardData) {
+        return this.request('save_reward.php', {
+          method: 'POST',
+          body: JSON.stringify(rewardData)
+        });
+      },
+
+      async deleteReward(rewardId) {
+        return this.request('delete_reward.php', {
+          method: 'POST',
+          body: JSON.stringify({ id: rewardId })
+        });
+      },
+
+      // Progreso
+      async getProgress() {
+        return this.request('get_progress.php');
+      },
+
+      async saveProgress(progressData) {
+        return this.request('save_progress.php', {
+          method: 'POST',
+          body: JSON.stringify(progressData)
+        });
+      },
+
+      // Decisiones
+      async saveDecision(decisionData) {
+        return this.request('save_decision.php', {
+          method: 'POST',
+          body: JSON.stringify(decisionData)
+        });
+      }
+    };
+
+    // ==================== ALMACENAMIENTO EN MEMORIA ====================
     const AppData = {
       student: {
+        id: null,
         name: 'Nombre',
         email: '',
         avatar: CONFIG.DEFAULT_AVATAR,
@@ -501,7 +612,7 @@
       caseChoices: {}
     };
 
-    // Utility Functions
+    // ==================== FUNCIONES UTILITARIAS ====================
     const Utils = {
       uid: (prefix = 'id') => `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
       
@@ -531,7 +642,7 @@
       }
     };
 
-    // Notification System
+    // ==================== SISTEMA DE NOTIFICACIONES ====================
     const NotificationSystem = {
       show: (message, type = 'info', duration = CONFIG.NOTIFICATION_DURATION) => {
         const container = document.getElementById('notification-container');
@@ -553,12 +664,11 @@
       }
     };
 
-    // Modal Management System
+    // ==================== SISTEMA DE MODALES ====================
     const ModalManager = {
       instances: {},
       
       init() {
-        // Initialize all modals
         const modalElements = document.querySelectorAll('.modal');
         modalElements.forEach(modalEl => {
           this.instances[modalEl.id] = new bootstrap.Modal(modalEl, {
@@ -567,7 +677,6 @@
           });
         });
 
-        // Add event listeners for close buttons
         document.addEventListener('click', (e) => {
           if (e.target.matches('[data-bs-dismiss="modal"]')) {
             const modal = e.target.closest('.modal');
@@ -591,7 +700,7 @@
       }
     };
 
-    // Case Builder System
+    // ==================== CONSTRUCTOR DE CASOS ====================
     const CaseBuilder = {
       currentStepCount: 2,
 
@@ -653,8 +762,6 @@
         `;
 
         container.appendChild(stepDiv);
-
-        // Add event listeners
         this.addStepEventListeners(stepDiv, stepNumber);
       },
 
@@ -685,7 +792,6 @@
       },
 
       addStepEventListeners(stepDiv, stepNumber) {
-        // Remove step button
         const removeStepBtn = stepDiv.querySelector('.remove-step-btn');
         if (removeStepBtn) {
           removeStepBtn.addEventListener('click', () => {
@@ -693,7 +799,6 @@
           });
         }
 
-        // Add option button
         const addOptionBtn = stepDiv.querySelector('.add-option-btn');
         if (addOptionBtn) {
           addOptionBtn.addEventListener('click', () => {
@@ -701,7 +806,6 @@
           });
         }
 
-        // Remove option buttons
         stepDiv.querySelectorAll('.remove-option-btn').forEach(btn => {
           btn.addEventListener('click', (e) => {
             const optionNumber = parseInt(e.currentTarget.dataset.option, 10);
@@ -758,7 +862,6 @@
           
           optionsContainer.insertAdjacentHTML('beforeend', newOptionHtml);
           
-          // Add event listener to new remove button if present
           const newRemoveBtn = optionsContainer.querySelector(`.remove-option-btn[data-option="${newOptionIndex}"]`);
           if (newRemoveBtn) {
             newRemoveBtn.addEventListener('click', (e) => {
@@ -854,28 +957,22 @@
       loadCaseData(caseData) {
         document.getElementById('case-title').value = caseData.title || '';
         
-        // Set step count to match loaded data
         this.currentStepCount = Math.max(CONFIG.MIN_STEPS, caseData.steps?.length || CONFIG.MIN_STEPS);
         this.renderSteps();
 
-        // Fill in the data
         if (caseData.steps) {
           caseData.steps.forEach((step, stepIndex) => {
             const stepNumber = stepIndex + 1;
             
-            // Fill description
             const descTextarea = document.querySelector(`.step-desc[data-step="${stepNumber}"]`);
             if (descTextarea) {
               descTextarea.value = step.desc || '';
             }
 
-            // Fill options
             const optionsContainer = document.querySelector(`.options-container[data-step="${stepNumber}"]`);
             if (optionsContainer && step.options) {
-              // Clear existing options
               optionsContainer.innerHTML = '';
               
-              // Add options from data
               step.options.forEach((option, optionIndex) => {
                 const optionNumber = optionIndex + 1;
                 const optionHtml = `
@@ -900,7 +997,6 @@
                 optionsContainer.insertAdjacentHTML('beforeend', optionHtml);
               });
 
-              // Add event listeners to remove buttons
               optionsContainer.querySelectorAll('.remove-option-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                   const optionNumber = parseInt(e.currentTarget.dataset.option, 10);
@@ -919,11 +1015,22 @@
       }
     };
 
-    // Application State
+    // ==================== ESTADO DE LA APLICACIÓN ====================
     class AppState {
       constructor() {
-        this.initializeDefaultData();
-        this.loadPersistedData();
+        this.initialized = false;
+      }
+
+      async initialize() {
+        if (this.initialized) return;
+        
+        try {
+          await this.loadPersistedData();
+          this.initialized = true;
+        } catch (error) {
+          console.error('Error initializing app:', error);
+          this.initializeDefaultData();
+        }
       }
 
       initializeDefaultData() {
@@ -936,37 +1043,72 @@
         }
       }
 
-      loadPersistedData() {
+      async loadPersistedData() {
         try {
-          // Load student data
+          // Cargar casos desde la base de datos
+          const casesData = await DatabaseAPI.getCases();
+          if (casesData && casesData.length > 0) {
+            AppData.cases = casesData;
+          }
+
+          // Cargar recompensas
+          const rewardsData = await DatabaseAPI.getRewards();
+          if (rewardsData && rewardsData.length > 0) {
+            AppData.rewards = rewardsData;
+          }
+
+          // Cargar progreso
+          const progressData = await DatabaseAPI.getProgress();
+          if (progressData) {
+            AppData.caseProgress = progressData.progress || {};
+            AppData.caseChoices = progressData.choices || {};
+          }
+        } catch (error) {
+          console.error('Error loading data from database:', error);
+          // Fallback a localStorage para progreso
+          this.loadFromLocalStorage();
+        }
+      }
+
+      loadFromLocalStorage() {
+        try {
           const studentData = localStorage.getItem('studentData');
           if (studentData) {
             AppData.student = JSON.parse(studentData);
           }
 
-          // Load cases
           const casesData = localStorage.getItem('casesData');
           if (casesData) {
             AppData.cases = JSON.parse(casesData);
           }
 
-          // Load rewards
           const rewardsData = localStorage.getItem('rewardsData');
           if (rewardsData) {
             AppData.rewards = JSON.parse(rewardsData);
           }
 
-          // Load progress & choices (optional)
           const progressData = localStorage.getItem('caseProgress');
           if (progressData) AppData.caseProgress = JSON.parse(progressData);
           const choicesData = localStorage.getItem('caseChoices');
           if (choicesData) AppData.caseChoices = JSON.parse(choicesData);
         } catch (error) {
-          console.error('Error loading data from localStorage:', error);
+          console.error('Error loading from localStorage:', error);
         }
       }
 
-      saveDataToStorage() {
+      async saveDataToStorage() {
+        try {
+          await DatabaseAPI.saveProgress({
+            progress: AppData.caseProgress,
+            choices: AppData.caseChoices
+          });
+        } catch (error) {
+          console.error('Error saving to database, falling back to localStorage:', error);
+          this.saveToLocalStorage();
+        }
+      }
+
+      saveToLocalStorage() {
         try {
           localStorage.setItem('studentData', JSON.stringify(AppData.student));
           localStorage.setItem('casesData', JSON.stringify(AppData.cases));
@@ -974,7 +1116,7 @@
           localStorage.setItem('caseProgress', JSON.stringify(AppData.caseProgress));
           localStorage.setItem('caseChoices', JSON.stringify(AppData.caseChoices));
         } catch (error) {
-          console.error('Error saving data to localStorage:', error);
+          console.error('Error saving to localStorage:', error);
         }
       }
 
@@ -1004,7 +1146,7 @@
       getDefaultCases() {
         return [
           {
-            id: Utils.uid('c'),
+            id: null, // La base de datos asignará el ID
             title: 'La Fiesta Inesperada',
             steps: [
               {
@@ -1024,55 +1166,10 @@
                 ]
               }
             ]
-          },
-          {
-            id: Utils.uid('c'),
-            title: 'La Conversación Difícil',
-            steps: [
-              {
-                desc: 'Carla quiere hablar con su pareja sobre métodos anticonceptivos pero se siente nerviosa.',
-                options: [
-                  { text: 'Preparar información y traer datos confiables', puntos: 20 },
-                  { text: 'Mencionarlo de forma casual en una conversación', puntos: 10 },
-                  { text: 'Evitar el tema por temor a la reacción', puntos: 5 }
-                ]
-              },
-              {
-                desc: 'Según cómo lo plantee, la pareja puede reaccionar distinto. Elige el siguiente paso.',
-                options: [
-                  { text: 'Pedir apoyo profesional (enfermería/psicología) juntos', puntos: 25 },
-                  { text: 'Buscar más información por separado y luego conversar', puntos: 10 },
-                  { text: 'Dejarlo temporalmente por miedo', puntos: 5 }
-                ]
-              }
-            ]
-          },
-          {
-            id: Utils.uid('c'),
-            title: 'Presión en Redes Sociales',
-            steps: [
-              {
-                desc: 'Alguien intenta presionarte para que compartas fotos íntimas o participes en un reto sexual en redes.',
-                options: [
-                  { text: 'No participar y guardar evidencia (capturas)', puntos: 20 },
-                  { text: 'Ceder por miedo a perder amistades', puntos: 5 },
-                  { text: 'Hablar con un adulto o persona de confianza sobre lo ocurrido', puntos: 15 }
-                ]
-              },
-              {
-                desc: 'Después de la presión, decide cómo proteger tu privacidad y seguridad.',
-                options: [
-                  { text: 'Bloquear, denunciar la cuenta y guardar pruebas', puntos: 20 },
-                  { text: 'Cambiar la configuración de privacidad y revisar contactos', puntos: 10 },
-                  { text: 'Eliminar la publicación pero no informar ni cambiar privacidad', puntos: 5 }
-                ]
-              }
-            ]
           }
         ];
       }
 
-      // Points management
       getPointsNumber() {
         const el = document.getElementById('puntos-total');
         return parseInt((el.textContent || '0').replace(/\D/g, ''), 10) || 0;
@@ -1090,12 +1187,9 @@
         barra.textContent = `${porcentaje}%`;
         barra.setAttribute('aria-valuenow', porcentaje.toString());
         
-        this.saveDataToStorage();
-        this.renderRewards();
         AppData.student.puntos = n;
       }
 
-      // Render methods
       renderStudentPanel() {
         document.getElementById('student-name').textContent = AppData.student.name;
         document.getElementById('student-email').textContent = AppData.student.email || '';
@@ -1134,7 +1228,6 @@
           const col = document.createElement('div');
           col.className = 'col';
           
-          // Create step indicators HTML
           let stepIndicators = '';
           caso.steps.forEach((_, idx) => {
             let dotClass = 'step-dot';
@@ -1143,7 +1236,6 @@
             stepIndicators += `<div class="${dotClass}" title="Paso ${idx + 1}"></div>`;
           });
 
-          // Build options HTML
           const optionsHtml = (step.options || []).map((opt, idx) => {
             return `
               <button class="list-group-item list-group-item-action case-choice d-flex justify-content-between align-items-center" 
@@ -1195,7 +1287,6 @@
           `;
           container.appendChild(col);
         });
-        this.saveDataToStorage();
       }
 
       renderRewards() {
@@ -1259,11 +1350,9 @@
           `;
           list.appendChild(card);
         });
-        this.saveDataToStorage();
       }
 
-      // Case management
-      handleCaseChoice(caseId, stepIndex, optionIndex) {
+      async handleCaseChoice(caseId, stepIndex, optionIndex) {
         const caso = AppData.cases.find(c => c.id === caseId);
         if (!caso) return;
 
@@ -1280,23 +1369,31 @@
         }
         AppData.caseChoices[caseId][stepIndex] = optionIndex;
 
-        // Show notification
+        // Save to database
+        try {
+          await DatabaseAPI.saveDecision({
+            caseId,
+            stepIndex,
+            optionIndex,
+            puntos: option.puntos
+          });
+        } catch (error) {
+          console.error('Error saving decision:', error);
+        }
+
         NotificationSystem.show(`✨ ¡Ganaste ${option.puntos} puntos! Decisión: "${Utils.escapeHtml(option.text)}"`, 'success');
 
         const lastStepIndex = caso.steps.length - 1;
         
-        // Check if it's the last step
         if (stepIndex >= lastStepIndex) {
-          // Mark as completed and show recap
           AppData.caseProgress[caseId] = lastStepIndex;
-          // small delay to let UI update
           setTimeout(() => this.showRecapForCase(caseId), 500);
         } else {
-          // Advance to next step
           const nextIndex = stepIndex + 1;
           AppData.caseProgress[caseId] = nextIndex;
         }
 
+        await this.saveDataToStorage();
         this.renderCases();
       }
 
@@ -1308,7 +1405,6 @@
         const content = document.getElementById('recap-content');
         content.innerHTML = '';
 
-        // Decision summary
         const summaryDiv = document.createElement('div');
         summaryDiv.innerHTML = '<h5>📋 Decisiones tomadas</h5>';
         
@@ -1316,7 +1412,6 @@
         list.className = 'list-group list-group-numbered';
         
         let totalPoints = 0;
-        let hasLowScores = false;
         
         c.steps.forEach((step, stepIndex) => {
           const chosenIdx = choices[stepIndex];
@@ -1324,10 +1419,6 @@
           
           const li = document.createElement('li');
           li.className = 'list-group-item';
-          
-          if (chosen && chosen.puntos < 10) {
-            hasLowScores = true;
-          }
           
           li.innerHTML = `
             <strong>${Utils.escapeHtml(step.desc)}</strong><br>
@@ -1347,7 +1438,6 @@
         summaryDiv.appendChild(list);
         content.appendChild(summaryDiv);
 
-        // Evaluation
         const evalDiv = document.createElement('div');
         evalDiv.className = 'mt-4';
         evalDiv.innerHTML = '<h5>📊 Evaluación por decisión</h5>';
@@ -1392,7 +1482,6 @@
         evalDiv.appendChild(evalList);
         content.appendChild(evalDiv);
 
-        // Total score
         const scoreDiv = document.createElement('div');
         scoreDiv.className = 'mt-4 text-center';
         
@@ -1407,10 +1496,8 @@
         `;
         content.appendChild(scoreDiv);
 
-        // Show modal
         ModalManager.show('modalRecap');
 
-        // Setup restart button
         document.getElementById('recap-reiniciar').onclick = () => {
           AppData.caseProgress[caseId] = 0;
           AppData.caseChoices[caseId] = [];
@@ -1420,7 +1507,6 @@
         };
       }
 
-      // Modal management
       openCaseModalForEdit(id) {
         const c = AppData.cases.find(x => x.id === id);
         if (!c) return;
@@ -1432,9 +1518,36 @@
         ModalManager.show('modalAddCase');
       }
 
+      async deleteCase(id) {
+        if (confirm('🗑 ¿Estás seguro de que quieres eliminar este caso?')) {
+          try {
+            await DatabaseAPI.deleteCase(id);
+            AppData.cases = AppData.cases.filter(c => c.id !== id);
+            delete AppData.caseProgress[id];
+            delete AppData.caseChoices[id];
+            this.renderCases();
+            NotificationSystem.show('✅ Caso eliminado correctamente', 'success');
+          } catch (error) {
+            NotificationSystem.show('❌ Error al eliminar el caso', 'danger');
+          }
+        }
+      }
+
+      async deleteReward(id) {
+        if (confirm('🗑 ¿Estás seguro de que quieres eliminar esta recompensa?')) {
+          try {
+            await DatabaseAPI.deleteReward(id);
+            AppData.rewards = AppData.rewards.filter(r => r.id !== id);
+            this.renderRewards();
+            NotificationSystem.show('✅ Recompensa eliminada correctamente', 'success');
+          } catch (error) {
+            NotificationSystem.show('❌ Error al eliminar la recompensa', 'danger');
+          }
+        }
+      }
+
       resetAllData() {
         if (confirm('⚠ ¿Estás seguro de que quieres resetear toda la aplicación? Se perderán todos los datos.')) {
-          // Reset all data
           AppData.student = {
             name: 'Nombre',
             email: '',
@@ -1447,6 +1560,7 @@
           AppData.caseProgress = {};
           AppData.caseChoices = {};
           
+          this.saveDataToStorage();
           NotificationSystem.show('🔄 Aplicación reseteada correctamente', 'success');
           setTimeout(() => location.reload(), 1000);
         }
@@ -1455,17 +1569,17 @@
       resetPoints() {
         if (confirm('🔄 ¿Estás seguro de que quieres resetear los puntos a 0?')) {
           this.setPointsNumber(0);
+          this.saveDataToStorage();
           NotificationSystem.show('✅ Puntos reseteados correctamente', 'info');
         }
       }
     }
 
-    // Initialize application
+    // ==================== INICIALIZACIÓN DE LA APLICACIÓN ====================
     const app = new AppState();
 
-    // Event Delegation (más robusto)
+    // Event Delegation
     document.addEventListener('click', (e) => {
-      // Case choice handling (handle child clicks as well)
       const choiceBtn = e.target.closest('.case-choice');
       if (choiceBtn && !choiceBtn.disabled) {
         choiceBtn.classList.add('loading');
@@ -1480,7 +1594,6 @@
         return;
       }
 
-      // Case management
       const editCaseBtn = e.target.closest('.btn-edit-case');
       if (editCaseBtn) {
         app.openCaseModalForEdit(editCaseBtn.getAttribute('data-id'));
@@ -1490,18 +1603,10 @@
       const deleteCaseBtn = e.target.closest('.btn-delete-case');
       if (deleteCaseBtn) {
         const id = deleteCaseBtn.getAttribute('data-id');
-        if (confirm('🗑 ¿Estás seguro de que quieres eliminar este caso?')) {
-          AppData.cases = AppData.cases.filter(c => c.id !== id);
-          delete AppData.caseProgress[id];
-          delete AppData.caseChoices[id];
-          app.renderCases();
-          app.saveDataToStorage();
-          NotificationSystem.show('✅ Caso eliminado correctamente', 'success');
-        }
+        app.deleteCase(id);
         return;
       }
 
-      // Reward management
       const claimBtn = e.target.closest('.btn-claim-reward');
       if (claimBtn) {
         const id = claimBtn.getAttribute('data-id');
@@ -1512,6 +1617,7 @@
         if (pts >= reward.cost) {
           if (confirm(`🎁 ¿Deseas reclamar "${reward.name}" por ${reward.cost} pts?`)) {
             app.setPointsNumber(pts - reward.cost);
+            app.saveDataToStorage();
             NotificationSystem.show(`🎉 ¡Recompensa reclamada: ${reward.name}!`, 'success');
           }
         } else {
@@ -1538,53 +1644,56 @@
       const deleteRewardBtn = e.target.closest('.btn-delete-reward');
       if (deleteRewardBtn) {
         const id = deleteRewardBtn.getAttribute('data-id');
-        if (confirm('🗑 ¿Estás seguro de que quieres eliminar esta recompensa?')) {
-          AppData.rewards = AppData.rewards.filter(r => r.id !== id);
-          app.renderRewards();
-          app.saveDataToStorage();
-          NotificationSystem.show('✅ Recompensa eliminada correctamente', 'success');
-        }
+        app.deleteReward(id);
         return;
       }
     });
 
     // Form submissions
-    document.getElementById('form-case').addEventListener('submit', (e) => {
+    document.getElementById('form-case').addEventListener('submit', async (e) => {
       e.preventDefault();
       
       try {
         const caseData = CaseBuilder.collectCaseData();
-        const id = document.getElementById('case-id').value || Utils.uid('c');
-        
+        const idInput = document.getElementById('case-id');
+        const existingId = idInput.value;
+
         const caseObj = {
-          id,
           title: caseData.title,
           steps: caseData.steps
         };
 
-        const existsIndex = AppData.cases.findIndex(c => c.id === id);
-        if (existsIndex >= 0) {
-          AppData.cases[existsIndex] = caseObj;
-          NotificationSystem.show('✅ Caso actualizado correctamente', 'success');
-        } else {
-          AppData.cases.push(caseObj);
-          NotificationSystem.show('✅ Caso creado correctamente', 'success');
+        // Solo incluir ID si existe (para edición)
+        if (existingId) {
+          caseObj.id = parseInt(existingId);
         }
 
-        app.renderCases();
-        app.saveDataToStorage();
-        
-        ModalManager.hide('modalAddCase');
-        CaseBuilder.reset();
-        document.getElementById('case-id').value = '';
-        document.getElementById('caseModalTitle').textContent = '➕ Crear nuevo caso';
+        const response = await DatabaseAPI.saveCase(caseObj);
+
+        if (response.success) {
+          // Actualizar o agregar el caso en AppData
+          const index = AppData.cases.findIndex(c => c.id === response.id);
+          if (index >= 0) {
+            AppData.cases[index] = { ...AppData.cases[index], ...caseObj, id: response.id };
+          } else {
+            AppData.cases.push({ ...caseObj, id: response.id });
+          }
+
+          app.renderCases();
+          NotificationSystem.show('✅ Caso guardado correctamente', 'success');
+          
+          ModalManager.hide('modalAddCase');
+          CaseBuilder.reset();
+          document.getElementById('case-id').value = '';
+          document.getElementById('caseModalTitle').textContent = '➕ Crear nuevo caso';
+        }
         
       } catch (error) {
         NotificationSystem.show(`❌ Error: ${error.message}`, 'danger');
       }
     });
 
-    document.getElementById('form-reward').addEventListener('submit', (e) => {
+    document.getElementById('form-reward').addEventListener('submit', async (e) => {
       e.preventDefault();
       
       const id = document.getElementById('reward-id').value || Utils.uid('r');
@@ -1599,24 +1708,29 @@
 
       const rewardObj = { id, name, cost, img };
       
-      const existsIndex = AppData.rewards.findIndex(r => r.id === id);
-      if (existsIndex >= 0) {
-        AppData.rewards[existsIndex] = rewardObj;
-        NotificationSystem.show('✅ Recompensa actualizada correctamente', 'success');
-      } else {
-        AppData.rewards.push(rewardObj);
-        NotificationSystem.show('✅ Recompensa creada correctamente', 'success');
-      }
+      try {
+        await DatabaseAPI.saveReward(rewardObj);
+        
+        const existsIndex = AppData.rewards.findIndex(r => r.id === id);
+        if (existsIndex >= 0) {
+          AppData.rewards[existsIndex] = rewardObj;
+          NotificationSystem.show('✅ Recompensa actualizada correctamente', 'success');
+        } else {
+          AppData.rewards.push(rewardObj);
+          NotificationSystem.show('✅ Recompensa creada correctamente', 'success');
+        }
 
-      app.renderRewards();
-      app.saveDataToStorage();
-      
-      ModalManager.hide('modalAddReward');
-      e.target.reset();
-      document.getElementById('reward-id').value = '';
+        app.renderRewards();
+        
+        ModalManager.hide('modalAddReward');
+        e.target.reset();
+        document.getElementById('reward-id').value = '';
+      } catch (error) {
+        NotificationSystem.show('❌ Error al guardar la recompensa', 'danger');
+      }
     });
 
-    document.getElementById('form-student').addEventListener('submit', (e) => {
+    document.getElementById('form-student').addEventListener('submit', async (e) => {
       e.preventDefault();
       
       const name = document.getElementById('student-name-input').value.trim();
@@ -1631,24 +1745,27 @@
       AppData.student.meta = Math.max(10, Number(document.getElementById('student-meta-input').value || CONFIG.DEFAULT_META));
       
       document.getElementById('meta-puntos').textContent = AppData.student.meta;
-      app.renderStudentPanel();
-      app.saveDataToStorage();
       
-      ModalManager.hide('modalEditStudent');
-      NotificationSystem.show('✅ Estudiante actualizado correctamente', 'success');
+      try {
+        await DatabaseAPI.saveStudent(AppData.student);
+        app.renderStudentPanel();
+        ModalManager.hide('modalEditStudent');
+        NotificationSystem.show('✅ Estudiante actualizado correctamente', 'success');
+      } catch (error) {
+        NotificationSystem.show('❌ Error al guardar el estudiante', 'danger');
+      }
     });
 
     // Button event listeners
     document.getElementById('btn-reset-points').addEventListener('click', () => {
       app.resetPoints();
-      app.saveDataToStorage();
     });
 
     document.getElementById('btn-reset-data').addEventListener('click', () => {
       app.resetAllData();
     });
 
-    // Modal event listeners - clear forms when modals are hidden
+    // Modal event listeners
     document.getElementById('modalAddCase').addEventListener('hidden.bs.modal', () => {
       if (!document.getElementById('case-id').value) {
         CaseBuilder.reset();
@@ -1662,36 +1779,30 @@
     });
 
     // Initialize the application
-    function initializeApp() {
-      // Initialize modal manager
+    async function initializeApp() {
       ModalManager.init();
-      
-      // Initialize case builder
       CaseBuilder.init();
       
-      // Ensure points are numeric
+      await app.initialize();
+      
       if (typeof AppData.student.puntos !== 'number') {
         AppData.student.puntos = 0;
       }
       
-      // Render initial state
       app.renderStudentPanel();
       app.renderCases();
       app.renderRewards();
       
-      // Show welcome notification
       setTimeout(() => {
         NotificationSystem.show('🎯 ¡Bienvenido a Casos de Estudio! Selecciona un caso para comenzar.', 'info');
       }, 500);
     }
 
-    // Start the application when DOM is ready
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initializeApp);
     } else {
       initializeApp();
     }
-
   </script>
 </body>
 </html>
