@@ -21,4 +21,12 @@ try {
     echo json_encode(['error' => 'Error de conexión a la base de datos']);
     exit;
 }
+
+// Compatibilidad: algunos endpoints esperan getPDO()
+if (!function_exists('getPDO')) {
+    function getPDO() {
+        global $pdo;
+        return $pdo;
+    }
+}
 ?>

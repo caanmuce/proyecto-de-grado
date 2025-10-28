@@ -572,7 +572,7 @@
       },
 
       async saveReward(rewardData) {
-        return this.request('save_reward.php', {
+        return this.request('save_rewards.php', {
           method: 'POST',
           body: JSON.stringify(rewardData)
         });
