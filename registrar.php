@@ -80,7 +80,7 @@
                                         <input type="text" class="form-control form-control-user" name="txt_PA" placeholder="Primer Apellido" required>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" name="txt_SA" placeholder="Segundo Apellido" required>
+                                        <input type="text" class="form-control form-control-user" name="txt_SA" placeholder="Segundo Apellido">
                                     </div>
                                 </div>
                                 

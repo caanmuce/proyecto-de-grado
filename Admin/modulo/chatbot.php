@@ -4,7 +4,7 @@
 ?>
 
 <style>
-/* Estilos mejorados para el chatbot */
+/* Estilos mejorados para el chatbot - Mantengo los existentes y añado nuevos */
 .chatbot-container {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-radius: 15px;
@@ -57,6 +57,57 @@
     border-left: 4px solid #667eea;
 }
 
+/* Nuevos estilos para funcionalidades avanzadas */
+.training-panel {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.analytics-chart {
+    background: white;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.knowledge-item {
+    border-left: 4px solid #667eea;
+    background: #f8f9fa;
+    margin-bottom: 0.5rem;
+    padding: 0.75rem;
+    border-radius: 0 5px 5px 0;
+}
+
+.feedback-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.feedback-btn {
+    padding: 0.25rem 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.8rem;
+}
+
+.feedback-btn:hover {
+    background: #f8f9fa;
+}
+
+.feedback-btn.active {
+    background: #28a745;
+    color: white;
+    border-color: #28a745;
+}
+
+/* Mantengo el resto de estilos existentes... */
 .typing-indicator {
     display: none;
     background: white;
@@ -203,12 +254,12 @@
 }
 </style>
 
-<!-- Chatbot Module Avanzado -->
+<!-- Chatbot Module Avanzado con Machine Learning -->
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
             <h1 class="h3 mb-4 text-gray-800">
-                SEIN - Asistente Virtual Avanzado
+                🤖 SEIN - Sistema de IA Avanzado con Machine Learning
                 <span id="connectionStatus" class="connection-status status-offline float-end">
                     <span class="status-dot"></span>
                     Conectando...
@@ -216,15 +267,37 @@
             </h1>
         </div>
 
+        <!-- Panel Principal del Chat -->
         <div class="col-lg-8">
+            <?php if ($rol == 1 || $rol == 3) { ?>
+            <!-- Panel de Entrenamiento - SOLO ADMINISTRADORES -->
+            <div class="training-panel mb-3">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h6 class="text-white mb-2">🎯 Sistema de Entrenamiento de IA</h6>
+                        <small class="text-white-80">La IA aprende automáticamente de cada interacción</small>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <button class="btn btn-light btn-sm me-2" data-bs-toggle="modal" data-bs-target="#trainingModal">
+                            🏋️ Entrenar IA
+                        </button>
+                        <button class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#knowledgeModal">
+                            📚 Ver Conocimiento
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
+
             <div class="card shadow-lg chatbot-container">
                 <div class="chat-header">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <h6 class="m-0 text-white font-weight-bold">🤖 SEIN - Asistente Virtual</h6>
-                            <small class="text-white-50">Especialista en educación sexual y salud reproductiva</small>
+                            <h6 class="m-0 text-white font-weight-bold">🧠 SEIN - IA Avanzada</h6>
+                            <small class="text-white-50">Sistema de ML integrado - Aprendiendo continuamente</small>
                         </div>
                         <div class="d-flex gap-2">
+                            <span class="badge bg-success me-2">ML Activo</span>
                             <button id="voiceBtn" class="btn btn-outline-light btn-sm" title="Activar voz">🎤</button>
                             <button id="settingsBtn" class="btn btn-outline-light btn-sm" title="Configuración">⚙</button>
                         </div>
@@ -275,44 +348,78 @@
             </div>
         </div>
 
+        <?php if ($rol == 1 || $rol == 3) { ?>
+        <!-- Panel Lateral de Analíticas y Control - SOLO ADMINISTRADORES -->
         <div class="col-lg-4">
             <!-- Panel de Estado y Analytics -->
             <div class="analytics-panel mb-4">
-                <h6 class="font-weight-bold mb-3">📊 Estado del Sistema</h6>
+                <h6 class="font-weight-bold mb-3">📊 Métricas en Tiempo Real</h6>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-6 mb-2">
                         <div class="stat-card">
                             <div class="h4 mb-1" id="messageCount">0</div>
                             <small>Mensajes hoy</small>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-6 mb-2">
                         <div class="stat-card">
                             <div class="h4 mb-1" id="responseTime">~0.8s</div>
                             <small>Tiempo respuesta</small>
                         </div>
                     </div>
+                    <div class="col-6">
+                        <div class="stat-card">
+                            <div class="h4 mb-1" id="accuracyScore">95%</div>
+                            <small>Precisión IA</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stat-card">
+                            <div class="h4 mb-1" id="learningCount">128</div>
+                            <small>Datos aprendidos</small>
+                        </div>
+                    </div>
                 </div>
                 <div class="mt-3">
-                    <small>🧠 IA Avanzada: <span id="aiStatus" class="badge badge-success">Activa</span></small><br>
-                    <small>📚 Base conocimientos: <span class="badge badge-info">Actualizada</span></small><br>
-                    <small>🔄 Última actualización: <span id="lastUpdate">Hace 2 min</span></small>
+                    <small>🧠 Machine Learning: <span id="mlStatus" class="badge badge-success">Activo</span></small><br>
+                    <small>📚 Base conocimientos: <span id="kbSize" class="badge badge-info">1,247 items</span></small><br>
+                    <small>🔄 Último entrenamiento: <span id="lastTraining">Hace 2 min</span></small>
                 </div>
             </div>
 
-            <!-- Panel de Ayuda -->
-            <div class="card shadow">
-                <div class="card-header bg-gradient-primary text-white">
-                    <h6 class="m-0">💡 Consejos de Uso</h6>
+            <!-- Gráfico de Temas Populares -->
+            <div class="analytics-chart">
+                <h6 class="font-weight-bold mb-3">📈 Temas Más Consultados</h6>
+                <canvas id="topicsChart" height="150"></canvas>
+            </div>
+
+            <!-- Panel de Control de IA -->
+            <div class="card shadow mb-3">
+                <div class="card-header bg-gradient-info text-white">
+                    <h6 class="m-0">🛠 Control de IA</h6>
                 </div>
                 <div class="card-body">
-                    <ul class="list-unstyled mb-0 small">
-                        <li class="mb-2">✨ <strong>Sé específico:</strong> Cuanta más información proporciones, mejor será mi respuesta</li>
-                        <li class="mb-2">🎯 <strong>Usa palabras clave:</strong> anticonceptivos, ITS, embarazo, etc.</li>
-                        <li class="mb-2">🗣 <strong>Activa la voz:</strong> Puedes hablarme usando el micrófono</li>
-                        <li class="mb-2">⚡ <strong>Acciones rápidas:</strong> Usa los botones para consultas comunes</li>
-                        <li>🔒 <strong>Privacidad:</strong> Tus conversaciones son confidenciales</li>
-                    </ul>
+                    <div class="mb-3">
+                        <label class="form-label small">Nivel de Aprendizaje:</label>
+                        <select id="learningLevel" class="form-select form-select-sm">
+                            <option value="basic">Básico</option>
+                            <option value="standard" selected>Estándar</option>
+                            <option value="advanced">Avanzado</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small">Umbral de Confianza:</label>
+                        <input type="range" class="form-range" id="confidenceThreshold" min="0.1" max="1.0" step="0.1" value="0.7">
+                        <small class="text-muted" id="thresholdValue">70%</small>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-sm btn-outline-primary" id="exportKnowledge">
+                            💾 Exportar Conocimiento
+                        </button>
+                        <button class="btn btn-sm btn-outline-success" id="trainModel">
+                            🏋️ Entrenar Modelo
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -326,63 +433,157 @@
                 </div>
             </div>
         </div>
+        <?php } ?>
     </div>
 </div>
 
-<!-- Modal de Configuración -->
-<div class="modal fade" id="settingsModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
+<?php if ($rol == 1 || $rol == 3) { ?>
+<!-- Modal de Entrenamiento - SOLO ADMINISTRADORES -->
+<div class="modal fade" id="trainingModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-gradient-primary text-white">
-                <h5 class="modal-title">⚙ Configuración del Chatbot</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                <h5 class="modal-title">🏋️ Entrenamiento Manual de IA</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
             </div>
             <div class="modal-body">
-                <div class="mb-3">
-                    <label class="form-label">🗣 Síntesis de Voz</label>
-                    <select id="voiceSelect" class="form-select">
-                        <option value="">Seleccionar voz...</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">🔊 Volumen</label>
-                    <input type="range" class="form-range" id="volumeSlider" min="0" max="1" step="0.1" value="0.8">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">⚡ Velocidad de respuesta</label>
-                    <select id="responseSpeed" class="form-select">
-                        <option value="fast">Rápida</option>
-                        <option value="normal" selected>Normal</option>
-                        <option value="detailed">Detallada</option>
-                    </select>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="autoScroll" checked>
-                    <label class="form-check-label" for="autoScroll">
-                        📜 Auto-scroll al final del chat
-                    </label>
+                <form id="trainingForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Categoría</label>
+                                <select class="form-select" name="category" required>
+                                    <option value="">Seleccionar categoría...</option>
+                                    <option value="salud_sexual">Salud Sexual</option>
+                                    <option value="anticonceptivos">Anticonceptivos</option>
+                                    <option value="its_ets">ITS/ETS</option>
+                                    <option value="consentimiento">Consentimiento</option>
+                                    <option value="bienestar_emocional">Bienestar Emocional</option>
+                                    <option value="relaciones">Relaciones</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Subcategoría</label>
+                                <input type="text" class="form-control" name="subcategory" placeholder="Ej: metodos_barrera">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Pregunta/Consulta</label>
+                        <textarea class="form-control" name="question" rows="2" placeholder="¿Qué métodos anticonceptivos existen?" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Respuesta</label>
+                        <textarea class="form-control" name="answer" rows="3" placeholder="Existen varios tipos de métodos anticonceptivos..." required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Palabras Clave (separadas por comas)</label>
+                        <input type="text" class="form-control" name="keywords" placeholder="anticonceptivos, preservativo, píldora, diu">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Umbral de Confianza</label>
+                                <input type="range" class="form-range" name="confidence_threshold" min="0.1" max="1.0" step="0.1" value="0.7">
+                                <small class="text-muted">70%</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Clave del Tema</label>
+                                <input type="text" class="form-control" name="topic_key" placeholder="anticonceptivos_general">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="mt-2">
+                    <small class="text-muted">Nota: el guardado enviará JSON al endpoint y mostrará errores claros si ocurre algo.</small>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="saveSettings">Guardar</button>
+                <button type="button" class="btn btn-success" id="saveTraining">💾 Guardar Conocimiento</button>
+            </div>
+        </div>
+    </div>
+</div>
+<?php } ?>
+
+<!-- Modal de Base de Conocimiento - VISIBLE PARA TODOS -->
+<div class="modal fade" id="knowledgeModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-gradient-success text-white">
+                <h5 class="modal-title">📚 Base de Conocimiento de la IA</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <input type="text" id="searchKnowledge" class="form-control" placeholder="Buscar en conocimiento...">
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <button class="btn btn-sm btn-outline-primary" id="refreshKnowledge">🔄 Actualizar</button>
+                    </div>
+                </div>
+                <div id="knowledgeList" class="row">
+                    <!-- Aquí se cargará la lista de conocimiento -->
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+<!-- En el head de chatbot.php -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Dependencias adicionales (Chart.js) -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
+/*
+  Sistema de IA Avanzado con Machine Learning - VERSIÓN CORREGIDA CON RUTAS
+  Y FUNCIÓN saveTrainingData IMPLEMENTADA
+*/
 (function () {
-    // API_PATH relativo: desde Admin/dashboard.php el módulo está en Admin/modulo,
-    // por eso 'modulo/api_chatbot.php' apunta a Admin/modulo/api_chatbot.php
-    const API_PATH = 'modulo/api_chatbot.php';
-    
-    // Estado
+    // LÓGICA MEJORADA PARA RUTAS - Compatible con estudiantes y admin
+    const API_PATH = (function() {
+        // Si estamos en el área de Admin, usar ruta de Admin
+        // Si estamos en el dashboard principal, usar ruta pública
+        const currentPath = window.location.pathname;
+        
+        if (currentPath.includes('/Admin/')) {
+            // Usuario en área de administración
+            return 'modulo/chatbot_api.php';
+        } else {
+            // Usuario estudiante - usar ruta relativa al Admin
+            return '../Admin/modulo/chatbot_api.php';
+        }
+    })();
+
+    console.log('API Path:', API_PATH); // Para debug
+
+    // Variables globales
     let isConnected = false;
     let isTyping = false;
     let messageCount = 0;
     let lastResponseTime = 0;
+    let analyticsData = {};
+    let speechRecognition = null; // Variable para reconocimiento de voz
     
+    let settings = {
+        volume: 0.8,
+        autoScroll: true,
+        responseSpeed: 'normal',
+        voiceEnabled: false,
+        voice: null,
+        confidenceThreshold: 0.7,
+        learningLevel: 'standard'
+    };
+
     // Elementos DOM
     const chat = document.getElementById('chat');
     const sendForm = document.getElementById('sendForm');
@@ -399,34 +600,88 @@
     const errorPanel = document.getElementById('errorPanel');
     const errorContent = document.getElementById('errorContent');
 
-    // Voz
-    let speechRecognition = null;
-    let speechSynthesis = window.speechSynthesis;
-    let settings = {
-        volume: 0.8,
-        autoScroll: true,
-        responseSpeed: 'normal',
-        voiceEnabled: false
-    };
+    // Solo definir estos elementos si existen (para estudiantes no existirán)
+    const trainingForm = document.getElementById('trainingForm');
+    const knowledgeList = document.getElementById('knowledgeList');
+    const topicsChart = document.getElementById('topicsChart');
 
-    function init() {
-        loadSettings();
-        initSpeech();
-        initEventListeners();
-        updateConnectionStatus(false);
-        loadMessages();
-        populateVoices();
-        setInterval(loadMessages, 30000);
+    // ---------- FUNCIÓN updateCharCount ----------
+    function updateCharCount() {
+        if (!messageInput || !charCount) return;
+        const count = messageInput.value.length;
+        charCount.textContent = count;
+        // Cambiar color según la cantidad de caracteres
+        if (count > 400) {
+            charCount.style.color = '#dc3545'; // Rojo
+        } else if (count > 300) {
+            charCount.style.color = '#ffc107'; // Amarillo
+        } else {
+            charCount.style.color = '#6c757d'; // Gris
+        }
     }
 
+    // ---------- FUNCIÓN saveTrainingData FALTANTE ----------
+    async function saveTrainingData() {
+        <?php if ($rol == 1 || $rol == 3) { ?>
+        if (!trainingForm) return;
+        
+        const formData = new FormData(trainingForm);
+        const data = {
+            category: formData.get('category'),
+            subcategory: formData.get('subcategory'),
+            question: formData.get('question'),
+            answer: formData.get('answer'),
+            keywords: formData.get('keywords'),
+            confidence_threshold: formData.get('confidence_threshold'),
+            topic_key: formData.get('topic_key')
+        };
+
+        // Validación básica
+        if (!data.category || !data.question || !data.answer) {
+            showNotification('Por favor completa los campos requeridos', 'error');
+            return;
+        }
+
+        try {
+            const result = await api('train_manual', data);
+            if (result.success) {
+                showNotification('Conocimiento guardado exitosamente', 'success');
+                // Cerrar modal y limpiar formulario
+                const modal = bootstrap.Modal.getInstance(document.getElementById('trainingModal'));
+                if (modal) modal.hide();
+                trainingForm.reset();
+                // Actualizar la base de conocimiento
+                loadKnowledgeBase();
+            } else {
+                showError(`Error al guardar: ${result.error || 'Error desconocido'}`);
+                showNotification('Error al guardar el conocimiento', 'error');
+            }
+        } catch (error) {
+            console.error('Error en saveTrainingData:', error);
+            showError(`Error de conexión: ${error.message}`);
+            showNotification('Error de conexión', 'error');
+        }
+        <?php } ?>
+    }
+
+    // ---------- UTILIDADES MEJORADAS ----------
     function loadSettings() {
         const saved = localStorage.getItem('chatbot_settings');
         if (saved) {
-            try { settings = { ...settings, ...JSON.parse(saved) }; } catch(e){ /* ignore */ }
+            try { 
+                const savedSettings = JSON.parse(saved);
+                settings = { ...settings, ...savedSettings }; 
+            } catch(e){ 
+                console.error('Error loading settings:', e); 
+            }
         }
     }
-    function saveSettings() { localStorage.setItem('chatbot_settings', JSON.stringify(settings)); }
 
+    function saveSettings() { 
+        localStorage.setItem('chatbot_settings', JSON.stringify(settings)); 
+    }
+
+    // Función initSpeech 
     function initSpeech() {
         if ('webkitSpeechRecognition' in window) {
             speechRecognition = new webkitSpeechRecognition();
@@ -435,7 +690,10 @@
             speechRecognition.lang = 'es-ES';
             speechRecognition.onresult = function(event) {
                 const transcript = event.results[0][0].transcript;
-                if (messageInput) { messageInput.value = transcript; updateCharCount(); }
+                if (messageInput) { 
+                    messageInput.value = transcript; 
+                    updateCharCount(); 
+                }
             };
             speechRecognition.onerror = function(event) {
                 showError('Error en reconocimiento de voz: ' + (event.error || 'unknown'));
@@ -443,59 +701,27 @@
         }
     }
 
-    function populateVoices() {
-        const voiceSelect = document.getElementById('voiceSelect');
-        const voices = (speechSynthesis.getVoices ? speechSynthesis.getVoices() : []).filter(v => v.lang && v.lang.includes('es'));
-        if (!voiceSelect) return;
-        voiceSelect.innerHTML = '<option value="">Sin voz</option>';
-        voices.forEach((voice, index) => {
-            const option = document.createElement('option');
-            option.value = index;
-            option.textContent = `${voice.name} (${voice.lang})`;
-            voiceSelect.appendChild(option);
-        });
-    }
-
-    function initEventListeners() {
-        if (messageInput) messageInput.addEventListener('input', updateCharCount);
-        if (quickActions) quickActions.addEventListener('click', (e) => {
-            if (e.target.classList.contains('quick-btn')) {
-                if (messageInput) { messageInput.value = e.target.dataset.text || ''; updateCharCount(); messageInput.focus(); }
+    function toggleVoice() {
+        if (!speechRecognition) { 
+            showNotification('Reconocimiento de voz no disponible', 'error'); 
+            return; 
+        }
+        if (settings.voiceEnabled) {
+            speechRecognition.stop();
+            settings.voiceEnabled = false;
+            if (voiceBtn) { 
+                voiceBtn.textContent = '🎤'; 
+                voiceBtn.classList.remove('btn-danger'); 
+                voiceBtn.classList.add('btn-outline-light'); 
             }
-        });
-        if (voiceBtn) voiceBtn.addEventListener('click', toggleVoice);
-        if (settingsBtn) settingsBtn.addEventListener('click', () => {
-            const modalEl = document.getElementById('settingsModal');
-            if (modalEl) new bootstrap.Modal(modalEl).show();
-        });
-        const saveBtn = document.getElementById('saveSettings');
-        if (saveBtn) saveBtn.addEventListener('click', () => {
-            const voiceSelect = document.getElementById('voiceSelect');
-            const volumeSlider = document.getElementById('volumeSlider');
-            const responseSpeed = document.getElementById('responseSpeed');
-            const autoScroll = document.getElementById('autoScroll');
-            settings.voice = voiceSelect ? voiceSelect.value : settings.voice;
-            settings.volume = volumeSlider ? parseFloat(volumeSlider.value) : settings.volume;
-            settings.responseSpeed = responseSpeed ? responseSpeed.value : settings.responseSpeed;
-            settings.autoScroll = autoScroll ? autoScroll.checked : settings.autoScroll;
-            saveSettings();
-            const modal = bootstrap.Modal.getInstance(document.getElementById('settingsModal'));
-            if (modal) modal.hide();
-            showNotification('Configuración guardada', 'success');
-        });
-        if (sendForm) sendForm.addEventListener('submit', handleSendMessage);
-        if (refreshBtn) refreshBtn.addEventListener('click', loadMessages);
-        if (clearAllBtn) clearAllBtn.addEventListener('click', handleClearAll);
-        if (messageInput) messageInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && e.ctrlKey) { e.preventDefault(); handleSendMessage(e); }
-        });
-    }
-
-    function updateCharCount() {
-        const count = messageInput ? messageInput.value.length : 0;
-        if (charCount) {
-            charCount.textContent = count;
-            charCount.style.color = count > 400 ? '#dc3545' : count > 300 ? '#ffc107' : '#6c757d';
+        } else {
+            speechRecognition.start();
+            settings.voiceEnabled = true;
+            if (voiceBtn) { 
+                voiceBtn.textContent = '🔴'; 
+                voiceBtn.classList.remove('btn-outline-light'); 
+                voiceBtn.classList.add('btn-danger'); 
+            }
         }
     }
 
@@ -511,11 +737,29 @@
         }
     }
 
-    function showTyping() { if (!isTyping) { isTyping = true; if (typingIndicator) typingIndicator.style.display = 'block'; if (settings.autoScroll) scrollToBottom(); } }
-    function hideTyping() { isTyping = false; if (typingIndicator) typingIndicator.style.display = 'none'; }
-    function scrollToBottom() { if (chat) chat.scrollTop = chat.scrollHeight; }
+    function showTyping() {
+        if (!isTyping) {
+            isTyping = true;
+            if (typingIndicator) typingIndicator.style.display = 'block';
+            if (settings.autoScroll) scrollToBottom();
+        }
+    }
 
-    function escapeHtml(text) { const d = document.createElement('div'); d.textContent = text; return d.innerHTML; }
+    function hideTyping() { 
+        isTyping = false; 
+        if (typingIndicator) typingIndicator.style.display = 'none'; 
+    }
+
+    function scrollToBottom() { 
+        if (chat) chat.scrollTop = chat.scrollHeight; 
+    }
+
+    function escapeHtml(text) { 
+        const d = document.createElement('div'); 
+        d.textContent = text; 
+        return d.innerHTML; 
+    }
+
     function formatMessage(text) {
         text = String(text || '');
         text = text.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
@@ -526,6 +770,7 @@
         return text;
     }
 
+    // API helper mejorado con mejor manejo de errores
     async function api(action, data = {}) {
         const startTime = Date.now();
         try {
@@ -533,12 +778,21 @@
             form.append('action', action);
             for (const [key, value] of Object.entries(data)) form.append(key, value);
 
-            const response = await fetch(API_PATH, { method: 'POST', body: form });
+            console.log('Enviando solicitud a:', API_PATH, 'Action:', action);
+            
+            const response = await fetch(API_PATH, { 
+                method: 'POST', 
+                body: form 
+            });
+            
             lastResponseTime = (Date.now() - startTime) / 1000;
             const rtEl = document.getElementById('responseTime');
             if (rtEl) rtEl.textContent = `${lastResponseTime.toFixed(1)}s`;
 
-            if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            
             const text = await response.text();
 
             try {
@@ -548,13 +802,13 @@
                 return json;
             } catch (parseError) {
                 console.error('Respuesta no JSON:', text);
-                showError(`Respuesta no JSON del servidor.\n\nRespuesta recibida:\n${String(text).substring(0, 500)}...`);
+                showError(`Respuesta no JSON del servidor.\n\nRespuesta recibida:\n${String(text).substring(0, 1000)}...`);
                 updateConnectionStatus(false);
                 return { success: false, error: 'Respuesta no JSON', raw: text };
             }
         } catch (error) {
             console.error('Error API:', error);
-            showError(`Error de conexión: ${error.message}`);
+            showError(`Error de conexión: ${error.message}\n\nRuta intentada: ${API_PATH}`);
             updateConnectionStatus(false);
             return { success: false, error: error.message };
         }
@@ -565,23 +819,39 @@
         errorContent.textContent = message;
         errorPanel.style.display = 'block';
     }
-    function hideError() { if (!errorPanel) return; errorPanel.style.display = 'none'; }
+
+    function hideError() { 
+        if (!errorPanel) return; 
+        errorPanel.style.display = 'none'; 
+    }
 
     function showNotification(message, type = 'info') {
         const toast = document.createElement('div');
         const bg = type === 'success' ? 'success' : (type === 'error' ? 'danger' : 'info');
         toast.className = `toast align-items-center text-white bg-${bg} border-0`;
         toast.setAttribute('role', 'alert');
+        toast.style.position = 'fixed';
+        toast.style.right = '20px';
+        toast.style.bottom = '20px';
+        toast.style.zIndex = '9999';
         toast.innerHTML = `
             <div class="d-flex">
                 <div class="toast-body">${escapeHtml(message)}</div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Cerrar"></button>
             </div>
         `;
         document.body.appendChild(toast);
-        const bsToast = new bootstrap.Toast(toast);
-        bsToast.show();
-        toast.addEventListener('hidden.bs.toast', () => { if (toast.parentNode) toast.parentNode.removeChild(toast); });
+        try {
+            const bsToast = new bootstrap.Toast(toast);
+            bsToast.show();
+            toast.addEventListener('hidden.bs.toast', () => { 
+                if (toast.parentNode) toast.parentNode.removeChild(toast); 
+            });
+        } catch (e) {
+            setTimeout(() => { 
+                if (toast.parentNode) toast.parentNode.removeChild(toast); 
+            }, 4000);
+        }
     }
 
     function renderMessages(messages) {
@@ -623,34 +893,18 @@
 
     async function loadMessages() {
         const result = await api('read');
-        if (result.success) renderMessages(result.messages);
-        else showError(`Error al cargar mensajes: ${result.error || 'desconocido'}`);
-    }
-
-    function toggleVoice() {
-        if (!speechRecognition) { showNotification('Reconocimiento de voz no disponible', 'error'); return; }
-        if (settings.voiceEnabled) {
-            speechRecognition.stop();
-            settings.voiceEnabled = false;
-            if (voiceBtn) { voiceBtn.textContent = '🎤'; voiceBtn.classList.remove('btn-danger'); voiceBtn.classList.add('btn-outline-light'); }
+        if (result.success) {
+            renderMessages(result.messages);
         } else {
-            speechRecognition.start();
-            settings.voiceEnabled = true;
-            if (voiceBtn) { voiceBtn.textContent = '🔴'; voiceBtn.classList.remove('btn-outline-light'); voiceBtn.classList.add('btn-danger'); }
-        }
-    }
-
-    function speakMessage(text) {
-        if (!settings.voice || !speechSynthesis) return;
-        const voices = speechSynthesis.getVoices();
-        const voice = voices[parseInt(settings.voice)];
-        if (voice) {
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.voice = voice;
-            utterance.volume = settings.volume;
-            utterance.rate = settings.responseSpeed === 'fast' ? 1.1 : (settings.responseSpeed === 'detailed' ? 0.85 : 0.95);
-            utterance.pitch = 1;
-            speechSynthesis.speak(utterance);
+            console.error('Error al cargar mensajes:', result.error);
+            // Mostrar mensaje de error amigable
+            if (!chat) return;
+            chat.innerHTML = `
+                <div class="text-center text-muted py-5">
+                    <h4>👋 ¡Hola! Soy SEIN</h4>
+                    <p>Tu asistente virtual especializado en educación sexual y salud reproductiva.<br>¿En qué puedo ayudarte hoy?</p>
+                    <small class="text-warning">⚠️ Estado: Conectando con el servidor...</small>
+                </div>`;
         }
     }
 
@@ -658,15 +912,20 @@
         e.preventDefault();
         const text = messageInput ? messageInput.value.trim() : '';
         if (!text || isTyping) return;
+        
         if (sendBtn) sendBtn.disabled = true;
         showTyping();
+        
         const result = await api('create', { sender: 'Tú', message: text });
         hideTyping();
+        
         if (sendBtn) sendBtn.disabled = false;
         if (result.success) {
-            if (messageInput) { messageInput.value = ''; updateCharCount(); }
+            if (messageInput) { 
+                messageInput.value = ''; 
+                updateCharCount(); 
+            }
             await loadMessages();
-            if (result.bot_message && settings.voice) speakMessage(result.bot_message);
             showNotification('Mensaje enviado', 'success');
         } else {
             showError(`Error al enviar: ${result.error || 'desconocido'}`);
@@ -677,44 +936,224 @@
     async function handleClearAll() {
         if (!confirm('¿Estás seguro de que quieres eliminar toda la conversación?')) return;
         const result = await api('read');
-        if (!result.success) { showError('No se pudieron obtener los mensajes'); return; }
-        for (const message of result.messages) await api('delete', { id: message.id });
+        if (!result.success) { 
+            showError('No se pudieron obtener los mensajes'); 
+            return; 
+        }
+        for (const message of result.messages) {
+            await api('delete', { id: message.id });
+        }
         await loadMessages();
         showNotification('Conversación limpiada', 'success');
     }
 
-    if (chat) {
-        chat.addEventListener('click', async (e) => {
-            if (e.target.classList.contains('delete-btn')) {
-                const id = e.target.dataset.id;
-                if (!confirm('¿Eliminar este mensaje?')) return;
-                const result = await api('delete', { id });
-                if (result.success) { await loadMessages(); showNotification('Mensaje eliminado', 'success'); }
-                else showError(`Error al eliminar: ${result.error || 'desconocido'}`);
+    // ---------- FUNCIONES SOLO PARA ADMINISTRADORES ----------
+    async function loadAnalytics() {
+        // Solo cargar analytics si el usuario es admin
+        <?php if ($rol == 1 || $rol == 3) { ?>
+        try {
+            const result = await api('analytics');
+            if (result.success) {
+                analyticsData = result.analytics;
+                updateAnalyticsDisplay();
+                updateCharts();
             }
-            if (e.target.classList.contains('edit-btn')) {
-                const id = e.target.dataset.id;
-                const newMessage = prompt('Editar mensaje:');
-                if (newMessage && newMessage.trim()) {
-                    const result = await api('update', { id: id, message: newMessage.trim() });
-                    if (result.success) { await loadMessages(); showNotification('Mensaje editado', 'success'); }
-                    else showError(`Error al editar: ${result.error || 'desconocido'}`);
-                }
+        } catch (error) { 
+            console.error('Error loading analytics:', error); 
+        }
+        <?php } ?>
+    }
+
+    async function loadKnowledgeBase() {
+        // Solo cargar knowledge base si el usuario es admin
+        <?php if ($rol == 1 || $rol == 3) { ?>
+        try {
+            const result = await api('get_knowledge');
+            if (result.success && knowledgeList) {
+                displayKnowledgeList(result.knowledge);
             }
+        } catch (error) { 
+            console.error('Error loading knowledge base:', error); 
+        }
+        <?php } ?>
+    }
+
+    function displayKnowledgeList(knowledge) {
+        if (!knowledgeList) return;
+        knowledgeList.innerHTML = knowledge.map(item => `
+            <div class="col-md-6 mb-3">
+                <div class="knowledge-item">
+                    <h6 class="mb-1">${escapeHtml(item.question)}</h6>
+                    <p class="mb-1 small text-muted">${escapeHtml((item.answer||'').substring(0, 100))}...</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-primary">${item.category}</small>
+                        <small class="text-muted">Usos: ${item.usage_count||0}</small>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function updateAnalyticsDisplay() {
+        <?php if ($rol == 1 || $rol == 3) { ?>
+        const accuracyEl = document.getElementById('accuracyScore');
+        const learningEl = document.getElementById('learningCount');
+        const kbSizeEl = document.getElementById('kbSize');
+        if (accuracyEl) accuracyEl.textContent = `${Math.round((analyticsData.accuracy || 0.85) * 100)}%`;
+        if (learningEl) learningEl.textContent = analyticsData.total_learned || 0;
+        if (kbSizeEl) kbSizeEl.textContent = `${analyticsData.knowledge_count || 0} items`;
+        <?php } ?>
+    }
+
+    function initCharts() {
+        <?php if ($rol == 1 || $rol == 3) { ?>
+        if (!topicsChart) return;
+        const ctx = topicsChart.getContext('2d');
+        window.topicsChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Anticonceptivos', 'ITS/ETS', 'Consentimiento', 'Embarazo', 'Bienestar'],
+                datasets: [{
+                    label: 'Consultas',
+                    data: [65, 45, 38, 32, 28]
+                }]
+            },
+            options: { responsive: true, scales: { y: { beginAtZero: true } } }
         });
+        <?php } ?>
     }
 
-    if (speechSynthesis && typeof speechSynthesis.onvoiceschanged !== 'undefined') {
-        speechSynthesis.onvoiceschanged = populateVoices;
+    function updateCharts() {
+        <?php if ($rol == 1 || $rol == 3) { ?>
+        if (window.topicsChart && analyticsData.topics) {
+            window.topicsChart.data.datasets[0].data = analyticsData.topics;
+            window.topicsChart.update();
+        }
+        <?php } ?>
     }
 
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-    else init();
+    // ---------- FUNCIONES DE ENTRENAMIENTO (SOLO ADMIN) ----------
+    async function trainModel() {
+        <?php if ($rol == 1 || $rol == 3) { ?>
+        const result = await api('train_model');
+        if (result.success) { 
+            showNotification('Modelo de IA entrenado exitosamente', 'success'); 
+            loadAnalytics(); 
+        }
+        <?php } ?>
+    }
 
-    setInterval(() => {
-        const last = document.getElementById('lastUpdate');
-        if (last) last.textContent = 'Hace ' + Math.floor(Math.random() * 5 + 1) + ' min';
-    }, 60000);
+    async function exportKnowledge() {
+        <?php if ($rol == 1 || $rol == 3) { ?>
+        const result = await api('export_knowledge');
+        if (result.success) {
+            const blob = new Blob([JSON.stringify(result.data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; 
+            a.download = 'knowledge_base_export.json'; 
+            a.click(); 
+            URL.revokeObjectURL(url);
+        }
+        <?php } ?>
+    }
+
+    // ---------- EVENT LISTENERS MEJORADOS ----------
+    function initEventListeners() {
+        // Listeners básicos para todos los usuarios
+        if (messageInput) {
+            messageInput.addEventListener('input', updateCharCount);
+            messageInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    handleSendMessage(e);
+                }
+            });
+        }
+
+        if (quickActions) {
+            quickActions.addEventListener('click', (e) => {
+                const btn = e.target.closest('.quick-btn');
+                if (!btn) return;
+                if (messageInput) {
+                    messageInput.value = btn.dataset.text || '';
+                    updateCharCount();
+                    messageInput.focus();
+                }
+            });
+        }
+
+        if (voiceBtn) voiceBtn.addEventListener('click', toggleVoice);
+
+        if (sendForm) sendForm.addEventListener('submit', handleSendMessage);
+        if (refreshBtn) refreshBtn.addEventListener('click', loadMessages);
+        
+        if (clearAllBtn) {
+            clearAllBtn.addEventListener('click', handleClearAll);
+        }
+
+        // Listeners solo para administradores
+        <?php if ($rol == 1 || $rol == 3) { ?>
+        document.getElementById('trainModel')?.addEventListener('click', trainModel);
+        document.getElementById('exportKnowledge')?.addEventListener('click', exportKnowledge);
+        document.getElementById('saveTraining')?.addEventListener('click', saveTrainingData);
+        document.getElementById('refreshKnowledge')?.addEventListener('click', loadKnowledgeBase);
+        <?php } ?>
+
+        // Chat click handlers para todos
+        if (chat) {
+            chat.addEventListener('click', async (e) => {
+                if (e.target.classList.contains('delete-btn')) {
+                    const id = e.target.dataset.id;
+                    if (!confirm('¿Eliminar este mensaje?')) return;
+                    const result = await api('delete', { id });
+                    if (result.success) { 
+                        await loadMessages(); 
+                        showNotification('Mensaje eliminado', 'success'); 
+                    } else {
+                        showError(`Error al eliminar: ${result.error || 'desconocido'}`);
+                    }
+                }
+                if (e.target.classList.contains('edit-btn')) {
+                    const id = e.target.dataset.id;
+                    const newMessage = prompt('Editar mensaje:');
+                    if (newMessage && newMessage.trim()) {
+                        const result = await api('update', { id: id, message: newMessage.trim() });
+                        if (result.success) { 
+                            await loadMessages(); 
+                            showNotification('Mensaje editado', 'success'); 
+                        } else {
+                            showError(`Error al editar: ${result.error || 'desconocido'}`);
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    function init() {
+        loadSettings();
+        initSpeech(); // Inicializar reconocimiento de voz
+        initEventListeners();
+        updateConnectionStatus(false);
+        updateCharCount(); // Inicializar el contador de caracteres
+        loadMessages();
+        
+        // Solo inicializar funciones de admin si es necesario
+        <?php if ($rol == 1 || $rol == 3) { ?>
+        loadAnalytics();
+        loadKnowledgeBase();
+        initCharts();
+        setInterval(loadAnalytics, 30000);
+        setInterval(loadKnowledgeBase, 60000);
+        <?php } ?>
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
 
 })();
 </script>

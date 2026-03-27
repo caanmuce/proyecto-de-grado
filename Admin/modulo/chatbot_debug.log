@@ -373,3 +373,1369 @@
 [2025-10-25 23:47:37] API iniciada. REMOTE=::1
 [2025-10-26 21:55:28] API iniciada. REMOTE=::1
 [2025-10-26 22:14:47] API iniciada. REMOTE=::1
+[2025-10-29 15:07:32] API iniciada. REMOTE=::1
+[2025-10-29 15:07:38] API iniciada. REMOTE=::1
+[2025-10-29 15:07:39] generateResponse original="¿Qué es el consentimiento?" processed="que es el consentimiento"
+[2025-10-29 15:07:39] Decision: DB KB response topic=consentimiento_intoxicacion score=6.568047523498535
+[2025-10-29 15:07:39] API iniciada. REMOTE=::1
+[2025-10-29 15:08:01] API iniciada. REMOTE=::1
+[2025-10-29 15:08:34] API iniciada. REMOTE=::1
+[2025-10-29 15:08:47] API iniciada. REMOTE=::1
+[2025-10-29 15:08:47] generateResponse original="Salud emocional y sexual" processed="salud emocional y sexual"
+[2025-10-29 15:08:47] Decision: DB KB response topic=abuso_sexual score=2.6792988777160645
+[2025-10-29 15:08:48] API iniciada. REMOTE=::1
+[2025-10-29 15:09:01] API iniciada. REMOTE=::1
+[2025-10-30 07:30:07] Processing: "Salud emocional y sexual"
+[2025-10-30 07:30:19] Processing: "que es la pornografia"
+[2025-10-30 07:30:25] Processing: "¿Qué métodos anticonceptivos existen?"
+[2025-10-30 07:30:31] Processing: "Información sobre ITS/ETS"
+[2025-10-30 07:30:38] Processing: "¿Qué es el consentimiento?"
+[2025-10-30 07:30:43] Processing: "Salud emocional y sexual"
+[2025-10-30 23:44:03] API iniciada. REMOTE=::1
+[2025-10-30 23:44:08] API iniciada. REMOTE=::1
+[2025-10-30 23:44:09] generateResponse original="¿Qué métodos anticonceptivos existen?" processed="que metodos anticonceptivos existen"
+[2025-10-30 23:44:09] Decision: DB KB response topic=anticonceptivos score=10.667529106140137
+[2025-10-30 23:44:09] API iniciada. REMOTE=::1
+[2025-10-30 23:44:19] API iniciada. REMOTE=::1
+[2025-10-30 23:44:19] generateResponse original="Información sobre ITS/ETS" processed="informacion sobre its ets"
+[2025-10-30 23:44:20] Decision: DB KB response topic=its_definicion score=6.486345291137695
+[2025-10-30 23:44:20] API iniciada. REMOTE=::1
+[2025-10-30 23:44:25] API iniciada. REMOTE=::1
+[2025-10-30 23:44:25] generateResponse original="que es un condon" processed="que es un condon"
+[2025-10-30 23:44:25] Decision: DB KB response topic=sexo_oral_seguro score=4.942976474761963
+[2025-10-30 23:44:25] API iniciada. REMOTE=::1
+[2025-10-30 23:44:33] API iniciada. REMOTE=::1
+[2025-10-30 23:45:04] API iniciada. REMOTE=::1
+[2025-10-30 23:45:34] API iniciada. REMOTE=::1
+[2025-10-30 23:45:36] API iniciada. REMOTE=::1
+[2025-10-30 23:45:37] generateResponse original="hola" processed="hola"
+[2025-10-30 23:45:37] API iniciada. REMOTE=::1
+[2025-10-30 23:46:04] API iniciada. REMOTE=::1
+[2025-10-30 23:46:34] API iniciada. REMOTE=::1
+[2025-10-30 23:47:03] API iniciada. REMOTE=::1
+[2025-10-30 23:47:34] API iniciada. REMOTE=::1
+[2025-10-30 23:48:04] API iniciada. REMOTE=::1
+[2025-10-30 23:48:34] API iniciada. REMOTE=::1
+[2025-10-30 23:49:35] API iniciada. REMOTE=::1
+[2025-10-30 23:50:37] API iniciada. REMOTE=::1
+[2025-10-30 23:51:37] API iniciada. REMOTE=::1
+[2025-10-30 23:52:38] API iniciada. REMOTE=::1
+[2025-10-30 23:53:39] API iniciada. REMOTE=::1
+[2025-10-30 23:54:40] API iniciada. REMOTE=::1
+[2025-10-30 23:55:41] API iniciada. REMOTE=::1
+[2025-10-30 23:56:42] API iniciada. REMOTE=::1
+[2025-10-30 23:57:43] API iniciada. REMOTE=::1
+[2025-10-30 23:58:44] API iniciada. REMOTE=::1
+[2025-10-30 23:59:44] API iniciada. REMOTE=::1
+[2025-10-31 00:00:44] API iniciada. REMOTE=::1
+[2025-10-31 00:01:44] API iniciada. REMOTE=::1
+[2025-10-31 00:02:44] API iniciada. REMOTE=::1
+[2025-10-31 00:03:44] API iniciada. REMOTE=::1
+[2025-10-31 00:04:44] API iniciada. REMOTE=::1
+[2025-10-31 00:05:44] API iniciada. REMOTE=::1
+[2025-10-31 00:06:44] API iniciada. REMOTE=::1
+[2025-10-31 00:07:44] API iniciada. REMOTE=::1
+[2025-10-31 00:08:44] API iniciada. REMOTE=::1
+[2025-10-31 00:09:44] API iniciada. REMOTE=::1
+[2025-10-31 00:10:44] API iniciada. REMOTE=::1
+[2025-10-31 00:11:44] API iniciada. REMOTE=::1
+[2025-10-31 00:12:44] API iniciada. REMOTE=::1
+[2025-10-31 00:13:44] API iniciada. REMOTE=::1
+[2025-10-31 08:13:40] API iniciada. REMOTE=::1
+[2025-10-31 08:13:40] Input JSON detectado: {"action":"create","message":"¿Qué es el consentimiento en salud sexual?"}
+[2025-10-31 08:13:40] generateResponse original="¿Qué es el consentimiento en salud sexual?" processed="que es el consentimiento en salud sexual"
+[2025-10-31 08:13:41] Decision: DB KB response topic=consentimiento_intoxicacion score=6.710267066955566
+[2025-10-31 08:15:37] API iniciada. REMOTE=::1
+[2025-10-31 08:15:37] API iniciada. REMOTE=::1
+[2025-10-31 08:15:37] Input POST tradicional detectado.
+[2025-10-31 08:15:37] API iniciada. REMOTE=::1
+[2025-10-31 08:15:37] Input POST tradicional detectado.
+[2025-10-31 08:15:37] Input POST tradicional detectado.
+[2025-10-31 08:15:46] API iniciada. REMOTE=::1
+[2025-10-31 08:15:46] Input POST tradicional detectado.
+[2025-10-31 08:15:46] generateResponse original=""¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?"" processed="como pueden las redes sociales influir en la percepcion de la sexualidad adolescente"
+[2025-10-31 08:15:46] detected_intent= processed=como pueden las redes sociales influir en la percepcion de la sexualidad adolescente
+[2025-10-31 08:15:46] KB bestScore=0.14285714285714 matches=1 filteredWords=pueden,redes,sociales,influir,percepcion,sexualidad,adolescente
+[2025-10-31 08:15:48] GEMINI HTTP 400 {
+  "error": {
+    "code": 400,
+    "message": "Invalid JSON payload received. Unknown name \"config\": Cannot find field.",
+    "status": "INVALID_ARGUMENT",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.BadRequest",
+        "fieldViolations": [
+          {
+            "description": "Invalid JSON payload received. Unknown name \"config\": Cannot find field."
+          }
+        ]
+      }
+    ]
+  }
+}
+
+[2025-10-31 08:15:48] Gemini no devolvió respuesta segura/útil
+[2025-10-31 08:15:48] detected_intent= processed=como pueden las redes sociales influir en la percepcion de la sexualidad adolescente
+[2025-10-31 08:15:48] API iniciada. REMOTE=::1
+[2025-10-31 08:15:48] Input POST tradicional detectado.
+[2025-10-31 08:15:57] API iniciada. REMOTE=::1
+[2025-10-31 08:15:57] Input JSON detectado: {"action":"create","message":"\"¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?\""}
+[2025-10-31 08:15:57] generateResponse original=""¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?"" processed="como pueden las redes sociales influir en la percepcion de la sexualidad adolescente"
+[2025-10-31 08:15:58] detected_intent= processed=como pueden las redes sociales influir en la percepcion de la sexualidad adolescente
+[2025-10-31 08:15:58] KB bestScore=0.14285714285714 matches=1 filteredWords=pueden,redes,sociales,influir,percepcion,sexualidad,adolescente
+[2025-10-31 08:15:58] GEMINI HTTP 400 {
+  "error": {
+    "code": 400,
+    "message": "Invalid JSON payload received. Unknown name \"config\": Cannot find field.",
+    "status": "INVALID_ARGUMENT",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.BadRequest",
+        "fieldViolations": [
+          {
+            "description": "Invalid JSON payload received. Unknown name \"config\": Cannot find field."
+          }
+        ]
+      }
+    ]
+  }
+}
+
+[2025-10-31 08:15:58] Gemini no devolvió respuesta segura/útil
+[2025-10-31 08:15:58] detected_intent= processed=como pueden las redes sociales influir en la percepcion de la sexualidad adolescente
+[2025-10-31 08:16:07] API iniciada. REMOTE=::1
+[2025-10-31 08:16:07] Input POST tradicional detectado.
+[2025-10-31 08:16:37] API iniciada. REMOTE=::1
+[2025-10-31 08:16:37] Input POST tradicional detectado.
+[2025-10-31 08:16:37] API iniciada. REMOTE=::1
+[2025-10-31 08:16:37] Input POST tradicional detectado.
+[2025-10-31 08:17:07] API iniciada. REMOTE=::1
+[2025-10-31 08:17:07] Input POST tradicional detectado.
+[2025-10-31 08:17:38] API iniciada. REMOTE=::1
+[2025-10-31 08:17:38] Input POST tradicional detectado.
+[2025-10-31 08:17:38] API iniciada. REMOTE=::1
+[2025-10-31 08:17:38] Input POST tradicional detectado.
+[2025-10-31 08:18:07] API iniciada. REMOTE=::1
+[2025-10-31 08:18:07] Input POST tradicional detectado.
+[2025-10-31 08:18:37] API iniciada. REMOTE=::1
+[2025-10-31 08:18:37] Input POST tradicional detectado.
+[2025-10-31 08:18:37] API iniciada. REMOTE=::1
+[2025-10-31 08:18:37] Input POST tradicional detectado.
+[2025-10-31 08:18:55] API iniciada. REMOTE=::1
+[2025-10-31 08:18:55] Input JSON detectado: {"action":"create","message":"\"¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?\""}
+[2025-10-31 08:18:55] generateResponse original=""¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?"" processed="como pueden las redes sociales influir en la percepcion de la sexualidad adolescente"
+[2025-10-31 08:18:55] detected_intent= processed=como pueden las redes sociales influir en la percepcion de la sexualidad adolescente
+[2025-10-31 08:18:55] KB bestScore=0.14285714285714 matches=1 filteredWords=pueden,redes,sociales,influir,percepcion,sexualidad,adolescente
+[2025-10-31 08:18:56] GEMINI HTTP 400 {
+  "error": {
+    "code": 400,
+    "message": "Invalid JSON payload received. Unknown name \"config\": Cannot find field.",
+    "status": "INVALID_ARGUMENT",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.BadRequest",
+        "fieldViolations": [
+          {
+            "description": "Invalid JSON payload received. Unknown name \"config\": Cannot find field."
+          }
+        ]
+      }
+    ]
+  }
+}
+
+[2025-10-31 08:18:56] Gemini no devolvió respuesta segura/útil
+[2025-10-31 08:18:56] detected_intent= processed=como pueden las redes sociales influir en la percepcion de la sexualidad adolescente
+[2025-10-31 08:19:07] API iniciada. REMOTE=::1
+[2025-10-31 08:19:07] Input POST tradicional detectado.
+[2025-10-31 08:19:37] API iniciada. REMOTE=::1
+[2025-10-31 08:19:37] Input POST tradicional detectado.
+[2025-10-31 08:19:40] API iniciada. REMOTE=::1
+[2025-10-31 08:19:40] Input JSON detectado: {"action":"create","message":"\"¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?\""}
+[2025-10-31 08:19:40] generateResponse original=""¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?"" processed="como pueden las redes sociales influir en la percepcion de la sexualidad adolescente"
+[2025-10-31 08:19:40] detected_intent= processed=como pueden las redes sociales influir en la percepcion de la sexualidad adolescente
+[2025-10-31 08:19:40] KB bestScore=0.14285714285714 matches=1 filteredWords=pueden,redes,sociales,influir,percepcion,sexualidad,adolescente
+[2025-10-31 08:19:41] GEMINI HTTP 400 {
+  "error": {
+    "code": 400,
+    "message": "Invalid JSON payload received. Unknown name \"config\": Cannot find field.",
+    "status": "INVALID_ARGUMENT",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.BadRequest",
+        "fieldViolations": [
+          {
+            "description": "Invalid JSON payload received. Unknown name \"config\": Cannot find field."
+          }
+        ]
+      }
+    ]
+  }
+}
+
+[2025-10-31 08:19:41] Gemini no devolvió respuesta segura/útil
+[2025-10-31 08:19:41] detected_intent= processed=como pueden las redes sociales influir en la percepcion de la sexualidad adolescente
+[2025-10-31 08:19:41] API iniciada. REMOTE=::1
+[2025-10-31 08:19:41] Input POST tradicional detectado.
+[2025-10-31 08:20:37] API iniciada. REMOTE=::1
+[2025-10-31 08:20:37] Input POST tradicional detectado.
+[2025-10-31 08:20:41] API iniciada. REMOTE=::1
+[2025-10-31 08:20:41] Input POST tradicional detectado.
+[2025-10-31 08:21:37] API iniciada. REMOTE=::1
+[2025-10-31 08:21:37] Input POST tradicional detectado.
+[2025-10-31 08:21:41] API iniciada. REMOTE=::1
+[2025-10-31 08:21:41] Input POST tradicional detectado.
+[2025-10-31 08:22:41] API iniciada. REMOTE=::1
+[2025-10-31 08:22:41] Input POST tradicional detectado.
+[2025-10-31 08:22:41] API iniciada. REMOTE=::1
+[2025-10-31 08:22:41] Input POST tradicional detectado.
+[2025-10-31 08:23:41] API iniciada. REMOTE=::1
+[2025-10-31 08:23:41] Input POST tradicional detectado.
+[2025-10-31 08:23:41] API iniciada. REMOTE=::1
+[2025-10-31 08:23:41] Input POST tradicional detectado.
+[2025-10-31 08:24:41] API iniciada. REMOTE=::1
+[2025-10-31 08:24:41] Input POST tradicional detectado.
+[2025-10-31 08:24:41] API iniciada. REMOTE=::1
+[2025-10-31 08:24:41] Input POST tradicional detectado.
+[2025-10-31 08:25:41] API iniciada. REMOTE=::1
+[2025-10-31 08:25:41] Input POST tradicional detectado.
+[2025-10-31 08:25:41] API iniciada. REMOTE=::1
+[2025-10-31 08:25:41] Input POST tradicional detectado.
+[2025-10-31 08:26:41] API iniciada. REMOTE=::1
+[2025-10-31 08:26:41] API iniciada. REMOTE=::1
+[2025-10-31 08:26:41] Input POST tradicional detectado.
+[2025-10-31 08:26:41] Input POST tradicional detectado.
+[2025-10-31 08:27:41] API iniciada. REMOTE=::1
+[2025-10-31 08:27:41] Input POST tradicional detectado.
+[2025-10-31 08:27:41] API iniciada. REMOTE=::1
+[2025-10-31 08:27:41] Input POST tradicional detectado.
+[2025-10-31 08:28:41] API iniciada. REMOTE=::1
+[2025-10-31 08:28:41] Input POST tradicional detectado.
+[2025-10-31 08:28:41] API iniciada. REMOTE=::1
+[2025-10-31 08:28:41] Input POST tradicional detectado.
+[2025-10-31 08:29:41] API iniciada. REMOTE=::1
+[2025-10-31 08:29:41] Input POST tradicional detectado.
+[2025-10-31 08:29:41] API iniciada. REMOTE=::1
+[2025-10-31 08:29:41] Input POST tradicional detectado.
+[2025-10-31 08:30:41] API iniciada. REMOTE=::1
+[2025-10-31 08:30:41] API iniciada. REMOTE=::1
+[2025-10-31 08:30:41] Input POST tradicional detectado.
+[2025-10-31 08:30:41] Input POST tradicional detectado.
+[2025-10-31 08:31:41] API iniciada. REMOTE=::1
+[2025-10-31 08:31:41] Input POST tradicional detectado.
+[2025-10-31 08:31:41] API iniciada. REMOTE=::1
+[2025-10-31 08:31:41] Input POST tradicional detectado.
+[2025-10-31 08:32:41] API iniciada. REMOTE=::1
+[2025-10-31 08:32:41] Input POST tradicional detectado.
+[2025-10-31 08:32:41] API iniciada. REMOTE=::1
+[2025-10-31 08:32:41] Input POST tradicional detectado.
+[2025-10-31 08:33:41] API iniciada. REMOTE=::1
+[2025-10-31 08:33:41] Input POST tradicional detectado.
+[2025-10-31 08:33:41] API iniciada. REMOTE=::1
+[2025-10-31 08:33:41] Input POST tradicional detectado.
+[2025-10-31 08:34:41] API iniciada. REMOTE=::1
+[2025-10-31 08:34:41] Input POST tradicional detectado.
+[2025-10-31 08:34:41] API iniciada. REMOTE=::1
+[2025-10-31 08:34:41] Input POST tradicional detectado.
+[2025-10-31 08:35:41] API iniciada. REMOTE=::1
+[2025-10-31 08:35:41] API iniciada. REMOTE=::1
+[2025-10-31 08:35:41] Input POST tradicional detectado.
+[2025-10-31 08:35:41] Input POST tradicional detectado.
+[2025-10-31 08:36:41] API iniciada. REMOTE=::1
+[2025-10-31 08:36:41] Input POST tradicional detectado.
+[2025-10-31 08:36:41] API iniciada. REMOTE=::1
+[2025-10-31 08:36:41] Input POST tradicional detectado.
+[2025-10-31 08:50:20] API iniciada. REMOTE=::1
+[2025-10-31 08:50:20] Input POST tradicional detectado.
+[2025-10-31 08:50:20] API iniciada. REMOTE=::1
+[2025-10-31 08:50:20] Input POST tradicional detectado.
+[2025-10-31 08:50:41] API iniciada. REMOTE=::1
+[2025-10-31 08:50:41] Input POST tradicional detectado.
+[2025-10-31 08:50:41] API iniciada. REMOTE=::1
+[2025-10-31 08:50:41] Input POST tradicional detectado.
+[2025-10-31 08:53:55] API iniciada. REMOTE=::1
+[2025-10-31 08:53:55] API iniciada. REMOTE=::1
+[2025-10-31 08:53:55] Input POST tradicional detectado.
+[2025-10-31 08:53:55] Input POST tradicional detectado.
+[2025-10-31 08:53:55] API iniciada. REMOTE=::1
+[2025-10-31 08:53:55] Input POST tradicional detectado.
+[2025-10-31 09:13:38] API iniciada. REMOTE=::1
+[2025-10-31 09:13:38] Input JSON detectado: {"action":"create","message":"\"¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?\""}
+[2025-10-31 09:13:38] generateResponse original='"¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?"' processed='como pueden las redes sociales influir en la percepcion de la sexualidad adolescente'
+[2025-10-31 09:13:38] detected_intent= processed=como pueden las redes sociales influir en la percepcion de la sexualidad adolescente
+[2025-10-31 09:13:39] GEMINI HTTP 400 {
+  "error": {
+    "code": 400,
+    "message": "Invalid value at 'system_instruction' (type.googleapis.com/google.ai.generativelanguage.v1beta.Content), \"Eres SEIN, un asistente virtual. Contexto: Usuario: \"¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?\"\nBot: No estoy seguro de la intención exacta. ¿Puedes reformular o pedir un tema específico (anticonceptivos, ITS, embarazo, consentimiento)?\nUsuario: \"¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?\"\nBot: No estoy seguro de la intención exacta. ¿Puedes reformular o pedir un tema específico (anticonceptivos, ITS, embarazo, consentimiento)?\nUsuario: \"¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?\"\nBot: No estoy seguro de la intención exacta. ¿Puedes reformular o pedir un tema específico (anticonceptivos, ITS, embarazo, consentimiento)?\n\"",
+    "status": "INVALID_ARGUMENT",
+    "details": [
+[2025-10-31 09:13:41] API iniciada. REMOTE=::1
+[2025-10-31 09:13:41] Input POST tradicional detectado.
+[2025-10-31 09:13:41] API iniciada. REMOTE=::1
+[2025-10-31 09:13:41] Input POST tradicional detectado.
+[2025-10-31 09:13:51] API iniciada. REMOTE=::1
+[2025-10-31 09:13:51] Input POST tradicional detectado.
+[2025-10-31 09:13:51] API iniciada. REMOTE=::1
+[2025-10-31 09:13:51] Input POST tradicional detectado.
+[2025-10-31 09:13:51] API iniciada. REMOTE=::1
+[2025-10-31 09:13:52] Input POST tradicional detectado.
+[2025-10-31 09:13:59] API iniciada. REMOTE=::1
+[2025-10-31 09:13:59] Input POST tradicional detectado.
+[2025-10-31 09:13:59] API iniciada. REMOTE=::1
+[2025-10-31 09:13:59] Input POST tradicional detectado.
+[2025-10-31 09:14:00] API iniciada. REMOTE=::1
+[2025-10-31 09:14:00] Input POST tradicional detectado.
+[2025-10-31 09:14:04] API iniciada. REMOTE=::1
+[2025-10-31 09:14:04] Input POST tradicional detectado.
+[2025-10-31 09:14:05] generateResponse original='Salud emocional y sexual' processed='salud emocional y sexual'
+[2025-10-31 09:14:06] API iniciada. REMOTE=::1
+[2025-10-31 09:14:06] Input POST tradicional detectado.
+[2025-10-31 09:14:10] API iniciada. REMOTE=::1
+[2025-10-31 09:14:10] Input POST tradicional detectado.
+[2025-10-31 09:14:10] generateResponse original='¿Qué métodos anticonceptivos existen?' processed='que metodos anticonceptivos existen'
+[2025-10-31 09:14:10] API iniciada. REMOTE=::1
+[2025-10-31 09:14:10] Input POST tradicional detectado.
+[2025-10-31 09:14:43] API iniciada. REMOTE=::1
+[2025-10-31 09:14:43] Input POST tradicional detectado.
+[2025-10-31 09:14:44] API iniciada. REMOTE=::1
+[2025-10-31 09:14:44] Input POST tradicional detectado.
+[2025-10-31 09:14:44] API iniciada. REMOTE=::1
+[2025-10-31 09:14:44] Input POST tradicional detectado.
+[2025-10-31 09:14:48] API iniciada. REMOTE=::1
+[2025-10-31 09:14:48] Input JSON detectado: {"action":"create","message":"\"¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?\""}
+[2025-10-31 09:14:48] generateResponse original=""¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?"" processed="como pueden las redes sociales influir en la percepcion de la sexualidad adolescente"
+[2025-10-31 09:14:49] detected_intent= processed=como pueden las redes sociales influir en la percepcion de la sexualidad adolescente
+[2025-10-31 09:14:49] KB bestScore=0.14285714285714 matches=1 filteredWords=pueden,redes,sociales,influir,percepcion,sexualidad,adolescente
+[2025-10-31 09:14:49] GEMINI HTTP 400 {
+  "error": {
+    "code": 400,
+    "message": "Invalid JSON payload received. Unknown name \"config\": Cannot find field.",
+    "status": "INVALID_ARGUMENT",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.BadRequest",
+        "fieldViolations": [
+          {
+            "description": "Invalid JSON payload received. Unknown name \"config\": Cannot find field."
+          }
+        ]
+      }
+    ]
+  }
+}
+
+[2025-10-31 09:14:49] Gemini no devolvió respuesta segura/útil
+[2025-10-31 09:14:49] detected_intent= processed=como pueden las redes sociales influir en la percepcion de la sexualidad adolescente
+[2025-10-31 09:15:14] API iniciada. REMOTE=::1
+[2025-10-31 09:15:14] Input POST tradicional detectado.
+[2025-10-31 09:15:30] API iniciada. REMOTE=::1
+[2025-10-31 09:15:30] Input JSON detectado: {"action":"create","message":"\"¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?\""}
+[2025-10-31 09:15:30] generateResponse original=""¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?"" processed="como pueden las redes sociales influir en la percepcion de la sexualidad adolescente"
+[2025-10-31 09:15:31] detected_intent= processed=como pueden las redes sociales influir en la percepcion de la sexualidad adolescente
+[2025-10-31 09:15:31] KB bestScore=0.14285714285714 matches=1 filteredWords=pueden,redes,sociales,influir,percepcion,sexualidad,adolescente
+[2025-10-31 09:15:31] GEMINI HTTP 400 {
+  "error": {
+    "code": 400,
+    "message": "Invalid JSON payload received. Unknown name \"config\": Cannot find field.",
+    "status": "INVALID_ARGUMENT",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.BadRequest",
+        "fieldViolations": [
+          {
+            "description": "Invalid JSON payload received. Unknown name \"config\": Cannot find field."
+          }
+        ]
+      }
+    ]
+  }
+}
+
+[2025-10-31 09:15:31] Gemini no devolvió respuesta segura/útil
+[2025-10-31 09:15:31] detected_intent= processed=como pueden las redes sociales influir en la percepcion de la sexualidad adolescente
+[2025-10-31 09:15:44] API iniciada. REMOTE=::1
+[2025-10-31 09:15:44] API iniciada. REMOTE=::1
+[2025-10-31 09:15:44] Input POST tradicional detectado.
+[2025-10-31 09:15:44] Input POST tradicional detectado.
+[2025-10-31 09:16:14] API iniciada. REMOTE=::1
+[2025-10-31 09:16:14] Input POST tradicional detectado.
+[2025-10-31 09:16:48] API iniciada. REMOTE=::1
+[2025-10-31 09:16:49] Input POST tradicional detectado.
+[2025-10-31 09:16:49] API iniciada. REMOTE=::1
+[2025-10-31 09:16:49] Input POST tradicional detectado.
+[2025-10-31 09:17:14] API iniciada. REMOTE=::1
+[2025-10-31 09:17:14] Input POST tradicional detectado.
+[2025-10-31 09:17:44] API iniciada. REMOTE=::1
+[2025-10-31 09:17:44] Input POST tradicional detectado.
+[2025-10-31 09:17:44] API iniciada. REMOTE=::1
+[2025-10-31 09:17:44] Input POST tradicional detectado.
+[2025-10-31 09:18:14] API iniciada. REMOTE=::1
+[2025-10-31 09:18:14] Input POST tradicional detectado.
+[2025-10-31 09:18:44] API iniciada. REMOTE=::1
+[2025-10-31 09:18:44] Input POST tradicional detectado.
+[2025-10-31 09:19:15] API iniciada. REMOTE=::1
+[2025-10-31 09:19:15] Input POST tradicional detectado.
+[2025-10-31 09:19:44] API iniciada. REMOTE=::1
+[2025-10-31 09:19:44] Input POST tradicional detectado.
+[2025-10-31 09:20:16] API iniciada. REMOTE=::1
+[2025-10-31 09:20:16] Input POST tradicional detectado.
+[2025-10-31 09:20:43] API iniciada. REMOTE=::1
+[2025-10-31 09:20:44] Input POST tradicional detectado.
+[2025-10-31 09:21:17] API iniciada. REMOTE=::1
+[2025-10-31 09:21:17] Input POST tradicional detectado.
+[2025-10-31 09:22:18] API iniciada. REMOTE=::1
+[2025-10-31 09:22:18] API iniciada. REMOTE=::1
+[2025-10-31 09:22:18] Input POST tradicional detectado.
+[2025-10-31 09:22:18] Input POST tradicional detectado.
+[2025-10-31 09:23:19] API iniciada. REMOTE=::1
+[2025-10-31 09:23:19] Input POST tradicional detectado.
+[2025-10-31 09:23:19] API iniciada. REMOTE=::1
+[2025-10-31 09:23:19] Input POST tradicional detectado.
+[2025-10-31 09:23:55] API iniciada. REMOTE=::1
+[2025-10-31 09:23:55] Input POST tradicional detectado.
+[2025-10-31 09:23:55] API iniciada. REMOTE=::1
+[2025-10-31 09:23:56] Input POST tradicional detectado.
+[2025-10-31 09:23:57] API iniciada. REMOTE=::1
+[2025-10-31 09:23:57] Input POST tradicional detectado.
+[2025-10-31 09:23:57] API iniciada. REMOTE=::1
+[2025-10-31 09:23:57] Input POST tradicional detectado.
+[2025-10-31 09:23:57] API iniciada. REMOTE=::1
+[2025-10-31 09:23:58] Input POST tradicional detectado.
+[2025-10-31 09:24:02] API iniciada. REMOTE=::1
+[2025-10-31 09:24:02] Input JSON detectado: {"action":"create","message":"\"¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?\""}
+[2025-10-31 09:24:02] generateResponse original=""¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?"" processed="como pueden las redes sociales influir en la percepcion de la sexualidad adolescente"
+[2025-10-31 09:24:03] detected_intent= processed=como pueden las redes sociales influir en la percepcion de la sexualidad adolescente
+[2025-10-31 09:24:03] KB bestScore=0.14285714285714 matches=1 filteredWords=pueden,redes,sociales,influir,percepcion,sexualidad,adolescente
+[2025-10-31 09:24:04] GEMINI HTTP 400 {
+  "error": {
+    "code": 400,
+    "message": "Please use a valid role: user, model.",
+    "status": "INVALID_ARGUMENT"
+  }
+}
+
+[2025-10-31 09:24:04] Gemini HTTP ERROR code=400 response={
+  "error": {
+    "code": 400,
+    "message": "Please use a valid role: user, model.",
+    "status": "INVALID_ARGUMENT"
+  }
+}
+
+[2025-10-31 09:24:04] Gemini no devolvió respuesta segura/útil
+[2025-10-31 09:24:04] detected_intent= processed=como pueden las redes sociales influir en la percepcion de la sexualidad adolescente
+[2025-10-31 09:24:28] API iniciada. REMOTE=::1
+[2025-10-31 09:24:28] Input POST tradicional detectado.
+[2025-10-31 09:24:53] API iniciada. REMOTE=::1
+[2025-10-31 09:24:54] Input JSON detectado: {"action":"create","message":"\"¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?\""}
+[2025-10-31 09:24:54] generateResponse original=""¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?"" processed="como pueden las redes sociales influir en la percepcion de la sexualidad adolescente"
+[2025-10-31 09:24:54] detected_intent= processed=como pueden las redes sociales influir en la percepcion de la sexualidad adolescente
+[2025-10-31 09:24:54] KB bestScore=0.14285714285714 matches=1 filteredWords=pueden,redes,sociales,influir,percepcion,sexualidad,adolescente
+[2025-10-31 09:24:55] GEMINI HTTP 400 {
+  "error": {
+    "code": 400,
+    "message": "Please use a valid role: user, model.",
+    "status": "INVALID_ARGUMENT"
+  }
+}
+
+[2025-10-31 09:24:55] Gemini HTTP ERROR code=400 response={
+  "error": {
+    "code": 400,
+    "message": "Please use a valid role: user, model.",
+    "status": "INVALID_ARGUMENT"
+  }
+}
+
+[2025-10-31 09:24:55] Gemini no devolvió respuesta segura/útil
+[2025-10-31 09:24:55] detected_intent= processed=como pueden las redes sociales influir en la percepcion de la sexualidad adolescente
+[2025-10-31 09:24:57] API iniciada. REMOTE=::1
+[2025-10-31 09:24:57] Input POST tradicional detectado.
+[2025-10-31 09:24:57] API iniciada. REMOTE=::1
+[2025-10-31 09:24:58] Input POST tradicional detectado.
+[2025-10-31 09:25:29] API iniciada. REMOTE=::1
+[2025-10-31 09:25:29] Input POST tradicional detectado.
+[2025-10-31 09:25:58] API iniciada. REMOTE=::1
+[2025-10-31 09:25:58] Input POST tradicional detectado.
+[2025-10-31 09:25:58] API iniciada. REMOTE=::1
+[2025-10-31 09:25:58] Input POST tradicional detectado.
+[2025-10-31 09:26:28] API iniciada. REMOTE=::1
+[2025-10-31 09:26:28] Input POST tradicional detectado.
+[2025-10-31 09:26:58] API iniciada. REMOTE=::1
+[2025-10-31 09:26:58] Input POST tradicional detectado.
+[2025-10-31 09:26:58] API iniciada. REMOTE=::1
+[2025-10-31 09:26:58] Input POST tradicional detectado.
+[2025-10-31 09:27:28] API iniciada. REMOTE=::1
+[2025-10-31 09:27:28] Input POST tradicional detectado.
+[2025-10-31 09:27:58] API iniciada. REMOTE=::1
+[2025-10-31 09:27:58] Input POST tradicional detectado.
+[2025-10-31 09:28:29] API iniciada. REMOTE=::1
+[2025-10-31 09:28:29] Input POST tradicional detectado.
+[2025-10-31 09:28:58] API iniciada. REMOTE=::1
+[2025-10-31 09:28:58] Input POST tradicional detectado.
+[2025-10-31 09:29:24] API iniciada. REMOTE=::1
+[2025-10-31 09:29:24] Input JSON detectado: {"action":"create","message":"¿Qué es el consentimiento en salud sexual?"}
+[2025-10-31 09:29:24] generateResponse original="¿Qué es el consentimiento en salud sexual?" processed="que es el consentimiento en salud sexual"
+[2025-10-31 09:29:24] Decision: DB KB response topic=consentimiento_intoxicacion score=6.710267066955566
+[2025-10-31 09:29:30] API iniciada. REMOTE=::1
+[2025-10-31 09:29:30] Input POST tradicional detectado.
+[2025-10-31 09:29:58] API iniciada. REMOTE=::1
+[2025-10-31 09:29:58] Input POST tradicional detectado.
+[2025-10-31 09:30:13] API iniciada. REMOTE=::1
+[2025-10-31 09:30:13] Input JSON detectado: {"action":"create","message":"¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?"}
+[2025-10-31 09:30:13] generateResponse original="¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?" processed="como pueden las redes sociales influir en la percepcion de la sexualidad adolescente"
+[2025-10-31 09:30:13] Decision: DB KB response topic=servicios_inclusivos score=7.378129959106445
+[2025-10-31 09:30:31] API iniciada. REMOTE=::1
+[2025-10-31 09:30:31] Input POST tradicional detectado.
+[2025-10-31 09:31:32] API iniciada. REMOTE=::1
+[2025-10-31 09:31:32] Input POST tradicional detectado.
+[2025-10-31 09:31:32] API iniciada. REMOTE=::1
+[2025-10-31 09:31:32] Input POST tradicional detectado.
+[2025-10-31 09:32:33] API iniciada. REMOTE=::1
+[2025-10-31 09:32:33] Input POST tradicional detectado.
+[2025-10-31 09:32:33] API iniciada. REMOTE=::1
+[2025-10-31 09:32:33] Input POST tradicional detectado.
+[2025-10-31 09:33:34] API iniciada. REMOTE=::1
+[2025-10-31 09:33:34] Input POST tradicional detectado.
+[2025-10-31 09:33:34] API iniciada. REMOTE=::1
+[2025-10-31 09:33:34] Input POST tradicional detectado.
+[2025-10-31 09:34:35] API iniciada. REMOTE=::1
+[2025-10-31 09:34:35] API iniciada. REMOTE=::1
+[2025-10-31 09:34:35] Input POST tradicional detectado.
+[2025-10-31 09:34:35] Input POST tradicional detectado.
+[2025-10-31 09:35:36] API iniciada. REMOTE=::1
+[2025-10-31 09:35:36] Input POST tradicional detectado.
+[2025-10-31 09:35:36] API iniciada. REMOTE=::1
+[2025-10-31 09:35:36] Input POST tradicional detectado.
+[2025-10-31 09:36:38] API iniciada. REMOTE=::1
+[2025-10-31 09:36:38] Input POST tradicional detectado.
+[2025-10-31 09:36:38] API iniciada. REMOTE=::1
+[2025-10-31 09:36:38] Input POST tradicional detectado.
+[2025-10-31 09:41:36] API iniciada. REMOTE=::1
+[2025-10-31 09:41:36] Input JSON detectado: {"action":"create","message":"¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?"}
+[2025-10-31 09:41:36] generateResponse original="¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?" processed="como pueden las redes sociales influir en la percepcion de la sexualidad adolescente"
+[2025-10-31 09:41:37] DB KB returned. score=7.3781299591064 threshold=0.84
+[2025-10-31 09:41:37] Decision: USING DB KB (score >= threshold)
+[2025-10-31 09:41:41] API iniciada. REMOTE=::1
+[2025-10-31 09:41:41] Input POST tradicional detectado.
+[2025-10-31 09:41:41] API iniciada. REMOTE=::1
+[2025-10-31 09:41:41] Input POST tradicional detectado.
+[2025-10-31 09:42:41] API iniciada. REMOTE=::1
+[2025-10-31 09:42:41] Input POST tradicional detectado.
+[2025-10-31 09:42:41] API iniciada. REMOTE=::1
+[2025-10-31 09:42:41] Input POST tradicional detectado.
+[2025-10-31 09:43:41] API iniciada. REMOTE=::1
+[2025-10-31 09:43:41] API iniciada. REMOTE=::1
+[2025-10-31 09:43:41] Input POST tradicional detectado.
+[2025-10-31 09:43:41] Input POST tradicional detectado.
+[2025-10-31 09:44:41] API iniciada. REMOTE=::1
+[2025-10-31 09:44:41] Input POST tradicional detectado.
+[2025-10-31 09:44:41] API iniciada. REMOTE=::1
+[2025-10-31 09:44:41] Input POST tradicional detectado.
+[2025-10-31 09:45:09] API iniciada. REMOTE=::1
+[2025-10-31 09:45:09] Input JSON detectado: {"action":"create","message":"¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?"}
+[2025-10-31 09:45:09] generateResponse original="¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?" processed="como pueden las redes sociales influir en la percepcion de la sexualidad adolescente"
+[2025-10-31 09:45:09] DB KB returned. score=7.3781299591064 threshold=0.84
+[2025-10-31 09:45:09] Decision: USING DB KB (score >= threshold)
+[2025-10-31 09:45:41] API iniciada. REMOTE=::1
+[2025-10-31 09:45:41] Input POST tradicional detectado.
+[2025-10-31 09:45:41] API iniciada. REMOTE=::1
+[2025-10-31 09:45:41] Input POST tradicional detectado.
+[2025-10-31 09:46:41] API iniciada. REMOTE=::1
+[2025-10-31 09:46:41] Input POST tradicional detectado.
+[2025-10-31 09:46:41] API iniciada. REMOTE=::1
+[2025-10-31 09:46:41] Input POST tradicional detectado.
+[2025-10-31 09:47:41] API iniciada. REMOTE=::1
+[2025-10-31 09:47:41] Input POST tradicional detectado.
+[2025-10-31 09:47:41] API iniciada. REMOTE=::1
+[2025-10-31 09:47:41] Input POST tradicional detectado.
+[2025-10-31 09:48:41] API iniciada. REMOTE=::1
+[2025-10-31 09:48:41] Input POST tradicional detectado.
+[2025-10-31 09:48:41] API iniciada. REMOTE=::1
+[2025-10-31 09:48:41] Input POST tradicional detectado.
+[2025-10-31 09:49:41] API iniciada. REMOTE=::1
+[2025-10-31 09:49:41] Input POST tradicional detectado.
+[2025-10-31 09:49:41] API iniciada. REMOTE=::1
+[2025-10-31 09:49:41] Input POST tradicional detectado.
+[2025-10-31 09:50:41] API iniciada. REMOTE=::1
+[2025-10-31 09:50:41] API iniciada. REMOTE=::1
+[2025-10-31 09:50:41] Input POST tradicional detectado.
+[2025-10-31 09:50:41] Input POST tradicional detectado.
+[2025-10-31 09:51:41] API iniciada. REMOTE=::1
+[2025-10-31 09:51:41] Input POST tradicional detectado.
+[2025-10-31 09:51:41] API iniciada. REMOTE=::1
+[2025-10-31 09:51:41] Input POST tradicional detectado.
+[2025-10-31 09:52:41] API iniciada. REMOTE=::1
+[2025-10-31 09:52:41] Input POST tradicional detectado.
+[2025-10-31 09:52:41] API iniciada. REMOTE=::1
+[2025-10-31 09:52:41] Input POST tradicional detectado.
+[2025-10-31 09:53:41] API iniciada. REMOTE=::1
+[2025-10-31 09:53:41] Input POST tradicional detectado.
+[2025-10-31 09:53:41] API iniciada. REMOTE=::1
+[2025-10-31 09:53:41] Input POST tradicional detectado.
+[2025-10-31 09:54:41] API iniciada. REMOTE=::1
+[2025-10-31 09:54:41] Input POST tradicional detectado.
+[2025-10-31 09:54:41] API iniciada. REMOTE=::1
+[2025-10-31 09:54:41] Input POST tradicional detectado.
+[2025-10-31 09:55:44] API iniciada. REMOTE=::1
+[2025-10-31 09:55:44] Input POST tradicional detectado.
+[2025-10-31 09:55:44] API iniciada. REMOTE=::1
+[2025-10-31 09:55:44] Input POST tradicional detectado.
+[2025-10-31 09:56:41] API iniciada. REMOTE=::1
+[2025-10-31 09:56:41] Input POST tradicional detectado.
+[2025-10-31 09:56:41] API iniciada. REMOTE=::1
+[2025-10-31 09:56:41] Input POST tradicional detectado.
+[2025-10-31 09:57:41] API iniciada. REMOTE=::1
+[2025-10-31 09:57:41] Input POST tradicional detectado.
+[2025-10-31 09:57:41] API iniciada. REMOTE=::1
+[2025-10-31 09:57:41] Input POST tradicional detectado.
+[2025-10-31 09:57:45] API iniciada. REMOTE=::1
+[2025-10-31 09:57:45] Input JSON detectado: {"action":"create","message":"�Qu� es el VIH?"}
+[2025-10-31 09:57:45] Acción no definida, forzando 'create'.
+[2025-10-31 09:57:45] generateResponse original="" processed=""
+[2025-10-31 09:57:45] detected_intent= processed=
+[2025-10-31 09:57:45] KB skipped due to short message and no KB keyword
+[2025-10-31 09:57:49] GEMINI HTTP 200 {
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Las redes sociales pueden influir significativamente en la percepción de la sexualidad adolescente de diversas maneras:\n\n1.  **Exposición a información diversa:** Ofrecen acceso a una amplia gama de contenidos sobre sexualidad, que pueden ser educativos y positivos, pero también contener desinformación, estereotipos o representaciones poco realistas.\n2.  **Formación de identidad y expresión:** Permiten a los adolescentes explorar y expresar su identidad sexual y de género, encontrar comunidades de apoyo y ver diversas formas de vivir la sexualidad.\n3.  **Presión y comparación:** Pueden generar expectativas poco realistas sobre el cuerpo, las relaciones y las experiencias sexuales, lo que puede"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "MAX_TOKENS",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 253,
+    "candidates
+[2025-10-31 09:57:49] Decision: Gemini response (no DB match)
+[2025-10-31 09:58:41] API iniciada. REMOTE=::1
+[2025-10-31 09:58:41] Input POST tradicional detectado.
+[2025-10-31 09:58:42] API iniciada. REMOTE=::1
+[2025-10-31 09:58:42] Input POST tradicional detectado.
+[2025-10-31 09:59:41] API iniciada. REMOTE=::1
+[2025-10-31 09:59:41] Input POST tradicional detectado.
+[2025-10-31 09:59:41] API iniciada. REMOTE=::1
+[2025-10-31 09:59:41] Input POST tradicional detectado.
+[2025-10-31 10:00:41] API iniciada. REMOTE=::1
+[2025-10-31 10:00:41] Input POST tradicional detectado.
+[2025-10-31 10:00:41] API iniciada. REMOTE=::1
+[2025-10-31 10:00:41] Input POST tradicional detectado.
+[2025-10-31 10:01:41] API iniciada. REMOTE=::1
+[2025-10-31 10:01:41] Input POST tradicional detectado.
+[2025-10-31 10:01:41] API iniciada. REMOTE=::1
+[2025-10-31 10:01:41] Input POST tradicional detectado.
+[2025-10-31 10:02:41] API iniciada. REMOTE=::1
+[2025-10-31 10:02:41] Input POST tradicional detectado.
+[2025-10-31 10:02:41] API iniciada. REMOTE=::1
+[2025-10-31 10:02:41] Input POST tradicional detectado.
+[2025-10-31 10:03:41] API iniciada. REMOTE=::1
+[2025-10-31 10:03:41] API iniciada. REMOTE=::1
+[2025-10-31 10:03:41] Input POST tradicional detectado.
+[2025-10-31 10:03:41] Input POST tradicional detectado.
+[2025-10-31 10:04:41] API iniciada. REMOTE=::1
+[2025-10-31 10:04:41] Input POST tradicional detectado.
+[2025-10-31 10:04:41] API iniciada. REMOTE=::1
+[2025-10-31 10:04:41] Input POST tradicional detectado.
+[2025-10-31 10:05:41] API iniciada. REMOTE=::1
+[2025-10-31 10:05:41] Input POST tradicional detectado.
+[2025-10-31 10:05:41] API iniciada. REMOTE=::1
+[2025-10-31 10:05:41] Input POST tradicional detectado.
+[2025-10-31 10:06:41] API iniciada. REMOTE=::1
+[2025-10-31 10:06:41] Input POST tradicional detectado.
+[2025-10-31 10:06:41] API iniciada. REMOTE=::1
+[2025-10-31 10:06:41] Input POST tradicional detectado.
+[2025-10-31 10:07:38] API iniciada. REMOTE=::1
+[2025-10-31 10:07:38] Input JSON detectado: {"action":"create","message":"�Cu�l es la diferencia entre sexo y g�nero y c�mo se relaciona con la identidad?"}
+[2025-10-31 10:07:38] Acción no definida, forzando 'create'.
+[2025-10-31 10:07:38] generateResponse original="" processed=""
+[2025-10-31 10:07:38] detected_intent= processed=
+[2025-10-31 10:07:38] KB skipped due to short message and no KB keyword
+[2025-10-31 10:07:38] GEMINI HTTP 0 
+[2025-10-31 10:07:38] GEMINI ERR Could not resolve host: generativelanguage.googleapis.com
+[2025-10-31 10:07:38] Gemini HTTP ERROR code=0 response=
+[2025-10-31 10:07:38] Gemini no devolvió respuesta segura/útil (no DB match)
+[2025-10-31 10:07:38] detected_intent= processed=
+[2025-10-31 10:07:41] API iniciada. REMOTE=::1
+[2025-10-31 10:07:41] Input POST tradicional detectado.
+[2025-10-31 10:07:41] API iniciada. REMOTE=::1
+[2025-10-31 10:07:41] Input POST tradicional detectado.
+[2025-10-31 10:08:14] API iniciada. REMOTE=::1
+[2025-10-31 10:08:14] Input JSON detectado: {"action":"create","message":"¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?"}
+[2025-10-31 10:08:14] generateResponse original="¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?" processed="como pueden las redes sociales influir en la percepcion de la sexualidad adolescente"
+[2025-10-31 10:08:14] DB KB returned. score=7.4101977348328 threshold=0.84
+[2025-10-31 10:08:14] Decision: USING DB KB (score >= threshold)
+[2025-10-31 10:08:41] API iniciada. REMOTE=::1
+[2025-10-31 10:08:41] Input POST tradicional detectado.
+[2025-10-31 10:08:41] API iniciada. REMOTE=::1
+[2025-10-31 10:08:41] Input POST tradicional detectado.
+[2025-10-31 10:09:41] API iniciada. REMOTE=::1
+[2025-10-31 10:09:41] Input POST tradicional detectado.
+[2025-10-31 10:09:41] API iniciada. REMOTE=::1
+[2025-10-31 10:09:41] Input POST tradicional detectado.
+[2025-10-31 10:10:41] API iniciada. REMOTE=::1
+[2025-10-31 10:10:41] Input POST tradicional detectado.
+[2025-10-31 10:10:41] API iniciada. REMOTE=::1
+[2025-10-31 10:10:41] Input POST tradicional detectado.
+[2025-10-31 10:11:41] API iniciada. REMOTE=::1
+[2025-10-31 10:11:41] Input POST tradicional detectado.
+[2025-10-31 10:11:42] API iniciada. REMOTE=::1
+[2025-10-31 10:11:42] Input POST tradicional detectado.
+[2025-10-31 10:12:41] API iniciada. REMOTE=::1
+[2025-10-31 10:12:41] Input POST tradicional detectado.
+[2025-10-31 10:12:41] API iniciada. REMOTE=::1
+[2025-10-31 10:12:41] Input POST tradicional detectado.
+[2025-10-31 10:13:41] API iniciada. REMOTE=::1
+[2025-10-31 10:13:41] Input POST tradicional detectado.
+[2025-10-31 10:13:41] API iniciada. REMOTE=::1
+[2025-10-31 10:13:41] Input POST tradicional detectado.
+[2025-10-31 10:14:41] API iniciada. REMOTE=::1
+[2025-10-31 10:14:41] Input POST tradicional detectado.
+[2025-10-31 10:14:41] API iniciada. REMOTE=::1
+[2025-10-31 10:14:41] Input POST tradicional detectado.
+[2025-10-31 10:15:41] API iniciada. REMOTE=::1
+[2025-10-31 10:15:41] Input POST tradicional detectado.
+[2025-10-31 10:15:41] API iniciada. REMOTE=::1
+[2025-10-31 10:15:41] Input POST tradicional detectado.
+[2025-10-31 10:16:41] API iniciada. REMOTE=::1
+[2025-10-31 10:16:41] API iniciada. REMOTE=::1
+[2025-10-31 10:16:41] Input POST tradicional detectado.
+[2025-10-31 10:16:41] Input POST tradicional detectado.
+[2025-10-31 10:17:41] API iniciada. REMOTE=::1
+[2025-10-31 10:17:41] Input POST tradicional detectado.
+[2025-10-31 10:17:41] API iniciada. REMOTE=::1
+[2025-10-31 10:17:41] Input POST tradicional detectado.
+[2025-10-31 10:17:48] API iniciada. REMOTE=::1
+[2025-10-31 10:17:48] Input JSON detectado: {"action":"create","message":"¿Cuál es la diferencia entre sexo y género y cómo se relaciona con la identidad?"}
+[2025-10-31 10:17:48] generateResponse original="¿Cuál es la diferencia entre sexo y género y cómo se relaciona con la identidad?" processed="cual es la diferencia entre sexo y genero y como se relaciona con la identidad"
+[2025-10-31 10:17:48] DB KB returned. score=14.18165397644 threshold=0.85
+[2025-10-31 10:17:48] Decision: USING DB KB (score >= threshold)
+[2025-10-31 10:17:50] API iniciada. REMOTE=::1
+[2025-10-31 10:17:50] Input JSON detectado: {"action":"create","message":"¿Cuál es la diferencia entre sexo y género y cómo se relaciona con la identidad?"}
+[2025-10-31 10:17:50] generateResponse original="¿Cuál es la diferencia entre sexo y género y cómo se relaciona con la identidad?" processed="cual es la diferencia entre sexo y genero y como se relaciona con la identidad"
+[2025-10-31 10:17:51] DB KB returned. score=14.18165397644 threshold=0.85
+[2025-10-31 10:17:51] Decision: USING DB KB (score >= threshold)
+[2025-10-31 10:17:51] API iniciada. REMOTE=::1
+[2025-10-31 10:17:51] Input JSON detectado: {"action":"create","message":"¿Cuál es la diferencia entre sexo y género y cómo se relaciona con la identidad?"}
+[2025-10-31 10:17:51] generateResponse original="¿Cuál es la diferencia entre sexo y género y cómo se relaciona con la identidad?" processed="cual es la diferencia entre sexo y genero y como se relaciona con la identidad"
+[2025-10-31 10:17:51] DB KB returned. score=14.18165397644 threshold=0.85
+[2025-10-31 10:17:51] Decision: USING DB KB (score >= threshold)
+[2025-10-31 10:18:41] API iniciada. REMOTE=::1
+[2025-10-31 10:18:41] Input POST tradicional detectado.
+[2025-10-31 10:18:41] API iniciada. REMOTE=::1
+[2025-10-31 10:18:41] Input POST tradicional detectado.
+[2025-10-31 10:19:41] API iniciada. REMOTE=::1
+[2025-10-31 10:19:41] API iniciada. REMOTE=::1
+[2025-10-31 10:19:41] Input POST tradicional detectado.
+[2025-10-31 10:19:41] Input POST tradicional detectado.
+[2025-10-31 10:20:41] API iniciada. REMOTE=::1
+[2025-10-31 10:20:41] Input POST tradicional detectado.
+[2025-10-31 10:20:41] API iniciada. REMOTE=::1
+[2025-10-31 10:20:41] Input POST tradicional detectado.
+[2025-10-31 10:21:41] API iniciada. REMOTE=::1
+[2025-10-31 10:21:41] Input POST tradicional detectado.
+[2025-10-31 10:21:41] API iniciada. REMOTE=::1
+[2025-10-31 10:21:41] Input POST tradicional detectado.
+[2025-10-31 10:22:41] API iniciada. REMOTE=::1
+[2025-10-31 10:22:41] Input POST tradicional detectado.
+[2025-10-31 10:22:41] API iniciada. REMOTE=::1
+[2025-10-31 10:22:41] Input POST tradicional detectado.
+[2025-10-31 10:23:41] API iniciada. REMOTE=::1
+[2025-10-31 10:23:41] Input POST tradicional detectado.
+[2025-10-31 10:23:41] API iniciada. REMOTE=::1
+[2025-10-31 10:23:41] Input POST tradicional detectado.
+[2025-10-31 10:24:41] API iniciada. REMOTE=::1
+[2025-10-31 10:24:41] Input POST tradicional detectado.
+[2025-10-31 10:24:41] API iniciada. REMOTE=::1
+[2025-10-31 10:24:41] Input POST tradicional detectado.
+[2025-10-31 10:25:41] API iniciada. REMOTE=::1
+[2025-10-31 10:25:41] Input POST tradicional detectado.
+[2025-10-31 10:25:41] API iniciada. REMOTE=::1
+[2025-10-31 10:25:41] Input POST tradicional detectado.
+[2025-10-31 10:26:41] API iniciada. REMOTE=::1
+[2025-10-31 10:26:41] Input POST tradicional detectado.
+[2025-10-31 10:26:41] API iniciada. REMOTE=::1
+[2025-10-31 10:26:41] Input POST tradicional detectado.
+[2025-10-31 10:27:41] API iniciada. REMOTE=::1
+[2025-10-31 10:27:41] Input POST tradicional detectado.
+[2025-10-31 10:27:41] API iniciada. REMOTE=::1
+[2025-10-31 10:27:41] Input POST tradicional detectado.
+[2025-10-31 10:28:41] API iniciada. REMOTE=::1
+[2025-10-31 10:28:41] API iniciada. REMOTE=::1
+[2025-10-31 10:28:41] Input POST tradicional detectado.
+[2025-10-31 10:28:41] Input POST tradicional detectado.
+[2025-10-31 10:29:41] API iniciada. REMOTE=::1
+[2025-10-31 10:29:41] Input POST tradicional detectado.
+[2025-10-31 10:29:41] API iniciada. REMOTE=::1
+[2025-10-31 10:29:41] Input POST tradicional detectado.
+[2025-10-31 10:30:41] API iniciada. REMOTE=::1
+[2025-10-31 10:30:41] Input POST tradicional detectado.
+[2025-10-31 10:30:41] API iniciada. REMOTE=::1
+[2025-10-31 10:30:41] Input POST tradicional detectado.
+[2025-10-31 10:31:41] API iniciada. REMOTE=::1
+[2025-10-31 10:31:41] Input POST tradicional detectado.
+[2025-10-31 10:31:41] API iniciada. REMOTE=::1
+[2025-10-31 10:31:41] Input POST tradicional detectado.
+[2025-10-31 10:32:42] API iniciada. REMOTE=::1
+[2025-10-31 10:32:42] Input POST tradicional detectado.
+[2025-10-31 10:32:42] API iniciada. REMOTE=::1
+[2025-10-31 10:32:42] Input POST tradicional detectado.
+[2025-10-31 10:33:41] API iniciada. REMOTE=::1
+[2025-10-31 10:33:41] Input POST tradicional detectado.
+[2025-10-31 10:33:41] API iniciada. REMOTE=::1
+[2025-10-31 10:33:41] Input POST tradicional detectado.
+[2025-10-31 10:34:41] API iniciada. REMOTE=::1
+[2025-10-31 10:34:41] API iniciada. REMOTE=::1
+[2025-10-31 10:34:41] Input POST tradicional detectado.
+[2025-10-31 10:34:41] Input POST tradicional detectado.
+[2025-10-31 10:35:41] API iniciada. REMOTE=::1
+[2025-10-31 10:35:41] Input POST tradicional detectado.
+[2025-10-31 10:35:42] API iniciada. REMOTE=::1
+[2025-10-31 10:35:42] Input POST tradicional detectado.
+[2025-10-31 10:36:41] API iniciada. REMOTE=::1
+[2025-10-31 10:36:41] Input POST tradicional detectado.
+[2025-10-31 10:36:41] API iniciada. REMOTE=::1
+[2025-10-31 10:36:41] Input POST tradicional detectado.
+[2025-10-31 20:27:02] API iniciada. REMOTE=::1
+[2025-10-31 20:27:02] Input JSON detectado: {"action":"create","message":"¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?"}
+[2025-10-31 20:27:02] generateResponse original="¿Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?" processed="como pueden las redes sociales influir en la percepcion de la sexualidad adolescente"
+[2025-10-31 20:27:03] searchKnowledgeBaseDB: row found, returning raw row for decision logic
+[2025-10-31 20:27:03] DB KB returned. raw_score=7.4101977348328 raw_threshold=0.84 norm_score=0.881096731429 norm_threshold=0.84
+[2025-10-31 20:27:03] Decision: USING DB KB (normalized score >= threshold*margin)
+[2025-10-31 20:28:31] API iniciada. REMOTE=::1
+[2025-10-31 20:28:31] Input POST tradicional detectado.
+[2025-10-31 20:28:31] API iniciada. REMOTE=::1
+[2025-10-31 20:28:31] Input POST tradicional detectado.
+[2025-10-31 20:28:31] API iniciada. REMOTE=::1
+[2025-10-31 20:28:31] Input POST tradicional detectado.
+[2025-10-31 20:28:43] API iniciada. REMOTE=::1
+[2025-10-31 20:28:43] Input POST tradicional detectado.
+[2025-10-31 20:28:43] generateResponse original="Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?" processed="como pueden las redes sociales influir en la percepcion de la sexualidad adolescente"
+[2025-10-31 20:28:43] searchKnowledgeBaseDB: row found, returning raw row for decision logic
+[2025-10-31 20:28:43] DB KB returned. raw_score=7.4101977348328 raw_threshold=0.84 norm_score=0.881096731429 norm_threshold=0.84
+[2025-10-31 20:28:43] Decision: USING DB KB (normalized score >= threshold*margin)
+[2025-10-31 20:28:43] API iniciada. REMOTE=::1
+[2025-10-31 20:28:43] Input POST tradicional detectado.
+[2025-10-31 20:29:02] API iniciada. REMOTE=::1
+[2025-10-31 20:29:02] Input POST tradicional detectado.
+[2025-10-31 20:29:32] API iniciada. REMOTE=::1
+[2025-10-31 20:29:32] Input POST tradicional detectado.
+[2025-10-31 20:29:32] API iniciada. REMOTE=::1
+[2025-10-31 20:29:32] Input POST tradicional detectado.
+[2025-10-31 20:30:02] API iniciada. REMOTE=::1
+[2025-10-31 20:30:02] Input POST tradicional detectado.
+[2025-10-31 20:30:32] API iniciada. REMOTE=::1
+[2025-10-31 20:30:32] API iniciada. REMOTE=::1
+[2025-10-31 20:30:32] Input POST tradicional detectado.
+[2025-10-31 20:30:32] Input POST tradicional detectado.
+[2025-10-31 20:31:02] API iniciada. REMOTE=::1
+[2025-10-31 20:31:02] Input POST tradicional detectado.
+[2025-10-31 20:31:32] API iniciada. REMOTE=::1
+[2025-10-31 20:31:32] Input POST tradicional detectado.
+[2025-10-31 20:31:32] API iniciada. REMOTE=::1
+[2025-10-31 20:31:32] Input POST tradicional detectado.
+[2025-10-31 20:32:02] API iniciada. REMOTE=::1
+[2025-10-31 20:32:02] Input POST tradicional detectado.
+[2025-10-31 20:32:32] API iniciada. REMOTE=::1
+[2025-10-31 20:32:32] Input POST tradicional detectado.
+[2025-10-31 20:32:33] API iniciada. REMOTE=::1
+[2025-10-31 20:32:33] Input POST tradicional detectado.
+[2025-10-31 20:33:12] API iniciada. REMOTE=::1
+[2025-10-31 20:33:12] Input POST tradicional detectado.
+[2025-10-31 20:33:24] API iniciada. REMOTE=::1
+[2025-10-31 20:33:24] Input POST tradicional detectado.
+[2025-10-31 20:33:24] generateResponse original="Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?" processed="como pueden las redes sociales influir en la percepcion de la sexualidad adolescente"
+[2025-10-31 20:33:24] searchKnowledgeBaseDB: row found, returning raw row for decision logic
+[2025-10-31 20:33:24] DB KB returned. raw_score=7.4101977348328 raw_threshold=0.84 norm_score=0.881096731429 norm_threshold=0.84
+[2025-10-31 20:33:24] Decision: USING DB KB (normalized score >= threshold*margin)
+[2025-10-31 20:33:24] API iniciada. REMOTE=::1
+[2025-10-31 20:33:24] Input POST tradicional detectado.
+[2025-10-31 20:33:31] API iniciada. REMOTE=::1
+[2025-10-31 20:33:31] Input POST tradicional detectado.
+[2025-10-31 20:33:31] API iniciada. REMOTE=::1
+[2025-10-31 20:33:31] Input POST tradicional detectado.
+[2025-10-31 20:34:02] API iniciada. REMOTE=::1
+[2025-10-31 20:34:02] Input POST tradicional detectado.
+[2025-10-31 20:34:32] API iniciada. REMOTE=::1
+[2025-10-31 20:34:32] Input POST tradicional detectado.
+[2025-10-31 20:34:32] API iniciada. REMOTE=::1
+[2025-10-31 20:34:32] Input POST tradicional detectado.
+[2025-10-31 20:35:33] API iniciada. REMOTE=::1
+[2025-10-31 20:35:33] API iniciada. REMOTE=::1
+[2025-10-31 20:35:33] Input POST tradicional detectado.
+[2025-10-31 20:35:33] Input POST tradicional detectado.
+[2025-10-31 20:36:33] API iniciada. REMOTE=::1
+[2025-10-31 20:36:33] API iniciada. REMOTE=::1
+[2025-10-31 20:36:33] Input POST tradicional detectado.
+[2025-10-31 20:36:33] Input POST tradicional detectado.
+[2025-10-31 20:37:33] API iniciada. REMOTE=::1
+[2025-10-31 20:37:33] Input POST tradicional detectado.
+[2025-10-31 20:37:33] API iniciada. REMOTE=::1
+[2025-10-31 20:37:33] Input POST tradicional detectado.
+[2025-10-31 20:38:33] API iniciada. REMOTE=::1
+[2025-10-31 20:38:33] Input POST tradicional detectado.
+[2025-10-31 20:38:33] API iniciada. REMOTE=::1
+[2025-10-31 20:38:33] Input POST tradicional detectado.
+[2025-10-31 20:39:33] API iniciada. REMOTE=::1
+[2025-10-31 20:39:33] Input POST tradicional detectado.
+[2025-10-31 20:39:33] API iniciada. REMOTE=::1
+[2025-10-31 20:39:33] Input POST tradicional detectado.
+[2025-10-31 20:40:33] API iniciada. REMOTE=::1
+[2025-10-31 20:40:33] Input POST tradicional detectado.
+[2025-10-31 20:40:33] API iniciada. REMOTE=::1
+[2025-10-31 20:40:33] Input POST tradicional detectado.
+[2025-10-31 20:41:33] API iniciada. REMOTE=::1
+[2025-10-31 20:41:33] API iniciada. REMOTE=::1
+[2025-10-31 20:41:33] Input POST tradicional detectado.
+[2025-10-31 20:41:33] Input POST tradicional detectado.
+[2025-10-31 20:42:33] API iniciada. REMOTE=::1
+[2025-10-31 20:42:33] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 20:42:33] Input POST tradicional detectado.
+[2025-10-31 20:42:33] API iniciada. REMOTE=::1
+[2025-10-31 20:42:33] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 20:42:33] Input POST tradicional detectado.
+[2025-10-31 20:42:57] API iniciada. REMOTE=::1
+[2025-10-31 20:42:57] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 20:42:57] Input POST tradicional detectado.
+[2025-10-31 20:42:57] API iniciada. REMOTE=::1
+[2025-10-31 20:42:57] API iniciada. REMOTE=::1
+[2025-10-31 20:42:57] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 20:42:57] Input POST tradicional detectado.
+[2025-10-31 20:42:57] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 20:42:58] Input POST tradicional detectado.
+[2025-10-31 20:43:07] API iniciada. REMOTE=::1
+[2025-10-31 20:43:07] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 20:43:07] Input POST tradicional detectado.
+[2025-10-31 20:43:07] generateResponse original="Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?" processed="como pueden las redes sociales influir en la percepcion de la sexualidad adolescente"
+[2025-10-31 20:43:07] searchKnowledgeBaseDB: row found, returning raw row for decision logic
+[2025-10-31 20:43:07] DB KB returned. raw_score=7.4101977348328 raw_threshold=0.84 norm_score=0.881096731429 norm_threshold=0.84
+[2025-10-31 20:43:07] DB KB no cumple margen -> intentando Gemini como fallback preferente
+[2025-10-31 20:43:12] GEMINI HTTP 200 {
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Las redes sociales tienen una influencia muy significativa y multifacética en la percepción de la sexualidad adolescente, actuando como una espada de doble filo. Permíteme explicarte cómo pueden impactar:\n\n**Influencias Positivas:**\n\n1.  **Acceso a Información y Educación:** Los adolescentes pueden encontrar recursos educativos sobre sexualidad, salud reproductiva, consentimiento, diversidad sexual (LGBTI+), y prevención de ITS/ETS. Esto puede ser especialmente útil si no tienen acceso a esta información en casa o en la escuela.\n2.  **Construcción de Comunidad y Apoyo:** Para adolescentes que se sienten solos o diferentes, las redes sociales pueden ofrecer espacios seguros para conectar con pares que comparten experiencias similares, especialmente aquellos con identidades sexuales o de género diversas. Esto puede reducir el aislamiento y fomentar un sentido de pertenencia.\n
+[2025-10-31 20:43:12] getGeminiResponse: success. generated_len=1373
+[2025-10-31 20:43:12] Decision: Gemini response used (DB did not meet margin)
+[2025-10-31 20:43:12] API iniciada. REMOTE=::1
+[2025-10-31 20:43:12] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 20:43:13] Input POST tradicional detectado.
+[2025-10-31 20:43:28] API iniciada. REMOTE=::1
+[2025-10-31 20:43:28] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 20:43:28] Input POST tradicional detectado.
+[2025-10-31 20:43:36] API iniciada. REMOTE=::1
+[2025-10-31 20:43:36] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 20:43:36] Input POST tradicional detectado.
+[2025-10-31 20:43:39] API iniciada. REMOTE=::1
+[2025-10-31 20:43:39] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 20:43:39] Input POST tradicional detectado.
+[2025-10-31 20:43:57] API iniciada. REMOTE=::1
+[2025-10-31 20:43:57] API iniciada. REMOTE=::1
+[2025-10-31 20:43:57] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 20:43:57] Input POST tradicional detectado.
+[2025-10-31 20:43:57] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 20:43:57] Input POST tradicional detectado.
+[2025-10-31 20:44:19] API iniciada. REMOTE=::1
+[2025-10-31 20:44:19] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 20:44:19] Input POST tradicional detectado.
+[2025-10-31 20:44:19] generateResponse original="¿Qué es el consentimiento en salud sexual?" processed="que es el consentimiento en salud sexual"
+[2025-10-31 20:44:19] searchKnowledgeBaseDB: row found, returning raw row for decision logic
+[2025-10-31 20:44:19] DB KB returned. raw_score=6.7575135231018 raw_threshold=0.9 norm_score=0.87109271585257 norm_threshold=0.9
+[2025-10-31 20:44:19] DB KB no cumple margen -> intentando Gemini como fallback preferente
+[2025-10-31 20:44:24] GEMINI HTTP 200 {
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "¡Excelente pregunta! El consentimiento es un pilar fundamental en la salud sexual y en cualquier interacción íntima.\n\nEn el contexto de la salud sexual, el **consentimiento** se refiere a la **autorización clara, voluntaria, entusiasta y explícita que una persona da para participar en cualquier actividad sexual.**\n\nAquí te detallo los aspectos clave que definen un consentimiento válido:\n\n1.  **Voluntario (Libre de Coacción):** Debe ser dado sin presión, manipulación, amenaza o intimidación de ningún tipo. La persona debe sentirse completamente libre para decir \"sí\" o \"no\".\n2.  **Enthusiasta y Afirmativo:** No es la ausencia de un \"no\", sino la presencia de un \"sí\" claro y activo. Un silencio, una falta de resistencia, o una expresión pasiva no son consentimiento. La comunicación debe ser clara y positiva.\n3.  **Continuo (Ongoing):** El consentimiento debe dar
+[2025-10-31 20:44:24] getGeminiResponse: success. generated_len=1274
+[2025-10-31 20:44:24] Decision: Gemini response used (DB did not meet margin)
+[2025-10-31 20:44:24] API iniciada. REMOTE=::1
+[2025-10-31 20:44:24] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 20:44:24] Input POST tradicional detectado.
+[2025-10-31 20:44:27] API iniciada. REMOTE=::1
+[2025-10-31 20:44:27] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 20:44:27] Input POST tradicional detectado.
+[2025-10-31 20:44:46] API iniciada. REMOTE=::1
+[2025-10-31 20:44:46] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 20:44:46] Input POST tradicional detectado.
+[2025-10-31 20:44:57] API iniciada. REMOTE=::1
+[2025-10-31 20:44:57] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 20:44:57] Input POST tradicional detectado.
+[2025-10-31 20:44:57] API iniciada. REMOTE=::1
+[2025-10-31 20:44:57] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 20:44:57] Input POST tradicional detectado.
+[2025-10-31 20:45:27] API iniciada. REMOTE=::1
+[2025-10-31 20:45:27] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 20:45:27] Input POST tradicional detectado.
+[2025-10-31 20:45:52] API iniciada. REMOTE=::1
+[2025-10-31 20:45:52] Input POST tradicional detectado.
+[2025-10-31 20:45:52] API iniciada. REMOTE=::1
+[2025-10-31 20:45:52] Input POST tradicional detectado.
+[2025-10-31 20:45:53] API iniciada. REMOTE=::1
+[2025-10-31 20:45:53] Input POST tradicional detectado.
+[2025-10-31 20:46:08] API iniciada. REMOTE=::1
+[2025-10-31 20:46:08] Input POST tradicional detectado.
+[2025-10-31 20:46:09] API iniciada. REMOTE=::1
+[2025-10-31 20:46:09] Input POST tradicional detectado.
+[2025-10-31 20:46:09] API iniciada. REMOTE=::1
+[2025-10-31 20:46:09] Input POST tradicional detectado.
+[2025-10-31 20:46:39] API iniciada. REMOTE=::1
+[2025-10-31 20:46:39] Input POST tradicional detectado.
+[2025-10-31 20:47:10] API iniciada. REMOTE=::1
+[2025-10-31 20:47:10] Input POST tradicional detectado.
+[2025-10-31 20:47:10] API iniciada. REMOTE=::1
+[2025-10-31 20:47:10] Input POST tradicional detectado.
+[2025-10-31 20:47:39] API iniciada. REMOTE=::1
+[2025-10-31 20:47:39] Input POST tradicional detectado.
+[2025-10-31 20:48:09] API iniciada. REMOTE=::1
+[2025-10-31 20:48:09] Input POST tradicional detectado.
+[2025-10-31 20:48:09] API iniciada. REMOTE=::1
+[2025-10-31 20:48:09] Input POST tradicional detectado.
+[2025-10-31 20:48:40] API iniciada. REMOTE=::1
+[2025-10-31 20:48:40] Input POST tradicional detectado.
+[2025-10-31 20:49:09] API iniciada. REMOTE=::1
+[2025-10-31 20:49:09] Input POST tradicional detectado.
+[2025-10-31 20:49:09] API iniciada. REMOTE=::1
+[2025-10-31 20:49:09] Input POST tradicional detectado.
+[2025-10-31 20:49:39] API iniciada. REMOTE=::1
+[2025-10-31 20:49:39] Input POST tradicional detectado.
+[2025-10-31 20:50:09] API iniciada. REMOTE=::1
+[2025-10-31 20:50:09] Input POST tradicional detectado.
+[2025-10-31 20:50:33] API iniciada. REMOTE=::1
+[2025-10-31 20:50:33] Input POST tradicional detectado.
+[2025-10-31 20:51:08] API iniciada. REMOTE=::1
+[2025-10-31 20:51:08] Input POST tradicional detectado.
+[2025-10-31 20:51:33] API iniciada. REMOTE=::1
+[2025-10-31 20:51:33] Input POST tradicional detectado.
+[2025-10-31 20:52:09] API iniciada. REMOTE=::1
+[2025-10-31 20:52:09] Input POST tradicional detectado.
+[2025-10-31 20:52:33] API iniciada. REMOTE=::1
+[2025-10-31 20:52:33] Input POST tradicional detectado.
+[2025-10-31 22:23:19] API iniciada. REMOTE=::1
+[2025-10-31 22:23:19] API iniciada. REMOTE=::1
+[2025-10-31 22:23:19] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 22:23:19] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 22:23:19] Input POST tradicional detectado.
+[2025-10-31 22:23:19] Input POST tradicional detectado.
+[2025-10-31 22:23:22] API iniciada. REMOTE=::1
+[2025-10-31 22:23:22] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 22:23:22] Input POST tradicional detectado.
+[2025-10-31 22:23:22] API iniciada. REMOTE=::1
+[2025-10-31 22:23:22] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 22:23:22] Input POST tradicional detectado.
+[2025-10-31 22:23:23] API iniciada. REMOTE=::1
+[2025-10-31 22:23:23] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 22:23:23] Input POST tradicional detectado.
+[2025-10-31 22:23:38] API iniciada. REMOTE=::1
+[2025-10-31 22:23:38] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 22:23:38] Input POST tradicional detectado.
+[2025-10-31 22:23:39] generateResponse original="Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?" processed="como pueden las redes sociales influir en la percepcion de la sexualidad adolescente"
+[2025-10-31 22:23:39] searchKnowledgeBaseDB: row found, returning raw row for decision logic
+[2025-10-31 22:23:39] DB KB returned. raw_score=7.4359884262085 raw_threshold=0.84 norm_score=0.88146024514528 norm_threshold=0.84
+[2025-10-31 22:23:39] DB KB no cumple margen -> intentando Gemini como fallback preferente
+[2025-10-31 22:23:43] GEMINI HTTP 200 {
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Las redes sociales ejercen una influencia significativa y multifacética en la percepción de la sexualidad adolescente, presentando tanto oportunidades como desafíos.\n\n**Influencias Positivas:**\n\n1.  **Acceso a información y educación:** Las plataformas pueden ser una fuente de información sobre sexualidad, salud reproductiva, métodos anticonceptivos, infecciones de transmisión sexual (ITS) y consentimiento. Esto puede ser especialmente valioso para adolescentes que no tienen acceso a esta información en casa o en la escuela.\n2.  **Visibilidad y diversidad:** Las redes sociales exponen a los adolescentes a una amplia gama de identidades de género, orientaciones sexuales y expresiones de la sexualidad, lo que puede fomentar la inclusión, la empatía y la comprensión de la diversidad humana.\n3.  **Construcción de comunidad y apoyo:** Para adolescentes que se sienten solos o 
+[2025-10-31 22:23:43] getGeminiResponse: success. generated_len=993
+[2025-10-31 22:23:43] Decision: Gemini response used (DB did not meet margin)
+[2025-10-31 22:23:44] API iniciada. REMOTE=::1
+[2025-10-31 22:23:44] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 22:23:44] Input POST tradicional detectado.
+[2025-10-31 22:23:53] API iniciada. REMOTE=::1
+[2025-10-31 22:23:53] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 22:23:53] Input POST tradicional detectado.
+[2025-10-31 23:40:07] API iniciada. REMOTE=::1
+[2025-10-31 23:40:07] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:40:07] Input POST tradicional detectado.
+[2025-10-31 23:40:07] generateResponse original="Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?" processed="como pueden las redes sociales influir en la percepcion de la sexualidad adolescente"
+[2025-10-31 23:40:07] searchKnowledgeBaseDB: row found, returning raw row for decision logic
+[2025-10-31 23:40:07] DB KB returned. raw_score=7.4359884262085 raw_threshold=0.84 norm_score=0.88146024514528 norm_threshold=0.84
+[2025-10-31 23:40:07] DB KB no cumple margen -> intentando Gemini como fallback preferente
+[2025-10-31 23:40:11] GEMINI HTTP 200 {
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Las redes sociales tienen una influencia considerable y multifacética en la percepción de la sexualidad adolescente, actuando como un espacio de exploración, información y socialización. Aquí te detallo algunas de las formas clave en que pueden influir:\n\n1.  **Exposición a diversas representaciones de la sexualidad:**\n    *   **Positivo:** Los adolescentes pueden encontrar comunidades, información sobre diversas identidades de género y orientaciones sexuales (LGBTIQ+), y sentirse menos solos en sus experiencias. Pueden acceder a historias y perspectivas que no encuentran en su entorno inmediato.\n    *   **Negativo:** También pueden estar expuestos a representaciones idealizadas, irreales o incluso dañinas de la sexualidad, que a menudo se centran en el sexo como rendimiento, la cosificación del"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "M
+[2025-10-31 23:40:11] getGeminiResponse: success. generated_len=817
+[2025-10-31 23:40:11] Decision: Gemini response used (DB did not meet margin)
+[2025-10-31 23:40:12] API iniciada. REMOTE=::1
+[2025-10-31 23:40:12] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:40:12] Input POST tradicional detectado.
+[2025-10-31 23:40:24] API iniciada. REMOTE=::1
+[2025-10-31 23:40:24] API iniciada. REMOTE=::1
+[2025-10-31 23:40:24] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:40:24] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:40:24] Input POST tradicional detectado.
+[2025-10-31 23:40:24] Input POST tradicional detectado.
+[2025-10-31 23:40:54] API iniciada. REMOTE=::1
+[2025-10-31 23:40:54] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:40:54] Input POST tradicional detectado.
+[2025-10-31 23:41:05] API iniciada. REMOTE=::1
+[2025-10-31 23:41:05] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:41:05] Input POST tradicional detectado.
+[2025-10-31 23:41:05] generateResponse original="Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?" processed="como pueden las redes sociales influir en la percepcion de la sexualidad adolescente"
+[2025-10-31 23:41:06] searchKnowledgeBaseDB: row found, returning raw row for decision logic
+[2025-10-31 23:41:06] DB KB returned. raw_score=7.4359884262085 raw_threshold=0.84 norm_score=0.88146024514528 norm_threshold=0.84
+[2025-10-31 23:41:06] DB KB no cumple margen -> intentando Gemini como fallback preferente
+[2025-10-31 23:41:10] GEMINI HTTP 200 {
+  "candidates": [
+    {
+      "content": {
+        "role": "model"
+      },
+      "finishReason": "MAX_TOKENS",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 367,
+    "totalTokenCount": 866,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 367
+      }
+    ],
+    "thoughtsTokenCount": 499
+  },
+  "modelVersion": "gemini-2.5-flash",
+  "responseId": "BTsFafSnLuHqz7IPwPm6-Q0"
+}
+
+[2025-10-31 23:41:10] getGeminiResponse: no usable generated text found in response structure.
+[2025-10-31 23:41:10] Gemini no devolvió respuesta útil; se devolverá la respuesta DB como fallback si existe
+[2025-10-31 23:41:10] API iniciada. REMOTE=::1
+[2025-10-31 23:41:10] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:41:10] Input POST tradicional detectado.
+[2025-10-31 23:41:24] API iniciada. REMOTE=::1
+[2025-10-31 23:41:24] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:41:24] Input POST tradicional detectado.
+[2025-10-31 23:41:24] API iniciada. REMOTE=::1
+[2025-10-31 23:41:24] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:41:24] Input POST tradicional detectado.
+[2025-10-31 23:41:54] API iniciada. REMOTE=::1
+[2025-10-31 23:41:54] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:41:54] Input POST tradicional detectado.
+[2025-10-31 23:42:24] API iniciada. REMOTE=::1
+[2025-10-31 23:42:24] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:42:24] Input POST tradicional detectado.
+[2025-10-31 23:42:24] API iniciada. REMOTE=::1
+[2025-10-31 23:42:24] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:42:24] Input POST tradicional detectado.
+[2025-10-31 23:43:25] API iniciada. REMOTE=::1
+[2025-10-31 23:43:25] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:43:25] Input POST tradicional detectado.
+[2025-10-31 23:43:25] API iniciada. REMOTE=::1
+[2025-10-31 23:43:25] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:43:25] Input POST tradicional detectado.
+[2025-10-31 23:44:26] API iniciada. REMOTE=::1
+[2025-10-31 23:44:26] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:44:26] Input POST tradicional detectado.
+[2025-10-31 23:44:26] API iniciada. REMOTE=::1
+[2025-10-31 23:44:26] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:44:26] Input POST tradicional detectado.
+[2025-10-31 23:45:09] API iniciada. REMOTE=::1
+[2025-10-31 23:45:09] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:45:09] Input POST tradicional detectado.
+[2025-10-31 23:45:14] API iniciada. REMOTE=::1
+[2025-10-31 23:45:14] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:45:14] Input POST tradicional detectado.
+[2025-10-31 23:45:14] generateResponse original="Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?" processed="como pueden las redes sociales influir en la percepcion de la sexualidad adolescente"
+[2025-10-31 23:45:15] searchKnowledgeBaseDB: row found, returning raw row for decision logic
+[2025-10-31 23:45:15] DB KB returned. raw_score=7.4359884262085 raw_threshold=0.84 norm_score=0.88146024514528 norm_threshold=0.84
+[2025-10-31 23:45:15] DB KB no cumple margen -> intentando Gemini como fallback preferente
+[2025-10-31 23:45:19] GEMINI HTTP 200 {
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Las redes sociales tienen una influencia considerable y multifacética en la percepción de la sexualidad adolescente, actuando como un espacio de exploración, información, socialización y, a veces, desinformación. Aquí te detallo algunas de las formas clave en que pueden influir:\n\n1.  **Exposición a diversas representaciones de la sexualidad:**\n    *   **Positivo:** Los"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "MAX_TOKENS",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 367,
+    "candidatesTokenCount": 81,
+    "totalTokenCount": 865,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 367
+      }
+    ],
+    "thoughtsTokenCount": 417
+  },
+  "modelVersion": "gemini-2.5-flash",
+  "responseId": "_zsFaaifBNrbqtsPiJ-lkAM"
+}
+
+[2025-10-31 23:45:19] getGeminiResponse: success. generated_len=379
+[2025-10-31 23:45:19] Decision: Gemini response used (DB did not meet margin)
+[2025-10-31 23:45:19] API iniciada. REMOTE=::1
+[2025-10-31 23:45:19] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:45:19] Input POST tradicional detectado.
+[2025-10-31 23:45:24] API iniciada. REMOTE=::1
+[2025-10-31 23:45:24] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:45:24] Input POST tradicional detectado.
+[2025-10-31 23:45:24] API iniciada. REMOTE=::1
+[2025-10-31 23:45:24] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:45:24] Input POST tradicional detectado.
+[2025-10-31 23:45:54] API iniciada. REMOTE=::1
+[2025-10-31 23:45:54] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:45:54] Input POST tradicional detectado.
+[2025-10-31 23:46:24] API iniciada. REMOTE=::1
+[2025-10-31 23:46:24] API iniciada. REMOTE=::1
+[2025-10-31 23:46:24] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:46:24] Input POST tradicional detectado.
+[2025-10-31 23:46:24] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:46:24] Input POST tradicional detectado.
+[2025-10-31 23:47:26] API iniciada. REMOTE=::1
+[2025-10-31 23:47:26] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:47:26] Input POST tradicional detectado.
+[2025-10-31 23:47:26] API iniciada. REMOTE=::1
+[2025-10-31 23:47:26] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:47:26] Input POST tradicional detectado.
+[2025-10-31 23:48:26] API iniciada. REMOTE=::1
+[2025-10-31 23:48:26] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:48:26] Input POST tradicional detectado.
+[2025-10-31 23:48:26] API iniciada. REMOTE=::1
+[2025-10-31 23:48:26] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:48:26] Input POST tradicional detectado.
+[2025-10-31 23:49:27] API iniciada. REMOTE=::1
+[2025-10-31 23:49:27] API iniciada. REMOTE=::1
+[2025-10-31 23:49:27] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:49:27] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:49:27] Input POST tradicional detectado.
+[2025-10-31 23:49:27] Input POST tradicional detectado.
+[2025-10-31 23:50:28] API iniciada. REMOTE=::1
+[2025-10-31 23:50:28] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:50:28] Input POST tradicional detectado.
+[2025-10-31 23:50:28] API iniciada. REMOTE=::1
+[2025-10-31 23:50:28] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:50:28] Input POST tradicional detectado.
+[2025-10-31 23:51:29] API iniciada. REMOTE=::1
+[2025-10-31 23:51:29] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:51:29] Input POST tradicional detectado.
+[2025-10-31 23:51:29] API iniciada. REMOTE=::1
+[2025-10-31 23:51:29] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:51:29] Input POST tradicional detectado.
+[2025-10-31 23:52:30] API iniciada. REMOTE=::1
+[2025-10-31 23:52:30] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:52:30] API iniciada. REMOTE=::1
+[2025-10-31 23:52:30] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:52:30] Input POST tradicional detectado.
+[2025-10-31 23:52:30] Input POST tradicional detectado.
+[2025-10-31 23:53:32] API iniciada. REMOTE=::1
+[2025-10-31 23:53:32] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:53:32] Input POST tradicional detectado.
+[2025-10-31 23:53:32] API iniciada. REMOTE=::1
+[2025-10-31 23:53:32] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:53:32] Input POST tradicional detectado.
+[2025-10-31 23:53:40] API iniciada. REMOTE=::1
+[2025-10-31 23:53:40] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:53:40] Input POST tradicional detectado.
+[2025-10-31 23:53:40] generateResponse original="Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?" processed="como pueden las redes sociales influir en la percepcion de la sexualidad adolescente"
+[2025-10-31 23:53:40] searchKnowledgeBaseDB: row found, returning raw row for decision logic
+[2025-10-31 23:53:40] DB KB returned. raw_score=7.4359884262085 raw_threshold=0.84 norm_score=0.88146024514528 norm_threshold=0.84
+[2025-10-31 23:53:40] DB KB no cumple margen -> intentando Gemini como fallback preferente
+[2025-10-31 23:53:54] API iniciada. REMOTE=::1
+[2025-10-31 23:53:54] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:53:54] Input POST tradicional detectado.
+[2025-10-31 23:53:55] GEMINI HTTP 200 {
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Las redes sociales tienen una influencia considerable y multifacética en la percepción de la sexualidad adolescente, actuando como un espacio de exploración, información, socialización y, a veces, desinformación. Aquí te detallo algunas de las formas clave en que pueden influir, considerando aspectos positivos y negativos:\n\n1.  **Exposición a diversas representaciones de la sexualidad:**\n    *   **Positivo:** Los adolescentes pueden encontrar comunidades, información y apoyo sobre diversas identidades de género y orientaciones sexuales (LGBTIQ+), diversidad de cuerpos y relaciones saludables. Esto puede ayudarles a sentirse menos solos en sus experiencias y a validar su propia identidad, accediendo a historias y perspectivas que quizás no encuentran en su entorno inmediato.\n    *   **Negativo:** También pueden estar expuestos a representaciones idealizadas, irreales, simplif
+[2025-10-31 23:53:55] getGeminiResponse: generated content marked unsafe -> discarding
+[2025-10-31 23:53:55] Gemini no devolvió respuesta útil; se devolverá la respuesta DB como fallback si existe
+[2025-10-31 23:53:55] API iniciada. REMOTE=::1
+[2025-10-31 23:53:55] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:53:55] Input POST tradicional detectado.
+[2025-10-31 23:54:24] API iniciada. REMOTE=::1
+[2025-10-31 23:54:24] API iniciada. REMOTE=::1
+[2025-10-31 23:54:24] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:54:24] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:54:24] Input POST tradicional detectado.
+[2025-10-31 23:54:24] Input POST tradicional detectado.
+[2025-10-31 23:54:54] API iniciada. REMOTE=::1
+[2025-10-31 23:54:54] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:54:54] Input POST tradicional detectado.
+[2025-10-31 23:55:24] API iniciada. REMOTE=::1
+[2025-10-31 23:55:24] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:55:24] Input POST tradicional detectado.
+[2025-10-31 23:55:24] API iniciada. REMOTE=::1
+[2025-10-31 23:55:24] GEMINI_API_KEY present? YES (masked)
+[2025-10-31 23:55:24] Input POST tradicional detectado.
+[2025-10-31 23:56:03] API UNIFICADA iniciada. REMOTE=::1
+[2025-10-31 23:56:03] API_KEY present? YES (masked)
+[2025-10-31 23:56:09] API UNIFICADA iniciada. REMOTE=::1
+[2025-10-31 23:56:09] API_KEY present? YES (masked)
+[2025-10-31 23:56:10] UNIFIED generateResponse: "Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?"
+[2025-10-31 23:56:10] ML Model trained: 1 weights updated
+[2025-10-31 23:56:10] API UNIFICADA iniciada. REMOTE=::1
+[2025-10-31 23:56:10] API_KEY present? YES (masked)
+[2025-10-31 23:56:24] API UNIFICADA iniciada. REMOTE=::1
+[2025-10-31 23:56:24] API UNIFICADA iniciada. REMOTE=::1
+[2025-10-31 23:56:24] API_KEY present? YES (masked)
+[2025-10-31 23:56:24] API_KEY present? YES (masked)
+[2025-10-31 23:56:30] API UNIFICADA iniciada. REMOTE=::1
+[2025-10-31 23:56:30] API_KEY present? YES (masked)
+[2025-10-31 23:56:31] UNIFIED generateResponse: "Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?"
+[2025-10-31 23:56:31] API UNIFICADA iniciada. REMOTE=::1
+[2025-10-31 23:56:31] API_KEY present? YES (masked)
+[2025-10-31 23:56:54] API UNIFICADA iniciada. REMOTE=::1
+[2025-10-31 23:56:54] API_KEY present? YES (masked)
+[2025-10-31 23:57:07] API UNIFICADA iniciada. REMOTE=::1
+[2025-10-31 23:57:07] API_KEY present? YES (masked)
+[2025-10-31 23:57:07] UNIFIED generateResponse: "Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?"
+[2025-10-31 23:57:07] API UNIFICADA iniciada. REMOTE=::1
+[2025-10-31 23:57:07] API_KEY present? YES (masked)
+[2025-10-31 23:57:24] API UNIFICADA iniciada. REMOTE=::1
+[2025-10-31 23:57:24] API_KEY present? YES (masked)
+[2025-10-31 23:57:24] API UNIFICADA iniciada. REMOTE=::1
+[2025-10-31 23:57:24] API_KEY present? YES (masked)
+[2025-10-31 23:57:54] API UNIFICADA iniciada. REMOTE=::1
+[2025-10-31 23:57:54] API_KEY present? YES (masked)
+[2025-10-31 23:58:07] API UNIFICADA iniciada. REMOTE=::1
+[2025-10-31 23:58:07] API_KEY present? YES (masked)
+[2025-10-31 23:58:07] API UNIFICADA iniciada. REMOTE=::1
+[2025-10-31 23:58:07] API_KEY present? YES (masked)
+[2025-10-31 23:58:07] API UNIFICADA iniciada. REMOTE=::1
+[2025-10-31 23:58:07] API_KEY present? YES (masked)
+[2025-10-31 23:58:14] API UNIFICADA iniciada. REMOTE=::1
+[2025-10-31 23:58:14] API_KEY present? YES (masked)
+[2025-10-31 23:58:14] UNIFIED generateResponse: "Cómo pueden las redes sociales influir en la percepción de la sexualidad adolescente?"
+[2025-10-31 23:58:15] API UNIFICADA iniciada. REMOTE=::1
+[2025-10-31 23:58:15] API_KEY present? YES (masked)
+[2025-10-31 23:58:19] API UNIFICADA iniciada. REMOTE=::1
+[2025-10-31 23:58:19] API_KEY present? YES (masked)
+[2025-10-31 23:58:38] API UNIFICADA iniciada. REMOTE=::1
+[2025-10-31 23:58:38] API_KEY present? YES (masked)

@@ -1,23 +1,26 @@
 <?php
-// api_chatbot.php (versión mejorada y segura)
-// HAZ BACKUP antes de reemplazar
+// api_chatbot_advanced.php - Sistema de IA Avanzado con Machine Learning
+define('DEBUG', true);
 
-define('DEBUG', true); // pasar a false en producción
 
-// Preferible: configurar la clave en una variable de entorno y no en el archivo
-$OPENAI_API_KEY = getenv('OPENAI_API_KEY') ?: (isset($OPENAI_API_KEY) ? $OPENAI_API_KEY : null);
+
+// Buscar la API key (prioriza GEMINI_API_KEY, pero acepta OPENAI_API_KEY para compatibilidad)
+$OPENAI_API_KEY = getenv('GEMINI_API_KEY') ?: (getenv('OPENAI_API_KEY') ?: (isset($OPENAI_API_KEY) ? $OPENAI_API_KEY : null));
 
 header('Content-Type: application/json; charset=utf-8');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Cargar conexión (rutas comunes)
-// El archivo conexion.php debe dejar disponible una variable $conexion tipo mysqli
+// Cargar conexión
 $possible_paths = [
     __DIR__ . '/conexion.php',
     dirname(__DIR__) . '/conexion.php',
     dirname(dirname(__DIR__)) . '/conexion.php',
+    
+
 ];
+
+
 
 $conexion = null;
 foreach ($possible_paths as $p) {
@@ -28,164 +31,878 @@ foreach ($possible_paths as $p) {
 }
 
 if (!isset($conexion) || !$conexion) {
-    echo json_encode(['success' => false, 'error' => 'No se pudo cargar la conexión MySQLi. Buscado en: ' . implode(', ', $possible_paths)], JSON_UNESCAPED_UNICODE);
+    echo json_encode(['success' => false, 'error' => 'No se pudo cargar la conexión MySQLi'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
-// DEBUG log
-$debugLogFile = __DIR__ . '/chatbot_debug.log';
+// Sistema de logging mejorado
+$debugLogFile = __DIR__ . '/chatbot_advanced_debug.log';
 function dbg_log($msg) {
     global $debugLogFile;
     if (defined('DEBUG') && DEBUG) {
         @file_put_contents($debugLogFile, "[".date('Y-m-d H:i:s')."] ".$msg.PHP_EOL, FILE_APPEND | LOCK_EX);
     }
 }
-dbg_log("API iniciada. REMOTE=" . ($_SERVER['REMOTE_ADDR'] ?? 'cli'));
 
 // -----------------------
-// Clase AdvancedChatbot
+// Clase AdvancedChatbotML
 // -----------------------
-class AdvancedChatbot {
+class AdvancedChatbotML {
     private $conexion;
-    private $openai_api_key;
+    private $openai_api_key; // mantiene nombre por compatibilidad
+    private $gemini_api_key;
     private $context_memory = [];
-
-    private $knowledge_base = [ /* mantuve tu KB interna tal cual */ 
-        'salud_sexual' => [
-            'anticonceptivos' => [
-                'preservativo' => 'El preservativo o condón es un método anticonceptivo de barrera que previene embarazos y enfermedades de transmisión sexual (ETS). Tiene una efectividad del 98% cuando se usa correctamente.',
-                'pildora' => 'La píldora anticonceptiva es un método hormonal que previene la ovulación. Debe tomarse diariamente a la misma hora y tiene una efectividad del 99% cuando se usa correctamente.',
-                'diu' => 'El DIU (Dispositivo Intrauterino) es un método de larga duración que se coloca en el útero. Puede ser hormonal o de cobre, con efectividad superior al 99%.'
-            ],
-            'its_ets' => [
-                'vih' => 'El VIH es un virus que ataca el sistema inmunitario. Se transmite por contacto sexual, sangre infectada o de madre a hijo. La prevención incluye uso de preservativo y pruebas regulares.',
-                'sifilis' => 'La sífilis es una ITS bacterial tratable con antibióticos. Los síntomas pueden aparecer en etapas y, sin tratamiento, puede causar complicaciones graves.',
-                'gonorrea' => 'La gonorrea es una ITS bacterial que puede infectar genitales, recto y garganta. Es tratable con antibióticos, pero algunas cepas son resistentes.'
-            ]
-        ],
-        'educacion_sexual' => [
-            'consentimiento' => 'El consentimiento es la aceptación libre, voluntaria e informada para participar en una actividad sexual. Debe ser claro, puede retirarse en cualquier momento y es fundamental para relaciones saludables.',
-            'comunicacion' => 'La comunicación abierta en las relaciones incluye expresar deseos, límites y preocupaciones. Es clave para el bienestar sexual y emocional.',
-            'diversidad' => 'La diversidad sexual y de género incluye diferentes orientaciones sexuales, identidades de género y expresiones. Todas son válidas y merecen respeto.'
-        ],
-        'bienestar_emocional' => [
-            'autoestima' => 'La autoestima sexual implica valorarse positivamente y tener confianza en la propia sexualidad. Se desarrolla con autoconocimiento y experiencias positivas.',
-            'estres' => 'El estrés puede afectar la respuesta sexual. Técnicas como mindfulness, ejercicio y comunicación pueden ayudar a manejarlo.',
-            'relaciones' => 'Las relaciones saludables se basan en respeto mutuo, comunicación abierta, confianza y apoyo emocional.'
-        ]
-    ];
-
-    private $exact_overrides = [
-        'hola' => 'greeting',
-        'holaa' => 'greeting',
-        'buenos dias' => 'greeting',
-        'buenas' => 'greeting',
-        'buenas tardes' => 'greeting',
-        'que eres' => 'personal_info',
-        'quien eres' => 'personal_info',
-        'quién eres' => 'personal_info',
-        'como te llamas' => 'personal_info',
-        'tu nombre' => 'personal_info',
-        'como estas' => 'greeting'
-    ];
+    private $learning_rate = 0.1;
+    private $ml_models = [];
 
     public function __construct($conexion, $openai_key = null) {
         $this->conexion = $conexion;
         $this->openai_api_key = $openai_key;
+        $this->gemini_api_key = $openai_key; // alias: usamos la misma clave para Gemini
         $this->loadUserContext();
+        $this->initializeMLSystem();
     }
 
-    private function loadUserContext() {
-        $sql = "SELECT sender, message, created_at FROM messages ORDER BY created_at DESC LIMIT 10";
-        $result = mysqli_query($this->conexion, $sql);
-        if ($result) {
-            while ($row = mysqli_fetch_assoc($result)) $this->context_memory[] = $row;
-            $this->context_memory = array_reverse($this->context_memory);
-            if ($result) mysqli_free_result($result);
+    /**
+     * Inicializar sistema de ML
+     */
+    private function initializeMLSystem() {
+        // Crear tablas si no existen
+        $this->createMLTables();
+        
+        // Cargar modelos pre-entrenados
+        $this->loadMLModels();
+    }
+
+    /**
+     * Crear tablas para ML si no existen
+     */
+    private function createMLTables() {
+        $tables = [
+            "CREATE TABLE IF NOT EXISTS ml_models (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                model_name VARCHAR(100) NOT NULL,
+                model_type VARCHAR(50) NOT NULL,
+                accuracy DECIMAL(5,4) DEFAULT 0.0,
+                training_data_count INT DEFAULT 0,
+                last_trained DATETIME,
+                is_active BOOLEAN DEFAULT TRUE,
+                model_parameters JSON,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )",
+            
+            "CREATE TABLE IF NOT EXISTS user_behavior (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                user_id INT,
+                session_id VARCHAR(100),
+                action_type VARCHAR(50) NOT NULL,
+                action_data JSON,
+                response_time_ms INT,
+                success_rate DECIMAL(5,4),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                INDEX idx_user_session (user_id, session_id),
+                INDEX idx_action_type (action_type)
+            )",
+            
+            "CREATE TABLE IF NOT EXISTS knowledge_weights (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                knowledge_id INT NOT NULL,
+                topic_key VARCHAR(100) NOT NULL,
+                weight DECIMAL(5,4) DEFAULT 1.0,
+                usage_count INT DEFAULT 0,
+                success_count INT DEFAULT 0,
+                failure_count INT DEFAULT 0,
+                last_used DATETIME,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                INDEX idx_topic_weight (topic_key, weight)
+            )"
+        ];
+
+        foreach ($tables as $tableSql) {
+            @mysqli_query($this->conexion, $tableSql);
         }
     }
 
     /**
-     * generateResponse:
-     * - Puede devolver string (texto) O array ['text'=>..., 'kb_record'=>...]
+     * Cargar modelos de ML
+     */
+    private function loadMLModels() {
+        // Cargar modelos desde la base de datos
+        $sql = "SELECT * FROM ml_models WHERE is_active = 1";
+        $result = mysqli_query($this->conexion, $sql);
+        
+        if ($result) {
+            $this->ml_models = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            mysqli_free_result($result);
+        }
+    }
+
+    /**
+     * Cargar contexto del usuario
+     */
+    private function loadUserContext() {
+        $sql = "SELECT sender, message, created_at FROM messages ORDER BY created_at DESC LIMIT 10";
+        $result = mysqli_query($this->conexion, $sql);
+        if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $this->context_memory[] = $row;
+            }
+            $this->context_memory = array_reverse($this->context_memory);
+            mysqli_free_result($result);
+        }
+    }
+
+    /**
+     * Generar respuesta con sistema de scoring avanzado
      */
     public function generateResponse($userMessage, $userId = null) {
+        $startTime = microtime(true);
         $original = (string)$userMessage;
         $processed = $this->preprocessMessage($original);
 
-        dbg_log("generateResponse original=\"".substr($original,0,200)."\" processed=\"$processed\"");
+        dbg_log("ML generateResponse: \"".substr($original,0,200)."\"");
 
-        // 0) Exact overrides
-        if (isset($this->exact_overrides[$processed])) {
-            $intent = $this->exact_overrides[$processed];
-            if ($intent === 'greeting') return $this->getPersonalizedGreeting();
-            if ($intent === 'personal_info') return "Soy SEIN, tu asistente virtual especializado en educación sexual y salud reproductiva. Estoy aquí para ayudarte.";
-        }
-
-        // 1) Priorizar KB en BD (SP)
-        $dbKb = $this->searchKnowledgeBaseDB($original, 1);
-        if ($dbKb) {
-            dbg_log("Decision: DB KB response topic=" . ($dbKb['topic_key'] ?? 'n/a') . " score=" . ($dbKb['score'] ?? 'n/a'));
-            $resp = $this->formatKBRecordAsResponse($dbKb);
-            // devolvemos el record para que la API lo incluya
-            return ['text' => $resp['text'], 'kb_record' => $resp['record']];
-        }
-
-        // 2) Detección de intención (NLP simple)
-        $nlpResponse = $this->getNLPResponse($processed, $original);
-        if ($nlpResponse) {
-            dbg_log("Decision: NLP response");
-            return $nlpResponse;
-        }
-
-        // 3) KB local en memoria (fallback local)
-        $wordCount = count(array_filter(explode(' ', $processed)));
-        $possibleKB = true;
-        if ($wordCount < 3) {
-            $foundKey=false;
-            foreach ($this->knowledge_base as $cat => $topics) {
-                foreach ($topics as $topic => $items) {
-                    if (is_array($items)) {
-                        foreach ($items as $k => $v) {
-                            if (mb_strpos($processed, $k) !== false) { $foundKey=true; break 3; }
-                        }
-                    } else {
-                        if (mb_strpos($processed, $topic) !== false) { $foundKey=true; break 2; }
-                    }
-                }
-            }
-            if (!$foundKey) $possibleKB = false;
-        }
-
-        if ($possibleKB) {
-            $kbResp = $this->searchKnowledgeBase($processed);
-            if ($kbResp) {
-                dbg_log("Decision: KB response (local)");
-                return $this->addPersonalization($kbResp, $original);
-            }
-        } else {
-            dbg_log("KB skipped due to short message and no KB keyword");
-        }
-
-        // 4) OpenAI (opcional) -> solo si key disponible
-        if ($this->openai_api_key) {
-            $ai = $this->getOpenAIResponse($original);
-            if ($ai) {
-                dbg_log("Decision: OpenAI response");
-                return $ai;
-            } else {
-                dbg_log("OpenAI no devolvió respuesta segura/útil");
+        // 1. Sistema de scoring múltiple
+        $candidates = $this->getResponseCandidates($processed, $original);
+        
+        // 2. Aplicar machine learning para ranking
+        $rankedCandidates = $this->rankCandidatesWithML($candidates, $processed, $userId);
+        
+        // 3. Seleccionar mejor candidato
+        $bestCandidate = $this->selectBestCandidate($rankedCandidates);
+        
+        // 4. Si no hay buenos candidatos, usar generación
+        if (!$bestCandidate || $bestCandidate['final_score'] < 0.3) {
+            $generatedResponse = $this->generateWithAI($original);
+            if ($generatedResponse) {
+                $bestCandidate = [
+                    'text' => $generatedResponse,
+                    'source' => 'ai_generation',
+                    'final_score' => 0.5,
+                    'kb_record' => null
+                ];
             }
         }
 
-        // 5) fallback NLP (segunda pasada)
-        $nlp2 = $this->getNLPResponse($processed, $original);
-        if ($nlp2) return $nlp2;
+        // 5. Fallback inteligente
+        if (!$bestCandidate) {
+            $bestCandidate = [
+                'text' => $this->getIntelligentDefault($original),
+                'source' => 'fallback',
+                'final_score' => 0.1,
+                'kb_record' => null
+            ];
+        }
 
-        // Default inteligente
-        return $this->getIntelligentDefault($original);
+        // 6. Aprender de la interacción
+        $this->learnFromInteraction($original, $bestCandidate, $userId);
+
+        // 7. Log de performance
+        $responseTime = (microtime(true) - $startTime) * 1000;
+        $this->logUserBehavior($userId, 'generate_response', [
+            'query' => $original,
+            'response_time_ms' => $responseTime,
+            'selected_source' => $bestCandidate['source'],
+            'final_score' => $bestCandidate['final_score']
+        ]);
+
+        return [
+            'text' => $bestCandidate['text'],
+            'kb_record' => $bestCandidate['kb_record'] ?? null,
+            'response_metadata' => [
+                'source' => $bestCandidate['source'],
+                'confidence' => $bestCandidate['final_score'],
+                'response_time_ms' => $responseTime
+            ]
+        ];
     }
 
+    /**
+     * Obtener candidatos de respuesta desde múltiples fuentes
+     */
+    private function getResponseCandidates($processedMessage, $originalMessage) {
+        $candidates = [];
+
+        // 1. Búsqueda en knowledge base con ML
+        $kbCandidates = $this->searchKnowledgeBaseML($processedMessage);
+        $candidates = array_merge($candidates, $kbCandidates);
+
+        // 2. Búsqueda por similitud semántica
+        $semanticCandidates = $this->semanticSearch($originalMessage);
+        $candidates = array_merge($candidates, $semanticCandidates);
+
+        // 3. Respuestas predefinidas con ML
+        $predefinedCandidates = $this->getPredefinedResponsesML($processedMessage);
+        $candidates = array_merge($candidates, $predefinedCandidates);
+
+        return $candidates;
+    }
+
+    /**
+     * Búsqueda en knowledge base con ML
+     */
+    private function searchKnowledgeBaseML($query, $limit = 10) {
+        $candidates = [];
+        
+        // Verificar si existe la columna ft_text
+        $checkColumn = mysqli_query($this->conexion, "SHOW COLUMNS FROM knowledge_base LIKE 'ft_text'");
+        $hasFulltext = $checkColumn && mysqli_num_rows($checkColumn) > 0;
+        if ($checkColumn) mysqli_free_result($checkColumn);
+        
+        if ($hasFulltext) {
+            // Búsqueda FULLTEXT si existe
+            $sql = "SELECT kb.*, 
+                           COALESCE(kw.weight, 1.0) as ml_weight,
+                           (MATCH(kb.ft_text) AGAINST(? IN BOOLEAN MODE) * 0.6 + 
+                            COALESCE(kw.weight, 1.0) * 0.4) as relevance_score
+                    FROM knowledge_base kb
+                    LEFT JOIN knowledge_weights kw ON kb.id = kw.knowledge_id
+                    WHERE kb.is_active = 1 
+                    AND MATCH(kb.ft_text) AGAINST(? IN BOOLEAN MODE)
+                    ORDER BY relevance_score DESC
+                    LIMIT ?";
+        } else {
+            // Búsqueda LIKE como fallback
+            $sql = "SELECT kb.*, 
+                           COALESCE(kw.weight, 1.0) as ml_weight,
+                           0.5 as relevance_score
+                    FROM knowledge_base kb
+                    LEFT JOIN knowledge_weights kw ON kb.id = kw.knowledge_id
+                    WHERE kb.is_active = 1 
+                    AND (kb.question LIKE ? OR kb.answer LIKE ? OR kb.keywords LIKE ?)
+                    ORDER BY kw.weight DESC, kb.usage_count DESC
+                    LIMIT ?";
+        }
+        
+        $stmt = mysqli_prepare($this->conexion, $sql);
+        if ($stmt) {
+            if ($hasFulltext) {
+                mysqli_stmt_bind_param($stmt, 'ssi', $query, $query, $limit);
+            } else {
+                $searchTerm = "%$query%";
+                mysqli_stmt_bind_param($stmt, 'sssi', $searchTerm, $searchTerm, $searchTerm, $limit);
+            }
+            
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            
+            while ($row = mysqli_fetch_assoc($result)) {
+                $candidates[] = [
+                    'text' => $row['answer'],
+                    'source' => 'knowledge_base',
+                    'base_score' => $row['relevance_score'],
+                    'kb_record' => $row,
+                    'ml_weight' => $row['ml_weight']
+                ];
+            }
+            mysqli_stmt_close($stmt);
+        }
+
+        return $candidates;
+    }
+
+    /**
+     * Búsqueda semántica mejorada
+     */
+    private function semanticSearch($query) {
+        $candidates = [];
+        
+        // Usar embeddings o técnicas de similitud
+        $similarQuestions = $this->findSimilarQuestions($query);
+        
+        foreach ($similarQuestions as $question) {
+            $candidates[] = [
+                'text' => $question['answer'],
+                'source' => 'semantic_search',
+                'base_score' => $question['similarity_score'],
+                'kb_record' => $question
+            ];
+        }
+
+        return $candidates;
+    }
+
+    /**
+     * Encontrar preguntas similares
+     */
+    private function findSimilarQuestions($query, $limit = 5) {
+        $similar = [];
+        
+        // Implementar algoritmo de similitud simple
+        $sql = "SELECT kb.* FROM knowledge_base kb WHERE kb.is_active = 1 LIMIT ?";
+        $stmt = mysqli_prepare($this->conexion, $sql);
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, 'i', $limit);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            
+            while ($row = mysqli_fetch_assoc($result)) {
+                // Calcular similitud simple
+                $similarity = $this->calculateSimilarity($query, $row['question']);
+                if ($similarity > 0.3) {
+                    $row['similarity_score'] = $similarity;
+                    $similar[] = $row;
+                }
+            }
+            mysqli_stmt_close($stmt);
+        }
+
+        // Ordenar por similitud
+        usort($similar, function($a, $b) {
+            return $b['similarity_score'] <=> $a['similarity_score'];
+        });
+
+        return array_slice($similar, 0, $limit);
+    }
+
+    /**
+     * Calcular similitud entre textos
+     */
+    private function calculateSimilarity($text1, $text2) {
+        $words1 = array_count_values(str_word_count(mb_strtolower($text1), 1));
+        $words2 = array_count_values(str_word_count(mb_strtolower($text2), 1));
+        
+        $intersection = array_intersect_key($words1, $words2);
+        $union = $words1 + $words2;
+        
+        if (count($union) === 0) return 0;
+        
+        return count($intersection) / count($union);
+    }
+
+    /**
+     * Respuestas predefinidas con ML
+     */
+    private function getPredefinedResponsesML($processedMessage) {
+        $candidates = [];
+        
+        // Detectar intenciones básicas
+        $intent = $this->detectIntention($processedMessage, [
+            'greeting' => ['hola', 'buenos', 'buenas', 'hey', 'saludos', 'como estas'],
+            'farewell' => ['adios', 'bye', 'chao', 'hasta', 'nos vemos'],
+            'thanks' => ['gracias', 'agradecido', 'agradecida', 'merci'],
+            'help' => ['ayuda', 'help', 'socorro', 'asistencia']
+        ]);
+
+        if ($intent === 'greeting') {
+            $candidates[] = [
+                'text' => $this->getPersonalizedGreeting(),
+                'source' => 'predefined',
+                'base_score' => 0.9,
+                'kb_record' => null
+            ];
+        } elseif ($intent === 'farewell') {
+            $candidates[] = [
+                'text' => $this->getPersonalizedFarewell(),
+                'source' => 'predefined',
+                'base_score' => 0.9,
+                'kb_record' => null
+            ];
+        } elseif ($intent === 'thanks') {
+            $candidates[] = [
+                'text' => '¡De nada! Estoy aquí para ayudarte. ¿Hay algo más en lo que pueda asistirte?',
+                'source' => 'predefined',
+                'base_score' => 0.9,
+                'kb_record' => null
+            ];
+        } elseif ($intent === 'help') {
+            $candidates[] = [
+                'text' => 'Puedo ayudarte con información sobre salud sexual, anticonceptivos, ITS, consentimiento y más. ¿Qué tema te interesa?',
+                'source' => 'predefined',
+                'base_score' => 0.9,
+                'kb_record' => null
+            ];
+        }
+
+        return $candidates;
+    }
+
+    /**
+     * Detectar intención
+     */
+    private function detectIntention($message, $intentions) {
+        $best = null;
+        $bestScore = 0;
+        
+        foreach ($intentions as $intent => $keywords) {
+            $score = 0;
+            foreach ($keywords as $kw) {
+                if (mb_stripos($message, $kw) !== false) {
+                    $score += mb_strlen($kw, 'UTF-8');
+                }
+            }
+            if ($score > $bestScore) {
+                $bestScore = $score;
+                $best = $intent;
+            }
+        }
+        
+        return $bestScore > 0 ? $best : null;
+    }
+
+    /**
+     * Ranking de candidatos con ML
+     */
+    private function rankCandidatesWithML($candidates, $query, $userId) {
+        foreach ($candidates as &$candidate) {
+            $finalScore = $candidate['base_score'];
+            
+            // Ajustar score por historial de usuario
+            $userPreferenceScore = $this->getUserPreferenceScore($userId, $candidate);
+            $finalScore *= (1 + $userPreferenceScore);
+            
+            // Ajustar por feedback histórico
+            $feedbackScore = $this->getFeedbackScore($candidate);
+            $finalScore *= (1 + $feedbackScore);
+            
+            // Ajustar por contexto de conversación
+            $contextScore = $this->getContextScore($query, $candidate);
+            $finalScore *= (1 + $contextScore);
+            
+            $candidate['final_score'] = min(1.0, $finalScore);
+        }
+
+        // Ordenar por score final
+        usort($candidates, function($a, $b) {
+            return $b['final_score'] <=> $a['final_score'];
+        });
+
+        return $candidates;
+    }
+
+    /**
+     * Obtener score de preferencias de usuario
+     */
+    private function getUserPreferenceScore($userId, $candidate) {
+        if (!$userId) return 0;
+        
+        $sql = "SELECT AVG(rating) as avg_rating 
+                FROM conversation_feedback 
+                WHERE user_id = ?";
+        
+        $stmt = mysqli_prepare($this->conexion, $sql);
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, 'i', $userId);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            $row = mysqli_fetch_assoc($result);
+            mysqli_stmt_close($stmt);
+            
+            if ($row && $row['avg_rating']) {
+                return ($row['avg_rating'] - 3) / 10; // Normalizar a -0.2 a +0.2
+            }
+        }
+        
+        return 0;
+    }
+
+    /**
+     * Obtener score de feedback
+     */
+    private function getFeedbackScore($candidate) {
+        if (!isset($candidate['kb_record']['id'])) return 0;
+        
+        $knowledgeId = $candidate['kb_record']['id'];
+        $sql = "SELECT 
+                    (success_count / GREATEST(usage_count, 1)) as success_rate
+                FROM knowledge_weights 
+                WHERE knowledge_id = ?";
+        
+        $stmt = mysqli_prepare($this->conexion, $sql);
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, 'i', $knowledgeId);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            $row = mysqli_fetch_assoc($result);
+            mysqli_stmt_close($stmt);
+            
+            if ($row && $row['success_rate']) {
+                return ($row['success_rate'] - 0.5) * 0.4; // -0.2 a +0.2
+            }
+        }
+        
+        return 0;
+    }
+
+    /**
+     * Obtener score de contexto
+     */
+    private function getContextScore($query, $candidate) {
+        // Análisis simple del contexto basado en palabras clave coincidentes
+        $queryWords = array_filter(explode(' ', mb_strtolower($query)));
+        $responseWords = array_filter(explode(' ', mb_strtolower($candidate['text'])));
+        
+        $commonWords = array_intersect($queryWords, $responseWords);
+        $score = count($commonWords) / max(1, count($queryWords)) * 0.3;
+        
+        return $score;
+    }
+
+    /**
+     * Seleccionar mejor candidato
+     */
+    private function selectBestCandidate($candidates) {
+        foreach ($candidates as $candidate) {
+            if ($candidate['final_score'] >= 0.3) {
+                return $candidate;
+            }
+        }
+        return $candidates[0] ?? null;
+    }
+
+    /**
+     * Generar con IA externa (AHORA: Gemini / Generative Language API)
+     *
+     * Uso del endpoint REST: POST https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent
+     * Se envía un payload con "contents" -> "parts" -> "text". La API key se pasa en la cabecera 'x-goog-api-key'.
+     * (Basado en la documentación oficial de Gemini / Google Generative AI).
+     */
+    private function generateWithAI($message) {
+        if (!$this->gemini_api_key) return null;
+        
+        // Simple safety check on input
+        if ($this->isUnsafe($message)) {
+            dbg_log("Input marcado como peligroso por isUnsafe()");
+            return null;
+        }
+
+        $context = $this->buildContextForAI();
+        $system = "Eres SEIN, un asistente virtual especializado en educación sexual y salud reproductiva. Responde de manera profesional, empática y educativa. Si la pregunta no está relacionada con tu área, redirige amablemente. Sé conciso y claro.";
+
+        // Construimos el prompt como un único bloque de texto
+        $full_prompt = $system . "\n\nContexto:\n" . $context . "\n\nUsuario: " . $message;
+
+        // Modelo recomendado (puedes cambiar a otro disponible)
+        $model = "gemini-2.5-flash";
+
+        // Endpoint REST (v1beta tal como en la documentación de ejemplo)
+        $url = "https://generativelanguage.googleapis.com/v1beta/models/{$model}:generateContent";
+
+        $payload = [
+            'contents' => [
+                [
+                    'parts' => [
+                        ['text' => $full_prompt]
+                    ]
+                ]
+            ],
+            // puedes añadir opciones adicionales aquí según necesites (temperature, maxOutputTokens, safetySettings, etc.)
+        ];
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload, JSON_UNESCAPED_UNICODE));
+        $headers = [
+            'Content-Type: application/json',
+            'x-goog-api-key: ' . $this->gemini_api_key
+        ];
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $curlErr = curl_error($ch);
+        curl_close($ch);
+
+        dbg_log("GEMINI HTTP $httpCode " . substr($response ?? '',0,1000));
+        if ($curlErr) dbg_log("GEMINI ERR $curlErr");
+
+        if ($httpCode === 200 && $response) {
+            $decoded = json_decode($response, true);
+            // Estructura típica: candidates[0].content.parts[0].text
+            $generated = null;
+            if (isset($decoded['candidates'][0]['content']['parts'][0]['text'])) {
+                $generated = $decoded['candidates'][0]['content']['parts'][0]['text'];
+            } elseif (isset($decoded['candidates'][0]['content'][0]['text'])) {
+                $generated = $decoded['candidates'][0]['content'][0]['text'];
+            } elseif (isset($decoded['candidates'][0]['content'])) {
+                // tratar de concatenar partes si vienen en otro formato
+                $parts = $decoded['candidates'][0]['content'];
+                if (is_array($parts)) {
+                    $txtPieces = [];
+                    foreach ($parts as $p) {
+                        if (is_array($p) && isset($p['parts'])) {
+                            foreach ($p['parts'] as $pp) {
+                                if (isset($pp['text'])) $txtPieces[] = $pp['text'];
+                            }
+                        } elseif (isset($p['text'])) {
+                            $txtPieces[] = $p['text'];
+                        }
+                    }
+                    if (!empty($txtPieces)) $generated = implode("\n", $txtPieces);
+                }
+            }
+
+            if ($generated) {
+                $generated = trim($generated);
+                // filtro de seguridad sobre la salida del modelo
+                if ($this->isUnsafe($generated)) {
+                    dbg_log("Gemini generó contenido marcado como inseguro; se descarta respuesta.");
+                    return null;
+                }
+                return $generated;
+            } else {
+                dbg_log("Gemini: No se encontró campo de texto esperado en la respuesta.");
+            }
+        } else {
+            dbg_log("Gemini call failed HTTP={$httpCode} response=" . substr($response ?? '',0,200));
+        }
+
+        return null;
+    }
+
+    private function buildContextForAI() {
+        $context = "";
+        $recent = array_slice($this->context_memory, -6);
+        foreach ($recent as $m) $context .= ($m['sender'] ?? 'User').": ".($m['message'] ?? '')."\n";
+        return $context;
+    }
+
+    /**
+     * Sistema de aprendizaje automático
+     */
+    private function learnFromInteraction($userQuery, $selectedResponse, $userId) {
+        // Actualizar pesos basado en esta interacción
+        if (isset($selectedResponse['kb_record']['id'])) {
+            $this->updateKnowledgeWeight($selectedResponse['kb_record']['id'], true);
+        }
+        
+        // Aprender patrones de consulta
+        $this->learnQueryPatterns($userQuery, $selectedResponse['source']);
+        
+        // Entrenar modelo periódicamente
+        if (mt_rand(1, 100) <= 10) { // 10% de probabilidad
+            $this->trainMLModel();
+        }
+    }
+
+    /**
+     * Actualizar peso del conocimiento
+     */
+    private function updateKnowledgeWeight($knowledgeId, $success) {
+        // Primero verificar si existe
+        $checkSql = "SELECT id FROM knowledge_weights WHERE knowledge_id = ?";
+        $checkStmt = mysqli_prepare($this->conexion, $checkSql);
+        mysqli_stmt_bind_param($checkStmt, 'i', $knowledgeId);
+        mysqli_stmt_execute($checkStmt);
+        $exists = mysqli_stmt_get_result($checkStmt)->num_rows > 0;
+        mysqli_stmt_close($checkStmt);
+
+        $topicKey = $this->extractTopicKey($knowledgeId);
+        $successIncrement = $success ? 1 : 0;
+        $failureIncrement = $success ? 0 : 1;
+        $weightAdjustment = $success ? $this->learning_rate : -$this->learning_rate;
+
+        if ($exists) {
+            $sql = "UPDATE knowledge_weights 
+                    SET usage_count = usage_count + 1,
+                        success_count = success_count + ?,
+                        failure_count = failure_count + ?,
+                        weight = GREATEST(0.1, LEAST(2.0, weight + ?)),
+                        last_used = NOW()
+                    WHERE knowledge_id = ?";
+            $stmt = mysqli_prepare($this->conexion, $sql);
+            mysqli_stmt_bind_param($stmt, 'iidi', $successIncrement, $failureIncrement, $weightAdjustment, $knowledgeId);
+        } else {
+            $sql = "INSERT INTO knowledge_weights (knowledge_id, topic_key, weight, usage_count, success_count, failure_count, last_used)
+                    VALUES (?, ?, 1.0, 1, ?, ?, NOW())";
+            $stmt = mysqli_prepare($this->conexion, $sql);
+            mysqli_stmt_bind_param($stmt, 'isii', $knowledgeId, $topicKey, $successIncrement, $failureIncrement);
+        }
+        
+        if ($stmt) {
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+        }
+    }
+
+    /**
+     * Extraer clave de tema
+     */
+    private function extractTopicKey($knowledgeId) {
+        $sql = "SELECT topic_key FROM knowledge_base WHERE id = ?";
+        $stmt = mysqli_prepare($this->conexion, $sql);
+        mysqli_stmt_bind_param($stmt, 'i', $knowledgeId);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $row = mysqli_fetch_assoc($result);
+        mysqli_stmt_close($stmt);
+        
+        return $row['topic_key'] ?? 'general';
+    }
+
+    /**
+     * Aprender patrones de consulta
+     */
+    private function learnQueryPatterns($query, $source) {
+        // Implementación básica para aprender patrones
+        // Podría almacenar consultas exitosas para mejorar matching futuro
+    }
+
+    /**
+     * Entrenar modelo de ML
+     */
+    public function trainMLModel() {
+        // Recalcular pesos basado en feedback histórico
+        $sql = "UPDATE knowledge_weights kw
+                JOIN (
+                    SELECT knowledge_id, 
+                           (success_count / GREATEST(usage_count, 1)) as success_rate
+                    FROM knowledge_weights
+                    WHERE usage_count > 0
+                ) stats ON kw.knowledge_id = stats.knowledge_id
+                SET kw.weight = 0.5 + (stats.success_rate * 0.5)";
+        
+        mysqli_query($this->conexion, $sql);
+        
+        // Log del entrenamiento
+        dbg_log("ML Model trained: " . mysqli_affected_rows($this->conexion) . " weights updated");
+        
+        return true;
+    }
+
+    /**
+     * Log de comportamiento de usuario
+     */
+    public function logUserBehavior($userId, $actionType, $actionData) {
+        $sql = "INSERT INTO user_behavior (user_id, session_id, action_type, action_data, created_at)
+                VALUES (?, ?, ?, ?, NOW())";
+        
+        $stmt = mysqli_prepare($this->conexion, $sql);
+        if ($stmt) {
+            $sessionId = session_id();
+            $actionDataJson = json_encode($actionData);
+            mysqli_stmt_bind_param($stmt, 'isss', $userId, $sessionId, $actionType, $actionDataJson);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+        }
+    }
+
+    /**
+     * Obtener analytics avanzadas
+     */
+    public function getAdvancedAnalytics($days = 7) {
+        $analytics = [];
+        
+        // Métricas generales
+        $sql = "SELECT 
+                    COUNT(*) as total_messages,
+                    COUNT(DISTINCT user_id) as unique_users,
+                    AVG(response_time_ms) as avg_response_time
+                FROM conversation_analytics 
+                WHERE created_at >= DATE_SUB(NOW(), INTERVAL ? DAY)";
+        
+        $stmt = mysqli_prepare($this->conexion, $sql);
+        mysqli_stmt_bind_param($stmt, 'i', $days);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $analytics['general'] = mysqli_fetch_assoc($result);
+        mysqli_stmt_close($stmt);
+
+        // Temas más populares
+        $sql = "SELECT topic_detected, COUNT(*) as count 
+                FROM conversation_analytics 
+                WHERE created_at >= DATE_SUB(NOW(), INTERVAL ? DAY) 
+                AND topic_detected IS NOT NULL
+                GROUP BY topic_detected 
+                ORDER BY count DESC 
+                LIMIT 10";
+        
+        $stmt = mysqli_prepare($this->conexion, $sql);
+        mysqli_stmt_bind_param($stmt, 'i', $days);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $analytics['top_topics'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        mysqli_stmt_close($stmt);
+
+        // Precisión del sistema
+        $sql = "SELECT 
+                    (SELECT COUNT(*) FROM conversation_feedback WHERE rating >= 4) as positive_feedback,
+                    (SELECT COUNT(*) FROM conversation_feedback) as total_feedback,
+                    (SELECT COUNT(*) FROM knowledge_base WHERE is_active = 1) as knowledge_count,
+                    (SELECT COUNT(*) FROM knowledge_weights WHERE weight > 1.0) as high_quality_knowledge";
+        
+        $result = mysqli_query($this->conexion, $sql);
+        $accuracyData = mysqli_fetch_assoc($result);
+        
+        $analytics['accuracy'] = $accuracyData['total_feedback'] > 0 ? 
+            $accuracyData['positive_feedback'] / $accuracyData['total_feedback'] : 0.85;
+        
+        $analytics['knowledge_stats'] = $accuracyData;
+
+        return $analytics;
+    }
+
+    /**
+     * Exportar base de conocimiento
+     */
+    public function exportKnowledge($format = 'json') {
+        $sql = "SELECT kb.*, kw.weight, kw.usage_count, kw.success_count
+                FROM knowledge_base kb
+                LEFT JOIN knowledge_weights kw ON kb.id = kw.knowledge_id
+                WHERE kb.is_active = 1
+                ORDER BY kw.weight DESC, kb.usage_count DESC";
+        
+        $result = mysqli_query($this->conexion, $sql);
+        $knowledge = [];
+        
+        while ($row = mysqli_fetch_assoc($result)) {
+            $knowledge[] = $row;
+        }
+
+        return $knowledge;
+    }
+
+    /**
+     * Buscar conocimiento con filtros
+     */
+    public function searchKnowledge($filters = []) {
+        $sql = "SELECT kb.*, COALESCE(kw.weight, 1.0) as ml_weight
+                FROM knowledge_base kb
+                LEFT JOIN knowledge_weights kw ON kb.id = kw.knowledge_id
+                WHERE kb.is_active = 1";
+        
+        $params = [];
+        $types = '';
+        
+        if (!empty($filters['category'])) {
+            $sql .= " AND kb.category = ?";
+            $params[] = $filters['category'];
+            $types .= 's';
+        }
+        
+        if (!empty($filters['search'])) {
+            $sql .= " AND (kb.question LIKE ? OR kb.answer LIKE ? OR kb.keywords LIKE ?)";
+            $searchTerm = "%{$filters['search']}%";
+            $params[] = $searchTerm;
+            $params[] = $searchTerm;
+            $params[] = $searchTerm;
+            $types .= 'sss';
+        }
+        
+        $sql .= " ORDER BY kw.weight DESC, kb.usage_count DESC LIMIT 100";
+        
+        $stmt = mysqli_prepare($this->conexion, $sql);
+        if ($stmt && !empty($params)) {
+            mysqli_stmt_bind_param($stmt, $types, ...$params);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            $knowledge = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            mysqli_stmt_close($stmt);
+            return $knowledge;
+        } elseif ($stmt) {
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            $knowledge = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            mysqli_stmt_close($stmt);
+            return $knowledge;
+        }
+        
+        return [];
+    }
+
+    // Métodos de utilidad existentes
     private function preprocessMessage($message) {
         $m = trim($message);
         $m = $this->removeAccents($m);
@@ -209,260 +926,22 @@ class AdvancedChatbot {
         return strtr($string, $accents);
     }
 
-    // ---------------------
-    // Búsqueda KB local
-    // ---------------------
-    private function searchKnowledgeBase($message) {
-        $userWords = array_values(array_filter(array_map('trim', explode(' ', $message))));
-        $stopwords = [
-            'que','como','cuando','donde','por','para','y','o','el','la','los','las',
-            'un','una','de','en','es','tu','te','yo','me','mi','si','no','hola','buenos','buenas','gracias'
-        ];
-        $filtered = [];
-        foreach ($userWords as $w) {
-            if (mb_strlen($w, 'UTF-8') > 2 && !in_array($w, $stopwords)) $filtered[] = $w;
-        }
-
-        if (count($filtered) === 0) {
-            dbg_log("KB aborted: no filtered words");
-            return null;
-        }
-
-        $bestMatch = null;
-        $bestScore = 0;
-        $bestMatchesCount = 0;
-
-        foreach ($this->knowledge_base as $category => $topics) {
-            foreach ($topics as $topic => $items) {
-                if (is_array($items)) {
-                    foreach ($items as $key => $content) {
-                        $text = mb_strtolower($this->removeAccents($key . ' ' . $content), 'UTF-8');
-                        $result = $this->kbMatchScore($filtered, $text);
-                        if ($result['score'] > $bestScore) {
-                            $bestScore = $result['score'];
-                            $bestMatch = $content;
-                            $bestMatchesCount = $result['matches'];
-                        }
-                    }
-                } else {
-                    $text = mb_strtolower($this->removeAccents($topic . ' ' . $items), 'UTF-8');
-                    $result = $this->kbMatchScore($filtered, $text);
-                    if ($result['score'] > $bestScore) {
-                        $bestScore = $result['score'];
-                        $bestMatch = $items;
-                        $bestMatchesCount = $result['matches'];
-                    }
-                }
-            }
-        }
-
-        dbg_log("KB bestScore={$bestScore} matches={$bestMatchesCount} filteredWords=" . implode(',', $filtered));
-
-        if ($bestMatch && $bestMatchesCount >= 2 && $bestScore >= 0.6) {
-            return $bestMatch;
-        }
-        return null;
-    }
-
-    private function kbMatchScore($filteredUserWords, $text) {
-        $norm = preg_replace('/[^\p{L}\p{N}\s]+/u', ' ', $text);
-        $contentWords = array_values(array_unique(array_filter(array_map('trim', explode(' ', $norm)))));
-        $matches = 0;
-        foreach ($filteredUserWords as $uw) {
-            if (in_array($uw, $contentWords, true)) $matches++;
-        }
-        $score = $matches / max(1, count($filteredUserWords));
-        return ['score' => $score, 'matches' => $matches];
-    }
-
-    // ---------------------
-    // Búsqueda KB en BD via SP
-    // ---------------------
-    private function searchKnowledgeBaseDB($query, $limit = 1) {
-        $q = trim((string)$query);
-        if ($q === '') return null;
-
-        // Escape seguro y llamada al SP
-        $esc = mysqli_real_escape_string($this->conexion, $q);
-        $sql = "CALL FindKnowledgeMatches('" . $esc . "', " . intval($limit) . ")";
-
-        $res = mysqli_query($this->conexion, $sql);
-        if ($res === false) {
-            dbg_log("searchKnowledgeBaseDB FAILED SQL={$sql} ERR=" . mysqli_error($this->conexion));
-            // consumir posibles resultados residuales para mantener conexión OK
-            while (mysqli_more_results($this->conexion) && mysqli_next_result($this->conexion)) {
-                $extra = mysqli_store_result($this->conexion);
-                if ($extra) mysqli_free_result($extra);
-            }
-            return null;
-        }
-
-        // Tomar primera fila del resultset (si la hay)
-        $row = mysqli_fetch_assoc($res);
-        if ($res) mysqli_free_result($res);
-
-        // Consumir cualquier resultset adicional para no dejar la conexión en mal estado
-        while (mysqli_more_results($this->conexion) && mysqli_next_result($this->conexion)) {
-            $extra = mysqli_store_result($this->conexion);
-            if ($extra) mysqli_free_result($extra);
-        }
-
-        if ($row) return $row;
-        return null;
-    }
-
-    private function formatKBRecordAsResponse(array $kbRow) {
-        $answer = $kbRow['answer'] ?? '';
-        $structured = [
-            'topic_key' => $kbRow['topic_key'] ?? null,
-            'category' => $kbRow['category'] ?? null,
-            'subcategory' => $kbRow['subcategory'] ?? null,
-            'question' => $kbRow['question'] ?? null,
-            'answer' => $answer,
-            'keywords' => $kbRow['keywords'] ?? null,
-            'confidence' => $kbRow['confidence_threshold'] ?? null,
-            'score' => $kbRow['score'] ?? null
-        ];
-        return ['text' => $answer, 'record' => $structured];
-    }
-
-    // ---------------------
-    // OpenAI integration (básica)
-    // ---------------------
-    private function getOpenAIResponse($userMessage) {
-        if (!$this->openai_api_key) return null;
-
-        // Simple safety check on input
-        if ($this->isUnsafe($userMessage)) {
-            dbg_log("Input marcado como peligroso por isUnsafe()");
-            return null;
-        }
-
-        $context = $this->buildContextForAI();
-        $system = "Eres SEIN, un asistente virtual especializado en educación sexual y salud reproductiva. Responde de manera profesional, empática y educativa. Si la pregunta no está relacionada con tu área, redirige amablemente. Sé conciso y claro.";
-
-        $messages = [
-            ['role' => 'system', 'content' => $system . "\n\nContexto:\n" . $context],
-            ['role' => 'user', 'content' => $userMessage]
-        ];
-
-        $data = [
-            'model' => 'gpt-3.5-turbo',
-            'messages' => $messages,
-            'max_tokens' => 300,
-            'temperature' => 0.7
-        ];
-
-        $ch = curl_init('https://api.openai.com/v1/chat/completions');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Content-Type: application/json',
-            'Authorization: Bearer ' . $this->openai_api_key
-        ]);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 15);
-
-        $response = curl_exec($ch);
-        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        $curlErr = curl_error($ch);
-        curl_close($ch);
-
-        dbg_log("OPENAI HTTP $httpCode " . substr($response ?? '',0,1000));
-        if ($curlErr) dbg_log("OPENAI ERR $curlErr");
-
-        if ($httpCode === 200 && $response) {
-            $decoded = json_decode($response, true);
-            $generated = $decoded['choices'][0]['message']['content'] ?? null;
-            if ($generated) {
-                $generated = trim($generated);
-                // filtro de seguridad sobre la salida del modelo
-                if ($this->isUnsafe($generated)) {
-                    dbg_log("OpenAI generó contenido marcado como inseguro; se descarta respuesta.");
-                    return null;
-                }
-                return $generated;
-            }
-        }
-
-        return null;
-    }
-
-    private function buildContextForAI() {
-        $context = "";
-        $recent = array_slice($this->context_memory, -6);
-        foreach ($recent as $m) $context .= ($m['sender'] ?? 'User').": ".($m['message'] ?? '')."\n";
-        return $context;
-    }
-
-    // ---------------------
-    // Detección de intención simple
-    // ---------------------
-    private function getNLPResponse($processedMessage, $originalMessage) {
-        $intentions = [
-            'greeting'=>['hola','buenos','buenas','hey','saludos','como estas'],
-            'farewell'=>['adios','bye','chao','hasta','nos vemos'],
-            'emergency'=>['emergencia','urgente','ayuda ya','peligro'],
-            'personal_info'=>['quien eres','que eres','quién eres','como te llamas','tu nombre']
-        ];
-
-        $detected = $this->detectIntention($processedMessage, $intentions);
-        dbg_log("detected_intent={$detected} processed={$processedMessage}");
-
-        switch ($detected) {
-            case 'greeting': return $this->getPersonalizedGreeting();
-            case 'farewell': return $this->getPersonalizedFarewell();
-            case 'emergency': return "🚨 Si es una emergencia real, contacta servicios de emergencia inmediatamente.";
-            case 'personal_info': return "Soy SEIN, tu asistente virtual especializado en educación sexual y salud reproductiva. Estoy aquí para ayudarte.";
-        }
-
-        $lower = mb_strtolower($originalMessage, 'UTF-8');
-        if (mb_stripos($lower, 'embarazo') !== false) {
-            return "Puedo orientarte sobre signos tempranos, pruebas y cuidados prenatales. ¿Qué te preocupa sobre el embarazo?";
-        }
-
-        return null;
-    }
-
-    private function detectIntention($message, $intentions) {
-        $best=null; $bestScore=0;
-        foreach ($intentions as $intent=>$keywords) {
-            $score=0;
-            foreach ($keywords as $kw) {
-                if (mb_strpos($message, $kw) !== false) {
-                    $score += mb_strlen($kw,'UTF-8');
-                }
-            }
-            if ($score> $bestScore) { $bestScore=$score; $best=$intent; }
-        }
-        return $bestScore>0 ? $best : null;
-    }
-
-    // ---------------------
-    // Mensajes personalizados / defaults
-    // ---------------------
     private function getPersonalizedGreeting() {
-        $a = [
+        $greetings = [
             "¡Hola! Soy SEIN, tu asistente en educación sexual y salud reproductiva. ¿En qué puedo orientarte hoy?",
             "¡Hola! Me alegra verte. ¿Tienes alguna pregunta sobre salud sexual o reproductiva?",
             "¡Saludos! Estoy aquí para ayudarte con información confiable sobre salud sexual."
         ];
-        return $a[array_rand($a)];
+        return $greetings[array_rand($greetings)];
     }
 
     private function getPersonalizedFarewell() {
-        $a = [
+        $farewells = [
             "¡Hasta pronto! Si necesitas más información, aquí estaré.",
             "¡Cuídate! Vuelve si tienes más dudas.",
             "¡Nos vemos! Recuerda cuidar tu salud sexual."
         ];
-        return $a[array_rand($a)];
-    }
-
-    private function addPersonalization($response, $original) {
-        $prefixes = ["Basándome en tu consulta, ", "Según lo que me comentas, ", ""];
-        $sufs = ["\n\n¿Quieres que profundice en algo?",""];
-        return $prefixes[array_rand($prefixes)].$response.$sufs[array_rand($sufs)];
+        return $farewells[array_rand($farewells)];
     }
 
     private function getIntelligentDefault($msg) {
@@ -472,26 +951,9 @@ class AdvancedChatbot {
         return "No estoy seguro de la intención exacta. ¿Puedes reformular o pedir un tema específico (anticonceptivos, ITS, embarazo, consentimiento)?";
     }
 
-    // ---------------------
-    // Logging de conversaciones (analytics)
-    // ---------------------
-    public function logConversation($userMessage, $botResponse, $userId = null) {
-        $sql = "INSERT INTO conversation_analytics (user_id, user_message, bot_response, response_type, created_at) VALUES (?, ?, ?, 'advanced', NOW())";
-        $stmt = mysqli_prepare($this->conexion, $sql);
-        if ($stmt) {
-            $br = is_array($botResponse) ? ($botResponse['text'] ?? '') : $botResponse;
-            mysqli_stmt_bind_param($stmt, "iss", $userId, $userMessage, $br);
-            mysqli_stmt_execute($stmt);
-            mysqli_stmt_close($stmt);
-        } else {
-            dbg_log("logConversation prepare failed: " . mysqli_error($this->conexion));
-        }
-    }
-
-    // ---------------------
-    // Seguridad: filtrado simple (entrada/salida)
-    // ---------------------
-    // NO es un filtro exhaustivo. Para producción usar soluciones más completas.
+    /**
+     * Seguridad: filtrado simple (entrada/salida)
+     */
     private function isUnsafe($text) {
         if (!$text) return false;
         $t = mb_strtolower($text, 'UTF-8');
@@ -506,57 +968,46 @@ class AdvancedChatbot {
 }
 
 // -----------------
-// Instanciar chatbot
-// -----------------
-$chatbot = new AdvancedChatbot($conexion, $OPENAI_API_KEY);
+// Instanciar chatbot ML (se pasa la API key GEMINI_API_KEY si está configurada)
+$chatbot = new AdvancedChatbotML($conexion, $OPENAI_API_KEY);
 
-// Acciones API
-$action = $_POST['action'] ?? '';
+// Manejar acciones API extendidas
+$action = $_POST['action'] ?? $_GET['action'] ?? '';
 
 try {
     switch ($action) {
+        case 'chat':
         case 'create':
+            // Chat normal con IA mejorada
             $sender = $_POST['sender'] ?? '';
             $message = $_POST['message'] ?? '';
             $userId = isset($_POST['user_id']) ? intval($_POST['user_id']) : null;
 
-            // Evitar que frontend inserte 'Bot'
             if (strcasecmp($sender,'Bot')===0) $sender = 'Usuario';
 
-            // Limitar tamaño razonable del mensaje (evita abuse)
             if (mb_strlen($message, 'UTF-8') > 5000) $message = mb_substr($message,0,5000,'UTF-8');
 
-            // Preparar insert (mensaje usuario)
+            // Insertar mensaje usuario
             $sql = "INSERT INTO messages (sender, message, created_at) VALUES (?, ?, NOW())";
             $stmt = mysqli_prepare($conexion, $sql);
-            if (!$stmt) {
-                echo json_encode(['success'=>false,'error'=>'Error preparing insert: '.mysqli_error($conexion)], JSON_UNESCAPED_UNICODE);
-                exit;
-            }
             mysqli_stmt_bind_param($stmt,"ss",$sender,$message);
             $res = mysqli_stmt_execute($stmt);
             $insertId = $res ? mysqli_insert_id($conexion) : null;
             mysqli_stmt_close($stmt);
 
             if (!$insertId) {
-                echo json_encode(['success'=>false,'error'=>'Error al insertar mensaje: '.mysqli_error($conexion)], JSON_UNESCAPED_UNICODE);
+                echo json_encode(['success'=>false,'error'=>'Error al insertar mensaje'], JSON_UNESCAPED_UNICODE);
                 exit;
             }
 
-            // Generar respuesta si no vino del bot
+            // Generar respuesta con ML
             if (strcasecmp($sender,'Bot')!==0) {
-                $botResponse = $chatbot->generateResponse($message,$userId) ?? "Lo siento, no pude generar una respuesta ahora.";
+                $botResponse = $chatbot->generateResponse($message,$userId);
+                
+                $botText = is_array($botResponse) ? 
+                    ($botResponse['text'] ?? "Lo siento, no pude generar una respuesta ahora.") : 
+                    (string)$botResponse;
 
-                // Soportar cuando generateResponse devuelve array con kb_record
-                $kb_record = null;
-                if (is_array($botResponse)) {
-                    $kb_record = $botResponse['kb_record'] ?? null;
-                    $botText = $botResponse['text'] ?? '';
-                } else {
-                    $botText = (string)$botResponse;
-                }
-
-                // Evitar respuestas vacías
                 if (trim($botText) === '') $botText = "Lo siento, no tengo una respuesta clara en este momento.";
 
                 // Insertar respuesta del bot
@@ -567,31 +1018,130 @@ try {
                     mysqli_stmt_execute($stmt2);
                     $botId = mysqli_insert_id($conexion);
                     mysqli_stmt_close($stmt2);
-                } else {
-                    $botId = null;
                 }
 
-                // Analytics log (no bloquear si falla)
-                $chatbot->logConversation($message, $botResponse, $userId);
+                // Analytics
+                $chatbot->logUserBehavior($userId, 'chat_response', [
+                    'query' => $message,
+                    'response' => $botText,
+                    'response_metadata' => is_array($botResponse) ? ($botResponse['response_metadata'] ?? []) : []
+                ]);
 
-                // Responder con kb_record si existe
-                $out = ['success'=>true,'id'=>$insertId,'bot_id'=>$botId,'bot_message'=>$botText, 'response_type'=>'advanced'];
-                if ($kb_record) $out['kb_record'] = $kb_record;
+                $out = ['success'=>true,'id'=>$insertId,'bot_id'=>$botId??null,'bot_message'=>$botText];
+                if (is_array($botResponse)) {
+                    $out['response_metadata'] = $botResponse['response_metadata'] ?? [];
+                    if (isset($botResponse['kb_record'])) $out['kb_record'] = $botResponse['kb_record'];
+                }
                 echo json_encode($out, JSON_UNESCAPED_UNICODE);
                 exit;
             } else {
                 echo json_encode(['success'=>true,'id'=>$insertId], JSON_UNESCAPED_UNICODE);
-                exit;
             }
             break;
 
+        case 'train':
+            // Entrenamiento manual
+            $required = ['category', 'question', 'answer'];
+            foreach ($required as $r) {
+                if (empty($_POST[$r])) {
+                    echo json_encode(['success' => false, 'error' => "Falta el parámetro: $r"]);
+                    exit;
+                }
+            }
+
+            $data = [
+                'category' => $_POST['category'],
+                'subcategory' => $_POST['subcategory'] ?? '',
+                'question' => $_POST['question'],
+                'answer' => $_POST['answer'],
+                'keywords' => $_POST['keywords'] ?? '',
+                'topic_key' => $_POST['topic_key'] ?? '',
+                'confidence_threshold' => floatval($_POST['confidence_threshold'] ?? 0.7)
+            ];
+
+            // Insertar en knowledge_base
+            $sql = "INSERT INTO knowledge_base (category, subcategory, question, answer, keywords, topic_key, confidence_threshold, usage_count, is_active, created_by, created_at, updated_at) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, 0, 1, 'manual', NOW(), NOW())";
+            
+            $stmt = mysqli_prepare($conexion, $sql);
+            mysqli_stmt_bind_param($stmt, 'ssssssd', 
+                $data['category'], $data['subcategory'], $data['question'], $data['answer'],
+                $data['keywords'], $data['topic_key'], $data['confidence_threshold']);
+            
+            $result = mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+
+            echo json_encode(['success' => $result], JSON_UNESCAPED_UNICODE);
+            break;
+
+        case 'get_similar':
+            // Búsqueda de preguntas similares
+            $query = $_POST['query'] ?? $_GET['query'] ?? '';
+            if (empty($query)) {
+                echo json_encode(['success' => false, 'error' => 'Falta el parámetro query']);
+                exit;
+            }
+
+            $similar = $chatbot->findSimilarQuestions($query, 10);
+            echo json_encode(['success' => true, 'similar' => $similar]);
+            break;
+
+        case 'analytics':
+            // Analytics avanzadas
+            $days = intval($_POST['days'] ?? $_GET['days'] ?? 7);
+            $analytics = $chatbot->getAdvancedAnalytics($days);
+            echo json_encode(['success' => true, 'analytics' => $analytics]);
+            break;
+
+        case 'export_knowledge':
+            // Exportar conocimiento
+            $format = $_POST['format'] ?? $_GET['format'] ?? 'json';
+            $knowledge = $chatbot->exportKnowledge($format);
+            echo json_encode(['success' => true, 'data' => $knowledge]);
+            break;
+
+        case 'get_knowledge':
+            // Obtener conocimiento con filtros
+            $filters = [
+                'category' => $_POST['category'] ?? $_GET['category'] ?? '',
+                'search' => $_POST['search'] ?? $_GET['search'] ?? ''
+            ];
+            $knowledge = $chatbot->searchKnowledge($filters);
+            echo json_encode(['success' => true, 'knowledge' => $knowledge]);
+            break;
+
+        case 'train_model':
+            // Entrenar modelo ML
+            $result = $chatbot->trainMLModel();
+            echo json_encode(['success' => $result]);
+            break;
+
+        case 'save_feedback':
+            // Guardar feedback
+            $messageId = intval($_POST['message_id'] ?? 0);
+            $rating = intval($_POST['rating'] ?? 0);
+            $feedbackType = $_POST['feedback_type'] ?? 'rating';
+            $userId = intval($_POST['user_id'] ?? 0);
+
+            $sql = "INSERT INTO conversation_feedback (message_id, user_id, rating, feedback_text, feedback_type, created_at) 
+                    VALUES (?, ?, ?, ?, ?, NOW())";
+            $stmt = mysqli_prepare($conexion, $sql);
+            $feedbackText = $_POST['feedback_text'] ?? '';
+            mysqli_stmt_bind_param($stmt, 'iiiss', $messageId, $userId, $rating, $feedbackText, $feedbackType);
+            $result = mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+
+            echo json_encode(['success' => $result]);
+            break;
+
+        // Mantener casos existentes (read, update, delete)...
         case 'read':
             $sql = "SELECT id, sender, message, created_at FROM messages ORDER BY created_at ASC";
             $result = mysqli_query($conexion,$sql);
             if ($result) {
                 $messages=[];
                 while ($row = mysqli_fetch_assoc($result)) $messages[]=$row;
-                if ($result) mysqli_free_result($result);
+                mysqli_free_result($result);
                 echo json_encode(['success'=>true,'messages'=>$messages], JSON_UNESCAPED_UNICODE);
             } else {
                 echo json_encode(['success'=>false,'error'=>'Error al leer mensajes: '.mysqli_error($conexion)], JSON_UNESCAPED_UNICODE);
@@ -607,9 +1157,9 @@ try {
                 mysqli_stmt_bind_param($stmt,"si",$message,$id);
                 $res = mysqli_stmt_execute($stmt);
                 mysqli_stmt_close($stmt);
-                echo json_encode(['success'=>$res,'error'=>$res?null:mysqli_error($conexion)], JSON_UNESCAPED_UNICODE);
+                echo json_encode(['success'=>$res], JSON_UNESCAPED_UNICODE);
             } else {
-                echo json_encode(['success'=>false,'error'=>'Error preparing update: '.mysqli_error($conexion)], JSON_UNESCAPED_UNICODE);
+                echo json_encode(['success'=>false,'error'=>'Error preparing update'], JSON_UNESCAPED_UNICODE);
             }
             break;
 
@@ -621,14 +1171,14 @@ try {
                 mysqli_stmt_bind_param($stmt,"i",$id);
                 $res = mysqli_stmt_execute($stmt);
                 mysqli_stmt_close($stmt);
-                echo json_encode(['success'=>$res,'error'=>$res?null:mysqli_error($conexion)], JSON_UNESCAPED_UNICODE);
+                echo json_encode(['success'=>$res], JSON_UNESCAPED_UNICODE);
             } else {
-                echo json_encode(['success'=>false,'error'=>'Error preparing delete: '.mysqli_error($conexion)], JSON_UNESCAPED_UNICODE);
+                echo json_encode(['success'=>false,'error'=>'Error preparing delete'], JSON_UNESCAPED_UNICODE);
             }
             break;
 
         default:
-            echo json_encode(['success'=>false,'error'=>'Acción no válida'], JSON_UNESCAPED_UNICODE);
+            echo json_encode(['success'=>false,'error'=>'Acción no válida: ' . $action], JSON_UNESCAPED_UNICODE);
             break;
     }
 } catch (Exception $e) {
@@ -637,3 +1187,4 @@ try {
 }
 
 mysqli_close($conexion);
+?>

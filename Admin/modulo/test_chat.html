@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Gemini Chatbot Corregido</title>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f9f9f9; }
+        .container { max-width: 600px; margin: auto; border: 1px solid #ccc; padding: 20px; border-radius: 8px; background-color: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #333; }
+        #response-box { margin-top: 20px; padding: 15px; background-color: #f4f4f4; border: 1px solid #ddd; border-radius: 4px; white-space: pre-wrap; min-height: 50px; font-family: 'Courier New', Courier, monospace; }
+        #message { width: 80%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        button { padding: 8px 15px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Prueba de Conexión Gemini (SEIN)</h2>
+        
+        <form id="chatForm">
+            <label for="message">Mensaje de Prueba:</label><br>
+            <input type="text" id="message" name="message" value="¿Qué es el consentimiento en salud sexual?" style="width: 80%;"><br><br>
+            
+            <button type="submit">Enviar a Chatbot PHP</button>
+        </form>
+
+        <div id="response-box">Esperando respuesta...</div>
+    </div>
+
+    <script>
+        document.getElementById('chatForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const message = document.getElementById('message').value;
+            const responseBox = document.getElementById('response-box');
+            responseBox.innerHTML = 'Enviando solicitud...';
+
+            // --- INICIO DE CORRECCIONES ---
+
+            // 1. Asegúrate de que el nombre del archivo (api_chatbot.php) sea correcto.
+            // 2. Añade "action: 'create'" al cuerpo (body) del JSON.
+            fetch('chatbot_api.php', { 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    action: 'create',  // <-- Esta es la corrección clave
+                    message: message 
+                }) 
+            })
+            // --- FIN DE CORRECCIONES ---
+            
+            .then(response => {
+                if (!response.ok) {
+                    // Si el servidor da un error 500 (error de PHP), esto lo captura.
+                    throw new Error(`Error HTTP ${response.status}: ${response.statusText}`);
+                }
+                return response.json(); 
+            })
+            .then(data => {
+                // Esta lógica de respuesta coincide con tu PHP
+                if (data.success === false) {
+                    responseBox.style.color = 'red';
+                    responseBox.innerHTML = `❌ **ERROR en PHP o MySQL:**\n ${data.error || 'Error desconocido'}`;
+                } else if (data.bot_message) { // El PHP corregido devuelve 'bot_message'
+                    responseBox.style.color = 'black';
+                    
+                    // Busca si la respuesta vino de la IA o de la Base de Datos
+                    const metadataSource = data.kb_record ? 'Base de Conocimiento (DB)' : 'Generación (IA/Fallback)';
+                    let successMsg = '';
+                    
+                    if (metadataSource.includes('Generación')) {
+                        successMsg = "✅ **¡Conexión Exitosa!** (Respuesta generada por IA/Fallback)\n";
+                    } else {
+                        successMsg = "✅ **¡Conexión Exitosa!** (Respuesta desde Base de Datos)\n";
+                    }
+
+                    responseBox.innerHTML = `
+                        ${successMsg}
+                        **🤖 Respuesta de SEIN:**\n
+                        ${data.bot_message}\n
+                        ---
+                        **Metadatos:**
+                        Fuente: ${metadataSource}
+                        ID Mensaje: ${data.id}
+                        ID Bot: ${data.bot_id}
+                    `;
+                    
+                } else {
+                    responseBox.style.color = 'red';
+                    responseBox.innerHTML = "❌ **Error Inesperado:** La respuesta no tiene el formato esperado (faltan 'success' o 'bot_message').";
+                }
+            })
+            .catch(error => {
+                responseBox.style.color = 'red';
+                // Este error ('Unexpected token <') es el que tenías si PHP falla.
+                responseBox.innerHTML = `❌ **Error de Conexión/JSON:** ${error.message}. \n\nAsegúrate de que Apache esté corriendo y no haya errores de sintaxis en el PHP (revisa error.log).`;
+            });
+        });
+    </script>
+</body>
+</html>

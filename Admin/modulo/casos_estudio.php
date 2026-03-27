@@ -1,11 +1,12 @@
+<?php 
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Casos de estudio — Con Recap</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  
+ 
   <style>
     :root {
       --primary-color: #f790cc;
@@ -16,23 +17,23 @@
       --transition: all 0.3s ease;
     }
 
-    body { 
-      background: var(--light-bg); 
+    body {
+      background: var(--light-bg);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-    
-    .card-step + .card-step { 
-      margin-top: .75rem; 
+   
+    .card-step + .card-step {
+      margin-top: .75rem;
     }
-    
-    .avatar-sm { 
-      width: 80px; 
-      height: 80px; 
-      object-fit: cover; 
-      border-radius: 50%; 
+   
+    .avatar-sm {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
       transition: var(--transition);
     }
-    
+   
     .avatar-sm:hover {
       transform: scale(1.05);
     }
@@ -40,6 +41,7 @@
     .case-card {
       transition: var(--transition);
       border: 1px solid #dee2e6;
+      background: #fff;
     }
 
     .case-card:hover {
@@ -175,7 +177,7 @@
         flex-wrap: wrap;
         gap: 0.5rem;
       }
-      
+     
       .btn-sm {
         font-size: 0.8rem;
         padding: 0.25rem 0.5rem;
@@ -190,20 +192,20 @@
         📚 Casos de Estudio
       </a>
       <div class="d-flex gap-2 align-items-center">
-        <button class="btn btn-outline-light btn-sm" 
-                data-bs-toggle="modal" 
+        <button class="btn btn-outline-light btn-sm"
+                data-bs-toggle="modal"
                 data-bs-target="#modalAddCase"
                 aria-label="Crear nuevo caso">
           ➕ Nuevo caso
         </button>
-        <button class="btn btn-outline-light btn-sm" 
-                data-bs-toggle="modal" 
+        <button class="btn btn-outline-light btn-sm"
+                data-bs-toggle="modal"
                 data-bs-target="#modalAddReward"
                 aria-label="Crear nueva recompensa">
           🎁 Recompensa
         </button>
-        <button class="btn btn-light btn-sm" 
-                id="btn-reset-data" 
+        <button class="btn btn-light btn-sm"
+                id="btn-reset-data"
                 title="Resetear datos"
                 aria-label="Resetear todos los datos">
           🔄 Reset
@@ -218,9 +220,9 @@
         <!-- Student Panel -->
         <div class="card mb-3 shadow-sm">
           <div class="card-body d-flex gap-3 align-items-center">
-            <img id="avatar-img" 
-                 class="avatar-sm" 
-                 src="https://placehold.co/80x80" 
+            <img id="avatar-img"
+                 class="avatar-sm"
+                 src="https://placehold.co/80x80"
                  alt="Avatar del estudiante"
                  loading="lazy"
                  onerror="this.onerror=null; this.src='https://placehold.co/80x80'">
@@ -238,8 +240,8 @@
               </div>
               <div class="mt-3">
                 <div class="progress" style="height:18px;" role="progressbar" aria-label="Progreso de puntos">
-                  <div id="barra-progreso" 
-                       class="progress-bar" 
+                  <div id="barra-progreso"
+                       class="progress-bar"
                        style="width:0%;"
                        aria-valuenow="0"
                        aria-valuemin="0"
@@ -254,18 +256,19 @@
             </div>
           </div>
           <div class="card-footer d-flex gap-2">
-            <button class="btn btn-sm btn-outline-primary" 
-                    id="btn-edit-student" 
-                    data-bs-toggle="modal" 
+            <button class="btn btn-sm btn-outline-primary"
+                    id="btn-edit-student"
+                    data-bs-toggle="modal"
                     data-bs-target="#modalEditStudent"
                     aria-label="Editar información del estudiante">
               ✏ Editar
             </button>
-            <button class="btn btn-sm btn-outline-danger" 
+            <button class="btn btn-sm btn-outline-danger"
                     id="btn-reset-points"
                     aria-label="Resetear puntos a cero">
               🔄 Reset puntos
             </button>
+            <button class="btn btn-sm btn-outline-secondary ms-auto" id="btn-export-choices" title="Exportar elecciones">⬇️ Exportar elecciones</button>
           </div>
         </div>
 
@@ -338,13 +341,13 @@
         </div>
         <div class="modal-body">
           <input type="hidden" id="case-id">
-          
+         
           <!-- Información básica del caso -->
           <div class="mb-4">
             <label for="case-title" class="form-label fw-bold">📝 Título del caso</label>
-            <input id="case-title" 
-                   required 
-                   class="form-control form-control-lg" 
+            <input id="case-title"
+                   required
+                   class="form-control form-control-lg"
                    placeholder="Ej: La Fiesta Inesperada"
                    maxlength="100">
             <div class="form-text">Un título atractivo y descriptivo para tu caso de estudio</div>
@@ -385,26 +388,26 @@
           <input type="hidden" id="reward-id">
           <div class="mb-3">
             <label for="reward-name" class="form-label">Nombre</label>
-            <input id="reward-name" 
-                   class="form-control" 
+            <input id="reward-name"
+                   class="form-control"
                    required
                    maxlength="50"
                    placeholder="Ej: Icono Corazón">
           </div>
           <div class="mb-3">
             <label for="reward-cost" class="form-label">Costo (puntos)</label>
-            <input id="reward-cost" 
-                   type="number" 
-                   min="1" 
+            <input id="reward-cost"
+                   type="number"
+                   min="1"
                    max="9999"
-                   class="form-control" 
+                   class="form-control"
                    required
                    placeholder="100">
           </div>
           <div class="mb-3">
             <label for="reward-img" class="form-label">URL de imagen (opcional)</label>
-            <input id="reward-img" 
-                   class="form-control" 
+            <input id="reward-img"
+                   class="form-control"
                    type="url"
                    placeholder="https://ejemplo.com/imagen.jpg">
             <div class="form-text">
@@ -431,15 +434,15 @@
         <div class="modal-body">
           <div class="mb-3">
             <label for="student-name-input" class="form-label">Nombre</label>
-            <input id="student-name-input" 
-                   class="form-control" 
+            <input id="student-name-input"
+                   class="form-control"
                    required
                    maxlength="50"
                    placeholder="Nombre del estudiante">
           </div>
           <div class="mb-3">
             <label for="student-email-input" class="form-label">Email (opcional)</label>
-            <input id="student-email-input" 
+            <input id="student-email-input"
                    type="email"
                    class="form-control"
                    maxlength="100"
@@ -447,18 +450,18 @@
           </div>
           <div class="mb-3">
             <label for="student-avatar-input" class="form-label">URL del avatar</label>
-            <input id="student-avatar-input" 
+            <input id="student-avatar-input"
                    type="url"
-                   class="form-control" 
+                   class="form-control"
                    placeholder="https://ejemplo.com/avatar.jpg">
           </div>
           <div class="mb-3">
             <label for="student-meta-input" class="form-label">Meta de puntos</label>
-            <input id="student-meta-input" 
-                   type="number" 
-                   min="10" 
+            <input id="student-meta-input"
+                   type="number"
+                   min="10"
                    max="99999"
-                   class="form-control" 
+                   class="form-control"
                    value="100"
                    required>
             <div class="form-text">
@@ -475,8 +478,29 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- PHP snippet para controlar visibilidad de puntos en casos -->
+  <?php if ($rol == 1 || $rol == 3) { ?>
+    <script>
+      const SHOW_CASE_POINTS_DURING = true;
+      const SHOW_CASE_POINTS_RECAP = true;
+    </script>
+  <?php } elseif ($rol == 2) { ?>
+    <script>
+      // Rol 2: no ve puntos durante la interacción, pero sí en el recap
+      const SHOW_CASE_POINTS_DURING = false;
+      const SHOW_CASE_POINTS_RECAP = true;
+    </script>
+  <?php } else { ?>
+    <script>
+      // Otros roles: no ven puntos por defecto
+      const SHOW_CASE_POINTS_DURING = false;
+      const SHOW_CASE_POINTS_RECAP = false;
+    </script>
+  <?php } ?>
+
   <script>
-    // ==================== CONFIGURACIÓN Y CONSTANTES ====================
+    // Constants and Configuration
     const CONFIG = {
       DEFAULT_META: 100,
       NOTIFICATION_DURATION: 3000,
@@ -484,132 +508,12 @@
       DEFAULT_REWARD_IMG: 'https://placehold.co/150x150',
       MIN_STEPS: 2,
       MAX_STEPS: 5,
-      MAX_OPTIONS: 4,
-      API_BASE_URL: 'http://localhost/EducaSex/Admin/api/'
+      MAX_OPTIONS: 4
     };
 
-    // ==================== SISTEMA DE API ====================
-    const DatabaseAPI = {
-      async request(endpoint, options = {}) {
-        const url = CONFIG.API_BASE_URL + endpoint;
-        try {
-          console.log('Making API request to:', url); // Debug log
-          
-          const response = await fetch(url, {
-            headers: {
-              'Content-Type': 'application/json',
-              ...options.headers
-            },
-            ...options
-          });
-          
-          if (!response.ok) {
-            throw new Error(`HTTP Error ${response.status}: ${response.statusText}`);
-          }
-          
-          const contentType = response.headers.get('content-type');
-          if (!contentType || !contentType.includes('application/json')) {
-            const text = await response.text();
-            console.error('Respuesta no es JSON:', text);
-            throw new Error('La respuesta del servidor no es JSON válido');
-          }
-          
-          return await response.json();
-        } catch (error) {
-          console.error('API request failed:', error);
-          console.error('URL:', url);
-          throw error;
-        }
-      },
-
-      // Estudiantes
-      async getStudent() {
-        return this.request('get_student.php');
-      },
-
-      async saveStudent(studentData) {
-        return this.request('save_student.php', {
-          method: 'POST',
-          body: JSON.stringify(studentData)
-        });
-      },
-
-      // Casos
-      async getCases() {
-        return this.request('get_cases.php');
-      },
-
-      async saveCase(caseData) {
-        const dataToSend = {
-          title: caseData.title,
-          steps: caseData.steps,
-          categoria: 'educacion_sexual',
-          dificultad: 'media',
-          creado_por: 1
-        };
-        
-        // Solo incluir ID si es numérico (para actualización)
-        if (caseData.id && !isNaN(caseData.id)) {
-          dataToSend.id = parseInt(caseData.id);
-        }
-        
-        return this.request('save_case.php', {
-          method: 'POST',
-          body: JSON.stringify(dataToSend)
-        });
-      },
-
-      async deleteCase(caseId) {
-        return this.request('delete_case.php', {
-          method: 'POST',
-          body: JSON.stringify({ id: caseId })
-        });
-      },
-
-      // Recompensas
-      async getRewards() {
-        return this.request('get_rewards.php');
-      },
-
-      async saveReward(rewardData) {
-        return this.request('save_rewards.php', {
-          method: 'POST',
-          body: JSON.stringify(rewardData)
-        });
-      },
-
-      async deleteReward(rewardId) {
-        return this.request('delete_reward.php', {
-          method: 'POST',
-          body: JSON.stringify({ id: rewardId })
-        });
-      },
-
-      // Progreso
-      async getProgress() {
-        return this.request('get_progress.php');
-      },
-
-      async saveProgress(progressData) {
-        return this.request('save_progress.php', {
-          method: 'POST',
-          body: JSON.stringify(progressData)
-        });
-      },
-
-      // Decisiones
-      async saveDecision(decisionData) {
-        return this.request('save_decision.php', {
-          method: 'POST',
-          body: JSON.stringify(decisionData)
-        });
-      }
-    };
-
-    // ==================== ALMACENAMIENTO EN MEMORIA ====================
+    // In-memory storage (replacing localStorage)
     const AppData = {
       student: {
-        id: null,
         name: 'Nombre',
         email: '',
         avatar: CONFIG.DEFAULT_AVATAR,
@@ -622,10 +526,10 @@
       caseChoices: {}
     };
 
-    // ==================== FUNCIONES UTILITARIAS ====================
+    // Utility Functions
     const Utils = {
       uid: (prefix = 'id') => `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
-      
+     
       parseOptionInput: (text) => {
         const parts = text.split('|').map(s => s.trim());
         return {
@@ -633,7 +537,7 @@
           puntos: Math.max(0, parseInt(parts[1] || '0', 10) || 0)
         };
       },
-      
+     
       escapeHtml: (str = '') => {
         return String(str)
           .replaceAll('&', '&amp;')
@@ -642,7 +546,7 @@
           .replaceAll('"', '&quot;')
           .replaceAll("'", '&#39;');
       },
-      
+     
       debounce: (func, delay) => {
         let timeoutId;
         return (...args) => {
@@ -652,7 +556,7 @@
       }
     };
 
-    // ==================== SISTEMA DE NOTIFICACIONES ====================
+    // Notification System
     const NotificationSystem = {
       show: (message, type = 'info', duration = CONFIG.NOTIFICATION_DURATION) => {
         const container = document.getElementById('notification-container');
@@ -663,9 +567,9 @@
           ${message}
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         `;
-        
+       
         container.appendChild(notification);
-        
+       
         setTimeout(() => {
           if (notification.parentNode) {
             notification.remove();
@@ -674,11 +578,12 @@
       }
     };
 
-    // ==================== SISTEMA DE MODALES ====================
+    // Modal Management System
     const ModalManager = {
       instances: {},
-      
+     
       init() {
+        // Initialize all modals
         const modalElements = document.querySelectorAll('.modal');
         modalElements.forEach(modalEl => {
           this.instances[modalEl.id] = new bootstrap.Modal(modalEl, {
@@ -687,6 +592,7 @@
           });
         });
 
+        // Add event listeners for close buttons
         document.addEventListener('click', (e) => {
           if (e.target.matches('[data-bs-dismiss="modal"]')) {
             const modal = e.target.closest('.modal');
@@ -710,7 +616,7 @@
       }
     };
 
-    // ==================== CONSTRUCTOR DE CASOS ====================
+    // Case Builder System (unchanged)
     const CaseBuilder = {
       currentStepCount: 2,
 
@@ -740,25 +646,25 @@
         stepDiv.innerHTML = `
           <div class="step-header d-flex justify-content-between align-items-center">
             <span>📍 Paso ${stepNumber}</span>
-            ${stepNumber > CONFIG.MIN_STEPS ? 
+            ${stepNumber > CONFIG.MIN_STEPS ?
               `<button type="button" class="btn btn-sm btn-outline-light remove-step-btn" data-step="${stepNumber}">
                 ✕ Eliminar
-              </button>` : 
+              </button>` :
               ''
             }
           </div>
           <div class="step-content">
             <div class="mb-3">
               <label class="form-label fw-bold">Descripción del escenario</label>
-              <textarea class="form-control step-desc" 
-                        rows="3" 
-                        placeholder="Describe la situación que enfrentará el estudiante..." 
+              <textarea class="form-control step-desc"
+                        rows="3"
+                        placeholder="Describe la situación que enfrentará el estudiante..."
                         required
                         maxlength="500"
                         data-step="${stepNumber}"></textarea>
               <div class="form-text">Máximo 500 caracteres</div>
             </div>
-            
+           
             <div class="mb-3">
               <label class="form-label fw-bold">Opciones de decisión</label>
               <div class="options-container" data-step="${stepNumber}">
@@ -772,6 +678,8 @@
         `;
 
         container.appendChild(stepDiv);
+
+        // Add event listeners
         this.addStepEventListeners(stepDiv, stepNumber);
       },
 
@@ -782,17 +690,17 @@
           html += `
             <div class="input-group option-input mb-2" data-option="${optionIndex}">
               <span class="input-group-text">Opción ${optionIndex}</span>
-              <input type="text" 
-                     class="form-control option-text" 
-                     placeholder="Texto de la opción|puntos" 
+              <input type="text"
+                     class="form-control option-text"
+                     placeholder="Texto de la opción|puntos"
                      required
                      maxlength="150"
                      data-step="${stepNumber}"
                      data-option="${optionIndex}">
-              ${optionIndex > 3 ? 
+              ${optionIndex > 3 ?
                 `<button type="button" class="btn btn-outline-danger remove-option-btn" data-step="${stepNumber}" data-option="${optionIndex}">
                   ✕
-                </button>` : 
+                </button>` :
                 ''
               }
             </div>
@@ -802,6 +710,7 @@
       },
 
       addStepEventListeners(stepDiv, stepNumber) {
+        // Remove step button
         const removeStepBtn = stepDiv.querySelector('.remove-step-btn');
         if (removeStepBtn) {
           removeStepBtn.addEventListener('click', () => {
@@ -809,6 +718,7 @@
           });
         }
 
+        // Add option button
         const addOptionBtn = stepDiv.querySelector('.add-option-btn');
         if (addOptionBtn) {
           addOptionBtn.addEventListener('click', () => {
@@ -816,6 +726,7 @@
           });
         }
 
+        // Remove option buttons
         stepDiv.querySelectorAll('.remove-option-btn').forEach(btn => {
           btn.addEventListener('click', (e) => {
             const optionNumber = parseInt(e.currentTarget.dataset.option, 10);
@@ -848,30 +759,31 @@
         const optionsContainer = document.querySelector(`.options-container[data-step="${stepNumber}"]`);
         if (!optionsContainer) return;
         const currentOptions = optionsContainer.querySelectorAll('.option-input').length;
-        
+       
         if (currentOptions < CONFIG.MAX_OPTIONS) {
           const newOptionIndex = currentOptions + 1;
           const newOptionHtml = `
             <div class="input-group option-input mb-2" data-option="${newOptionIndex}">
               <span class="input-group-text">Opción ${newOptionIndex}</span>
-              <input type="text" 
-                     class="form-control option-text" 
-                     placeholder="Texto de la opción|puntos" 
+              <input type="text"
+                     class="form-control option-text"
+                     placeholder="Texto de la opción|puntos"
                      required
                      maxlength="150"
                      data-step="${stepNumber}"
                      data-option="${newOptionIndex}">
-              ${newOptionIndex > 3 ? 
+              ${newOptionIndex > 3 ?
                 `<button type="button" class="btn btn-outline-danger remove-option-btn" data-step="${stepNumber}" data-option="${newOptionIndex}">
                   ✕
-                </button>` : 
+                </button>` :
                 ''
               }
             </div>
           `;
-          
+         
           optionsContainer.insertAdjacentHTML('beforeend', newOptionHtml);
-          
+         
+          // Add event listener to new remove button if present
           const newRemoveBtn = optionsContainer.querySelector(`.remove-option-btn[data-option="${newOptionIndex}"]`);
           if (newRemoveBtn) {
             newRemoveBtn.addEventListener('click', (e) => {
@@ -879,7 +791,7 @@
               this.removeOption(stepNumber, optionNumber);
             });
           }
-          
+         
           NotificationSystem.show('✅ Opción agregada', 'success');
         } else {
           NotificationSystem.show(`⚠ Máximo ${CONFIG.MAX_OPTIONS} opciones por paso`, 'warning');
@@ -890,7 +802,7 @@
         const optionsContainer = document.querySelector(`.options-container[data-step="${stepNumber}"]`);
         if (!optionsContainer) return;
         const currentOptions = optionsContainer.querySelectorAll('.option-input').length;
-        
+       
         if (currentOptions > 3) {
           const optionToRemove = optionsContainer.querySelector(`.option-input[data-option="${optionNumber}"]`);
           if (optionToRemove) optionToRemove.remove();
@@ -905,7 +817,7 @@
         const optionsContainer = document.querySelector(`.options-container[data-step="${stepNumber}"]`);
         if (!optionsContainer) return;
         const options = optionsContainer.querySelectorAll('.option-input');
-        
+       
         options.forEach((option, index) => {
           const newNumber = index + 1;
           option.dataset.option = newNumber;
@@ -913,7 +825,7 @@
           if (label) label.textContent = `Opción ${newNumber}`;
           const input = option.querySelector('.option-text');
           if (input) input.dataset.option = newNumber;
-          
+         
           const removeBtn = option.querySelector('.remove-option-btn');
           if (removeBtn) {
             removeBtn.dataset.option = newNumber;
@@ -939,7 +851,7 @@
         for (let i = 1; i <= this.currentStepCount; i++) {
           const descTextarea = document.querySelector(`.step-desc[data-step="${i}"]`);
           const optionInputs = document.querySelectorAll(`.option-text[data-step="${i}"]`);
-          
+         
           if (!descTextarea || !descTextarea.value.trim()) {
             throw new Error(`La descripción del paso ${i} es obligatoria`);
           }
@@ -966,40 +878,46 @@
 
       loadCaseData(caseData) {
         document.getElementById('case-title').value = caseData.title || '';
-        
+       
+        // Set step count to match loaded data
         this.currentStepCount = Math.max(CONFIG.MIN_STEPS, caseData.steps?.length || CONFIG.MIN_STEPS);
         this.renderSteps();
 
+        // Fill in the data
         if (caseData.steps) {
           caseData.steps.forEach((step, stepIndex) => {
             const stepNumber = stepIndex + 1;
-            
+           
+            // Fill description
             const descTextarea = document.querySelector(`.step-desc[data-step="${stepNumber}"]`);
             if (descTextarea) {
               descTextarea.value = step.desc || '';
             }
 
+            // Fill options
             const optionsContainer = document.querySelector(`.options-container[data-step="${stepNumber}"]`);
             if (optionsContainer && step.options) {
+              // Clear existing options
               optionsContainer.innerHTML = '';
-              
+             
+              // Add options from data
               step.options.forEach((option, optionIndex) => {
                 const optionNumber = optionIndex + 1;
                 const optionHtml = `
                   <div class="input-group option-input mb-2" data-option="${optionNumber}">
                     <span class="input-group-text">Opción ${optionNumber}</span>
-                    <input type="text" 
-                           class="form-control option-text" 
-                           placeholder="Texto de la opción|puntos" 
+                    <input type="text"
+                           class="form-control option-text"
+                           placeholder="Texto de la opción|puntos"
                            required
                            maxlength="150"
                            data-step="${stepNumber}"
                            data-option="${optionNumber}"
                            value="${Utils.escapeHtml(option.text)}|${option.puntos}">
-                    ${optionIndex >= 3 ? 
+                    ${optionIndex >= 3 ?
                       `<button type="button" class="btn btn-outline-danger remove-option-btn" data-step="${stepNumber}" data-option="${optionNumber}">
                         ✕
-                      </button>` : 
+                      </button>` :
                       ''
                     }
                   </div>
@@ -1007,6 +925,7 @@
                 optionsContainer.insertAdjacentHTML('beforeend', optionHtml);
               });
 
+              // Add event listeners to remove buttons
               optionsContainer.querySelectorAll('.remove-option-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                   const optionNumber = parseInt(e.currentTarget.dataset.option, 10);
@@ -1025,100 +944,54 @@
       }
     };
 
-    // ==================== ESTADO DE LA APLICACIÓN ====================
+    // Application State
     class AppState {
       constructor() {
-        this.initialized = false;
-      }
-
-      async initialize() {
-        if (this.initialized) return;
-        
-        try {
-          await this.loadPersistedData();
-          this.initialized = true;
-        } catch (error) {
-          console.error('Error initializing app:', error);
-          this.initializeDefaultData();
-        }
+        this.initializeDefaultData();
+        this.loadPersistedData();
       }
 
       initializeDefaultData() {
         if (AppData.cases.length === 0) {
           AppData.cases = this.getDefaultCases();
         }
-        
+       
         if (AppData.rewards.length === 0) {
           AppData.rewards = this.getDefaultRewards();
         }
       }
 
-      async loadPersistedData() {
+      loadPersistedData() {
         try {
-          // Cargar casos desde la base de datos
-          const casesData = await DatabaseAPI.getCases();
-          if (casesData && casesData.length > 0) {
-            AppData.cases = casesData;
-          }
-
-          // Cargar recompensas
-          const rewardsData = await DatabaseAPI.getRewards();
-          if (rewardsData && rewardsData.length > 0) {
-            AppData.rewards = rewardsData;
-          }
-
-          // Cargar progreso
-          const progressData = await DatabaseAPI.getProgress();
-          if (progressData) {
-            AppData.caseProgress = progressData.progress || {};
-            AppData.caseChoices = progressData.choices || {};
-          }
-        } catch (error) {
-          console.error('Error loading data from database:', error);
-          // Fallback a localStorage para progreso
-          this.loadFromLocalStorage();
-        }
-      }
-
-      loadFromLocalStorage() {
-        try {
+          // Load student data
           const studentData = localStorage.getItem('studentData');
           if (studentData) {
             AppData.student = JSON.parse(studentData);
           }
 
+          // Load cases
           const casesData = localStorage.getItem('casesData');
           if (casesData) {
             AppData.cases = JSON.parse(casesData);
           }
 
+          // Load rewards
           const rewardsData = localStorage.getItem('rewardsData');
           if (rewardsData) {
             AppData.rewards = JSON.parse(rewardsData);
           }
 
+          // Load progress & choices (optional)
           const progressData = localStorage.getItem('caseProgress');
           if (progressData) AppData.caseProgress = JSON.parse(progressData);
           const choicesData = localStorage.getItem('caseChoices');
           if (choicesData) AppData.caseChoices = JSON.parse(choicesData);
         } catch (error) {
-          console.error('Error loading from localStorage:', error);
+          console.error('Error loading data from localStorage:', error);
         }
       }
 
-      async saveDataToStorage() {
-        try {
-          await DatabaseAPI.saveProgress({
-            progress: AppData.caseProgress,
-            choices: AppData.caseChoices
-          });
-        } catch (error) {
-          console.error('Error saving to database, falling back to localStorage:', error);
-          this.saveToLocalStorage();
-        }
-      }
-
-      saveToLocalStorage() {
+      saveDataToStorage() {
         try {
           localStorage.setItem('studentData', JSON.stringify(AppData.student));
           localStorage.setItem('casesData', JSON.stringify(AppData.cases));
@@ -1126,29 +999,29 @@
           localStorage.setItem('caseProgress', JSON.stringify(AppData.caseProgress));
           localStorage.setItem('caseChoices', JSON.stringify(AppData.caseChoices));
         } catch (error) {
-          console.error('Error saving to localStorage:', error);
+          console.error('Error saving data to localStorage:', error);
         }
       }
 
       getDefaultRewards() {
         return [
-          { 
-            id: Utils.uid('r'), 
-            name: '🎖 Icono Corazón', 
-            cost: 100, 
-            img: CONFIG.DEFAULT_REWARD_IMG 
+          {
+            id: Utils.uid('r'),
+            name: '🎖 Icono Corazón',
+            cost: 100,
+            img: CONFIG.DEFAULT_REWARD_IMG
           },
-          { 
-            id: Utils.uid('r'), 
-            name: '🎩 Sombrero Divertido', 
-            cost: 200, 
-            img: CONFIG.DEFAULT_REWARD_IMG 
+          {
+            id: Utils.uid('r'),
+            name: '🎩 Sombrero Divertido',
+            cost: 200,
+            img: CONFIG.DEFAULT_REWARD_IMG
           },
-          { 
-            id: Utils.uid('r'), 
-            name: '🕶 Gafas Cool', 
-            cost: 300, 
-            img: CONFIG.DEFAULT_REWARD_IMG 
+          {
+            id: Utils.uid('r'),
+            name: '🕶 Gafas Cool',
+            cost: 300,
+            img: CONFIG.DEFAULT_REWARD_IMG
           }
         ];
       }
@@ -1156,7 +1029,7 @@
       getDefaultCases() {
         return [
           {
-            id: null, // La base de datos asignará el ID
+            id: Utils.uid('c'),
             title: 'La Fiesta Inesperada',
             steps: [
               {
@@ -1176,10 +1049,55 @@
                 ]
               }
             ]
+          },
+          {
+            id: Utils.uid('c'),
+            title: 'La Conversación Difícil',
+            steps: [
+              {
+                desc: 'Carla quiere hablar con su pareja sobre métodos anticonceptivos pero se siente nerviosa.',
+                options: [
+                  { text: 'Preparar información y traer datos confiables', puntos: 20 },
+                  { text: 'Mencionarlo de forma casual en una conversación', puntos: 10 },
+                  { text: 'Evitar el tema por temor a la reacción', puntos: 5 }
+                ]
+              },
+              {
+                desc: 'Según cómo lo plantee, la pareja puede reaccionar distinto. Elige el siguiente paso.',
+                options: [
+                  { text: 'Pedir apoyo profesional (enfermería/psicología) juntos', puntos: 25 },
+                  { text: 'Buscar más información por separado y luego conversar', puntos: 10 },
+                  { text: 'Dejarlo temporalmente por miedo', puntos: 5 }
+                ]
+              }
+            ]
+          },
+          {
+            id: Utils.uid('c'),
+            title: 'Presión en Redes Sociales',
+            steps: [
+              {
+                desc: 'Alguien intenta presionarte para que compartas fotos íntimas o participes en un reto sexual en redes.',
+                options: [
+                  { text: 'No participar y guardar evidencia (capturas)', puntos: 20 },
+                  { text: 'Ceder por miedo a perder amistades', puntos: 5 },
+                  { text: 'Hablar con un adulto o persona de confianza sobre lo ocurrido', puntos: 15 }
+                ]
+              },
+              {
+                desc: 'Después de la presión, decide cómo proteger tu privacidad y seguridad.',
+                options: [
+                  { text: 'Bloquear, denunciar la cuenta y guardar pruebas', puntos: 20 },
+                  { text: 'Cambiar la configuración de privacidad y revisar contactos', puntos: 10 },
+                  { text: 'Eliminar la publicación pero no informar ni cambiar privacidad', puntos: 5 }
+                ]
+              }
+            ]
           }
         ];
       }
 
+      // Points management
       getPointsNumber() {
         const el = document.getElementById('puntos-total');
         return parseInt((el.textContent || '0').replace(/\D/g, ''), 10) || 0;
@@ -1188,18 +1106,20 @@
       setPointsNumber(n) {
         const el = document.getElementById('puntos-total');
         el.textContent = `${n} pts`;
-        
+       
         const meta = Number(document.getElementById('meta-puntos').textContent) || CONFIG.DEFAULT_META;
         const porcentaje = Math.round(Math.min(100, (n / meta) * 100));
-        
+       
         const barra = document.getElementById('barra-progreso');
         barra.style.width = `${porcentaje}%`;
         barra.textContent = `${porcentaje}%`;
         barra.setAttribute('aria-valuenow', porcentaje.toString());
-        
+       
+        this.saveDataToStorage();
         AppData.student.puntos = n;
       }
 
+      // Render methods
       renderStudentPanel() {
         document.getElementById('student-name').textContent = AppData.student.name;
         document.getElementById('student-email').textContent = AppData.student.email || '';
@@ -1215,7 +1135,7 @@
       renderCases() {
         const container = document.getElementById('casos');
         container.innerHTML = '';
-        
+       
         if (AppData.cases.length === 0) {
           container.innerHTML = `
             <div class="col">
@@ -1231,13 +1151,14 @@
           const currentStepIndex = AppData.caseProgress[caso.id] ?? 0;
           const step = caso.steps[currentStepIndex] || caso.steps[caso.steps.length - 1];
           const choices = AppData.caseChoices[caso.id] || [];
-          const isCompleted = currentStepIndex >= caso.steps.length - 1 && 
-                            choices.length === caso.steps.length && 
+          const isCompleted = currentStepIndex >= caso.steps.length - 1 &&
+                            choices.length === caso.steps.length &&
                             choices.every(choice => choice !== undefined);
-          
+         
           const col = document.createElement('div');
           col.className = 'col';
-          
+         
+          // Create step indicators HTML
           let stepIndicators = '';
           caso.steps.forEach((_, idx) => {
             let dotClass = 'step-dot';
@@ -1246,15 +1167,21 @@
             stepIndicators += `<div class="${dotClass}" title="Paso ${idx + 1}"></div>`;
           });
 
+          // Build options HTML
           const optionsHtml = (step.options || []).map((opt, idx) => {
+            // use SHOW_CASE_POINTS_DURING for during-interaction visibility
+            const puntosHtml = (typeof SHOW_CASE_POINTS_DURING !== 'undefined' && SHOW_CASE_POINTS_DURING) ?
+              `<span class="badge bg-primary">${opt.puntos} pts</span>` :
+              `<span class="badge bg-secondary">🔒</span>`;
+
             return `
-              <button class="list-group-item list-group-item-action case-choice d-flex justify-content-between align-items-center" 
-                      data-cid="${caso.id}" 
-                      data-step="${currentStepIndex}" 
+              <button class="list-group-item list-group-item-action case-choice d-flex justify-content-between align-items-center"
+                      data-cid="${caso.id}"
+                      data-step="${currentStepIndex}"
                       data-idx="${idx}"
                       ${isCompleted ? 'disabled' : ''}>
                 <span>${Utils.escapeHtml(opt.text)}</span>
-                <span class="badge bg-primary">${opt.puntos} pts</span>
+                ${puntosHtml}
               </button>
             `;
           }).join('');
@@ -1267,12 +1194,12 @@
                   ${isCompleted ? '<span class="badge bg-success ms-2">✅ Completado</span>' : ''}
                 </div>
                 <div class="d-flex gap-1">
-                  <button class="btn btn-sm btn-outline-secondary btn-edit-case" 
+                  <button class="btn btn-sm btn-outline-secondary btn-edit-case"
                           data-id="${caso.id}"
                           title="Editar caso">
                     ✏
                   </button>
-                  <button class="btn btn-sm btn-outline-danger btn-delete-case" 
+                  <button class="btn btn-sm btn-outline-danger btn-delete-case"
                           data-id="${caso.id}"
                           title="Eliminar caso">
                     🗑
@@ -1297,6 +1224,7 @@
           `;
           container.appendChild(col);
         });
+        this.saveDataToStorage();
       }
 
       renderRewards() {
@@ -1316,17 +1244,17 @@
         AppData.rewards.forEach(r => {
           const card = document.createElement('div');
           card.className = 'reward-card d-flex align-items-center gap-2 p-3 border rounded bg-white mb-2';
-          
+         
           const canClaim = pts >= (r.cost || 0);
           const imgSrc = r.img && r.img.trim() ? r.img : CONFIG.DEFAULT_REWARD_IMG;
-          
+         
           const needText = !canClaim ? `<br><small class="text-danger">Necesitas ${ (r.cost || 0) - pts } pts más</small>` : '';
 
           card.innerHTML = `
-            <img src="${Utils.escapeHtml(imgSrc)}" 
-                 alt="${Utils.escapeHtml(r.name)}" 
-                 width="60" 
-                 height="60" 
+            <img src="${Utils.escapeHtml(imgSrc)}"
+                 alt="${Utils.escapeHtml(r.name)}"
+                 width="60"
+                 height="60"
                  style="object-fit:cover;border-radius:8px;"
                  loading="lazy"
                  onerror="this.src='${CONFIG.DEFAULT_REWARD_IMG}'">
@@ -1338,18 +1266,18 @@
                   ${needText}
                 </div>
                 <div class="d-flex gap-1 flex-wrap">
-                  <button class="btn btn-sm ${canClaim ? 'btn-success' : 'btn-outline-secondary'} btn-claim-reward" 
-                          data-id="${r.id}" 
+                  <button class="btn btn-sm ${canClaim ? 'btn-success' : 'btn-outline-secondary'} btn-claim-reward"
+                          data-id="${r.id}"
                           ${!canClaim ? 'disabled' : ''}
                           title="${canClaim ? 'Reclamar recompensa' : 'No tienes suficientes puntos'}">
                     ${canClaim ? '🎁' : '🔒'}
                   </button>
-                  <button class="btn btn-sm btn-outline-primary btn-edit-reward" 
+                  <button class="btn btn-sm btn-outline-primary btn-edit-reward"
                           data-id="${r.id}"
                           title="Editar recompensa">
                     ✏
                   </button>
-                  <button class="btn btn-sm btn-outline-danger btn-delete-reward" 
+                  <button class="btn btn-sm btn-outline-danger btn-delete-reward"
                           data-id="${r.id}"
                           title="Eliminar recompensa">
                     🗑
@@ -1360,16 +1288,68 @@
           `;
           list.appendChild(card);
         });
+        this.saveDataToStorage();
       }
 
-      async handleCaseChoice(caseId, stepIndex, optionIndex) {
+      // Export choices to local JSON file
+      exportChoices() {
+        const exportData = {
+          exportedAt: new Date().toISOString(),
+          student: {
+            name: AppData.student.name,
+            email: AppData.student.email
+          },
+          cases: []
+        };
+
+        AppData.cases.forEach(caso => {
+          const choices = AppData.caseChoices[caso.id] || [];
+          const caseExport = {
+            id: caso.id,
+            title: caso.title,
+            steps: []
+          };
+
+          caso.steps.forEach((step, idx) => {
+            const chosenIdx = choices[idx];
+            const chosen = (typeof chosenIdx === 'number') ? step.options[chosenIdx] : null;
+            caseExport.steps.push({
+              stepIndex: idx + 1,
+              desc: step.desc,
+              chosen: chosen ? {
+                text: chosen.text,
+                // include puntos only if recap visibility is true
+                puntos: (typeof SHOW_CASE_POINTS_RECAP !== 'undefined' && SHOW_CASE_POINTS_RECAP) ? chosen.puntos : null
+              } : null
+            });
+          });
+
+          exportData.cases.push(caseExport);
+        });
+
+        const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        const filename = `choices_export_${(new Date()).toISOString().slice(0,19).replace(/[:T]/g,'-')}.json`;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+
+        NotificationSystem.show('⬇️ Exportación descargada localmente', 'info');
+      }
+
+      // Case management
+      handleCaseChoice(caseId, stepIndex, optionIndex) {
         const caso = AppData.cases.find(c => c.id === caseId);
         if (!caso) return;
 
         const option = caso.steps[stepIndex]?.options[optionIndex];
         if (!option) return;
 
-        // Add points
+        // Add points (always added internally)
         const newPts = this.getPointsNumber() + (option.puntos || 0);
         this.setPointsNumber(newPts);
 
@@ -1379,31 +1359,27 @@
         }
         AppData.caseChoices[caseId][stepIndex] = optionIndex;
 
-        // Save to database
-        try {
-          await DatabaseAPI.saveDecision({
-            caseId,
-            stepIndex,
-            optionIndex,
-            puntos: option.puntos
-          });
-        } catch (error) {
-          console.error('Error saving decision:', error);
+        // Show notification (hide numeric if not allowed during interaction)
+        if (typeof SHOW_CASE_POINTS_DURING !== 'undefined' && SHOW_CASE_POINTS_DURING) {
+          NotificationSystem.show(`✨ ¡Ganaste ${option.puntos} puntos! Decisión: "${Utils.escapeHtml(option.text)}"`, 'success');
+        } else {
+          NotificationSystem.show(`✨ ¡Ganaste puntos! Decisión registrada.`, 'success');
         }
 
-        NotificationSystem.show(`✨ ¡Ganaste ${option.puntos} puntos! Decisión: "${Utils.escapeHtml(option.text)}"`, 'success');
-
         const lastStepIndex = caso.steps.length - 1;
-        
+       
+        // Check if it's the last step
         if (stepIndex >= lastStepIndex) {
+          // Mark as completed and show recap
           AppData.caseProgress[caseId] = lastStepIndex;
+          // small delay to let UI update
           setTimeout(() => this.showRecapForCase(caseId), 500);
         } else {
+          // Advance to next step
           const nextIndex = stepIndex + 1;
           AppData.caseProgress[caseId] = nextIndex;
         }
 
-        await this.saveDataToStorage();
         this.renderCases();
       }
 
@@ -1415,51 +1391,58 @@
         const content = document.getElementById('recap-content');
         content.innerHTML = '';
 
+        // Decision summary
         const summaryDiv = document.createElement('div');
         summaryDiv.innerHTML = '<h5>📋 Decisiones tomadas</h5>';
-        
+       
         const list = document.createElement('ol');
         list.className = 'list-group list-group-numbered';
-        
+       
         let totalPoints = 0;
-        
+        let hasLowScores = false;
+       
         c.steps.forEach((step, stepIndex) => {
           const chosenIdx = choices[stepIndex];
           const chosen = typeof chosenIdx === 'number' ? step.options[chosenIdx] : null;
-          
+         
           const li = document.createElement('li');
           li.className = 'list-group-item';
-          
+         
+          if (chosen && chosen.puntos < 10) {
+            hasLowScores = true;
+          }
+         
           li.innerHTML = `
             <strong>${Utils.escapeHtml(step.desc)}</strong><br>
-            <em>Tu elección:</em> ${chosen ? 
-              `${Utils.escapeHtml(chosen.text)} <span class="badge bg-primary">${chosen.puntos} pts</span>` : 
+            <em>Tu elección:</em> ${chosen ?
+              `${Utils.escapeHtml(chosen.text)} ${ (typeof SHOW_CASE_POINTS_RECAP !== 'undefined' && SHOW_CASE_POINTS_RECAP) ? `<span class="badge bg-primary">${chosen.puntos} pts</span>` : '<span class="badge bg-secondary">🔒</span>' }` :
               '<span class="text-muted">❌ No seleccionaste</span>'
             }
           `;
-          
+         
           list.appendChild(li);
-          
+         
           if (chosen) {
             totalPoints += chosen.puntos;
           }
         });
-        
+       
         summaryDiv.appendChild(list);
         content.appendChild(summaryDiv);
 
+        // Evaluation
         const evalDiv = document.createElement('div');
         evalDiv.className = 'mt-4';
         evalDiv.innerHTML = '<h5>📊 Evaluación por decisión</h5>';
-        
+       
         const evalList = document.createElement('ul');
         evalList.className = 'list-group';
-        
+       
         c.steps.forEach((step, stepIndex) => {
           const chosenIdx = AppData.caseChoices[caseId] ? AppData.caseChoices[caseId][stepIndex] : undefined;
           const chosen = typeof chosenIdx === 'number' ? step.options[chosenIdx] : null;
           const pts = chosen ? chosen.puntos : 0;
-          
+         
           let evaluation, badgeClass;
           if (!chosen) {
             evaluation = '❌ No seleccionaste una opción en este paso.';
@@ -1477,37 +1460,40 @@
             evaluation = '🚨 Riesgo — esta decisión puede traer consecuencias negativas.';
             badgeClass = 'bg-danger';
           }
-          
+         
           const li = document.createElement('li');
           li.className = 'list-group-item d-flex justify-content-between align-items-start';
           li.innerHTML = `
             <div>
               <strong>Paso ${stepIndex + 1}:</strong> ${evaluation}
             </div>
-            <span class="badge ${badgeClass}">${pts} pts</span>
+            <span class="badge ${badgeClass}">${(typeof SHOW_CASE_POINTS_RECAP !== 'undefined' && SHOW_CASE_POINTS_RECAP) ? pts + ' pts' : '🔒'}</span>
           `;
           evalList.appendChild(li);
         });
-        
+       
         evalDiv.appendChild(evalList);
         content.appendChild(evalDiv);
 
+        // Total score
         const scoreDiv = document.createElement('div');
         scoreDiv.className = 'mt-4 text-center';
-        
+       
         let scoreClass = 'success';
         if (totalPoints < 20) scoreClass = 'danger';
         else if (totalPoints < 35) scoreClass = 'warning';
-        
+       
         scoreDiv.innerHTML = `
           <div class="alert alert-${scoreClass}">
-            <h5 class="mb-0">🏆 Puntuación total del caso: ${totalPoints} pts</h5>
+            <h5 class="mb-0">🏆 Puntuación total del caso: ${(typeof SHOW_CASE_POINTS_RECAP !== 'undefined' && SHOW_CASE_POINTS_RECAP) ? totalPoints + ' pts' : '🔒'}</h5>
           </div>
         `;
         content.appendChild(scoreDiv);
 
+        // Show modal
         ModalManager.show('modalRecap');
 
+        // Setup restart button
         document.getElementById('recap-reiniciar').onclick = () => {
           AppData.caseProgress[caseId] = 0;
           AppData.caseChoices[caseId] = [];
@@ -1517,47 +1503,21 @@
         };
       }
 
+      // Modal management
       openCaseModalForEdit(id) {
         const c = AppData.cases.find(x => x.id === id);
         if (!c) return;
 
         document.getElementById('case-id').value = c.id;
         document.getElementById('caseModalTitle').textContent = '✏ Editar caso';
-        
+       
         CaseBuilder.loadCaseData(c);
         ModalManager.show('modalAddCase');
       }
 
-      async deleteCase(id) {
-        if (confirm('🗑 ¿Estás seguro de que quieres eliminar este caso?')) {
-          try {
-            await DatabaseAPI.deleteCase(id);
-            AppData.cases = AppData.cases.filter(c => c.id !== id);
-            delete AppData.caseProgress[id];
-            delete AppData.caseChoices[id];
-            this.renderCases();
-            NotificationSystem.show('✅ Caso eliminado correctamente', 'success');
-          } catch (error) {
-            NotificationSystem.show('❌ Error al eliminar el caso', 'danger');
-          }
-        }
-      }
-
-      async deleteReward(id) {
-        if (confirm('🗑 ¿Estás seguro de que quieres eliminar esta recompensa?')) {
-          try {
-            await DatabaseAPI.deleteReward(id);
-            AppData.rewards = AppData.rewards.filter(r => r.id !== id);
-            this.renderRewards();
-            NotificationSystem.show('✅ Recompensa eliminada correctamente', 'success');
-          } catch (error) {
-            NotificationSystem.show('❌ Error al eliminar la recompensa', 'danger');
-          }
-        }
-      }
-
       resetAllData() {
         if (confirm('⚠ ¿Estás seguro de que quieres resetear toda la aplicación? Se perderán todos los datos.')) {
+          // Reset all data
           AppData.student = {
             name: 'Nombre',
             email: '',
@@ -1569,8 +1529,7 @@
           AppData.rewards = this.getDefaultRewards();
           AppData.caseProgress = {};
           AppData.caseChoices = {};
-          
-          this.saveDataToStorage();
+         
           NotificationSystem.show('🔄 Aplicación reseteada correctamente', 'success');
           setTimeout(() => location.reload(), 1000);
         }
@@ -1579,24 +1538,24 @@
       resetPoints() {
         if (confirm('🔄 ¿Estás seguro de que quieres resetear los puntos a 0?')) {
           this.setPointsNumber(0);
-          this.saveDataToStorage();
           NotificationSystem.show('✅ Puntos reseteados correctamente', 'info');
         }
       }
     }
 
-    // ==================== INICIALIZACIÓN DE LA APLICACIÓN ====================
+    // Initialize application
     const app = new AppState();
 
-    // Event Delegation
+    // Event Delegation (más robusto)
     document.addEventListener('click', (e) => {
+      // Case choice handling (handle child clicks as well)
       const choiceBtn = e.target.closest('.case-choice');
       if (choiceBtn && !choiceBtn.disabled) {
         choiceBtn.classList.add('loading');
         const caseId = choiceBtn.getAttribute('data-cid');
         const stepIndex = Number(choiceBtn.getAttribute('data-step'));
         const optionIndex = Number(choiceBtn.getAttribute('data-idx'));
-        
+       
         setTimeout(() => {
           app.handleCaseChoice(caseId, stepIndex, optionIndex);
           choiceBtn.classList.remove('loading');
@@ -1604,6 +1563,7 @@
         return;
       }
 
+      // Case management
       const editCaseBtn = e.target.closest('.btn-edit-case');
       if (editCaseBtn) {
         app.openCaseModalForEdit(editCaseBtn.getAttribute('data-id'));
@@ -1613,10 +1573,18 @@
       const deleteCaseBtn = e.target.closest('.btn-delete-case');
       if (deleteCaseBtn) {
         const id = deleteCaseBtn.getAttribute('data-id');
-        app.deleteCase(id);
+        if (confirm('🗑 ¿Estás seguro de que quieres eliminar este caso?')) {
+          AppData.cases = AppData.cases.filter(c => c.id !== id);
+          delete AppData.caseProgress[id];
+          delete AppData.caseChoices[id];
+          app.renderCases();
+          app.saveDataToStorage();
+          NotificationSystem.show('✅ Caso eliminado correctamente', 'success');
+        }
         return;
       }
 
+      // Reward management
       const claimBtn = e.target.closest('.btn-claim-reward');
       if (claimBtn) {
         const id = claimBtn.getAttribute('data-id');
@@ -1627,7 +1595,6 @@
         if (pts >= reward.cost) {
           if (confirm(`🎁 ¿Deseas reclamar "${reward.name}" por ${reward.cost} pts?`)) {
             app.setPointsNumber(pts - reward.cost);
-            app.saveDataToStorage();
             NotificationSystem.show(`🎉 ¡Recompensa reclamada: ${reward.name}!`, 'success');
           }
         } else {
@@ -1654,58 +1621,62 @@
       const deleteRewardBtn = e.target.closest('.btn-delete-reward');
       if (deleteRewardBtn) {
         const id = deleteRewardBtn.getAttribute('data-id');
-        app.deleteReward(id);
+        if (confirm('🗑 ¿Estás seguro de que quieres eliminar esta recompensa?')) {
+          AppData.rewards = AppData.rewards.filter(r => r.id !== id);
+          app.renderRewards();
+          app.saveDataToStorage();
+          NotificationSystem.show('✅ Recompensa eliminada correctamente', 'success');
+        }
+        return;
+      }
+
+      // Export choices
+      const exportBtn = e.target.closest('#btn-export-choices');
+      if (exportBtn) {
+        app.exportChoices();
         return;
       }
     });
 
     // Form submissions
-    document.getElementById('form-case').addEventListener('submit', async (e) => {
+    document.getElementById('form-case').addEventListener('submit', (e) => {
       e.preventDefault();
-      
+     
       try {
         const caseData = CaseBuilder.collectCaseData();
-        const idInput = document.getElementById('case-id');
-        const existingId = idInput.value;
-
+        const id = document.getElementById('case-id').value || Utils.uid('c');
+       
         const caseObj = {
+          id,
           title: caseData.title,
           steps: caseData.steps
         };
 
-        // Solo incluir ID si existe (para edición)
-        if (existingId) {
-          caseObj.id = parseInt(existingId);
+        const existsIndex = AppData.cases.findIndex(c => c.id === id);
+        if (existsIndex >= 0) {
+          AppData.cases[existsIndex] = caseObj;
+          NotificationSystem.show('✅ Caso actualizado correctamente', 'success');
+        } else {
+          AppData.cases.push(caseObj);
+          NotificationSystem.show('✅ Caso creado correctamente', 'success');
         }
 
-        const response = await DatabaseAPI.saveCase(caseObj);
-
-        if (response.success) {
-          // Actualizar o agregar el caso en AppData
-          const index = AppData.cases.findIndex(c => c.id === response.id);
-          if (index >= 0) {
-            AppData.cases[index] = { ...AppData.cases[index], ...caseObj, id: response.id };
-          } else {
-            AppData.cases.push({ ...caseObj, id: response.id });
-          }
-
-          app.renderCases();
-          NotificationSystem.show('✅ Caso guardado correctamente', 'success');
-          
-          ModalManager.hide('modalAddCase');
-          CaseBuilder.reset();
-          document.getElementById('case-id').value = '';
-          document.getElementById('caseModalTitle').textContent = '➕ Crear nuevo caso';
-        }
-        
+        app.renderCases();
+        app.saveDataToStorage();
+       
+        ModalManager.hide('modalAddCase');
+        CaseBuilder.reset();
+        document.getElementById('case-id').value = '';
+        document.getElementById('caseModalTitle').textContent = '➕ Crear nuevo caso';
+       
       } catch (error) {
         NotificationSystem.show(`❌ Error: ${error.message}`, 'danger');
       }
     });
 
-    document.getElementById('form-reward').addEventListener('submit', async (e) => {
+    document.getElementById('form-reward').addEventListener('submit', (e) => {
       e.preventDefault();
-      
+     
       const id = document.getElementById('reward-id').value || Utils.uid('r');
       const name = document.getElementById('reward-name').value.trim();
       const cost = Math.max(1, Number(document.getElementById('reward-cost').value || 1));
@@ -1717,32 +1688,27 @@
       }
 
       const rewardObj = { id, name, cost, img };
-      
-      try {
-        await DatabaseAPI.saveReward(rewardObj);
-        
-        const existsIndex = AppData.rewards.findIndex(r => r.id === id);
-        if (existsIndex >= 0) {
-          AppData.rewards[existsIndex] = rewardObj;
-          NotificationSystem.show('✅ Recompensa actualizada correctamente', 'success');
-        } else {
-          AppData.rewards.push(rewardObj);
-          NotificationSystem.show('✅ Recompensa creada correctamente', 'success');
-        }
-
-        app.renderRewards();
-        
-        ModalManager.hide('modalAddReward');
-        e.target.reset();
-        document.getElementById('reward-id').value = '';
-      } catch (error) {
-        NotificationSystem.show('❌ Error al guardar la recompensa', 'danger');
+     
+      const existsIndex = AppData.rewards.findIndex(r => r.id === id);
+      if (existsIndex >= 0) {
+        AppData.rewards[existsIndex] = rewardObj;
+        NotificationSystem.show('✅ Recompensa actualizada correctamente', 'success');
+      } else {
+        AppData.rewards.push(rewardObj);
+        NotificationSystem.show('✅ Recompensa creada correctamente', 'success');
       }
+
+      app.renderRewards();
+      app.saveDataToStorage();
+     
+      ModalManager.hide('modalAddReward');
+      e.target.reset();
+      document.getElementById('reward-id').value = '';
     });
 
-    document.getElementById('form-student').addEventListener('submit', async (e) => {
+    document.getElementById('form-student').addEventListener('submit', (e) => {
       e.preventDefault();
-      
+     
       const name = document.getElementById('student-name-input').value.trim();
       if (!name) {
         NotificationSystem.show('❌ El nombre es obligatorio', 'danger');
@@ -1753,29 +1719,26 @@
       AppData.student.email = document.getElementById('student-email-input').value.trim();
       AppData.student.avatar = document.getElementById('student-avatar-input').value.trim() || CONFIG.DEFAULT_AVATAR;
       AppData.student.meta = Math.max(10, Number(document.getElementById('student-meta-input').value || CONFIG.DEFAULT_META));
-      
+     
       document.getElementById('meta-puntos').textContent = AppData.student.meta;
-      
-      try {
-        await DatabaseAPI.saveStudent(AppData.student);
-        app.renderStudentPanel();
-        ModalManager.hide('modalEditStudent');
-        NotificationSystem.show('✅ Estudiante actualizado correctamente', 'success');
-      } catch (error) {
-        NotificationSystem.show('❌ Error al guardar el estudiante', 'danger');
-      }
+      app.renderStudentPanel();
+      app.saveDataToStorage();
+     
+      ModalManager.hide('modalEditStudent');
+      NotificationSystem.show('✅ Estudiante actualizado correctamente', 'success');
     });
 
     // Button event listeners
     document.getElementById('btn-reset-points').addEventListener('click', () => {
       app.resetPoints();
+      app.saveDataToStorage();
     });
 
     document.getElementById('btn-reset-data').addEventListener('click', () => {
       app.resetAllData();
     });
 
-    // Modal event listeners
+    // Modal event listeners - clear forms when modals are hidden
     document.getElementById('modalAddCase').addEventListener('hidden.bs.modal', () => {
       if (!document.getElementById('case-id').value) {
         CaseBuilder.reset();
@@ -1789,30 +1752,36 @@
     });
 
     // Initialize the application
-    async function initializeApp() {
+    function initializeApp() {
+      // Initialize modal manager
       ModalManager.init();
+     
+      // Initialize case builder
       CaseBuilder.init();
-      
-      await app.initialize();
-      
+     
+      // Ensure points are numeric
       if (typeof AppData.student.puntos !== 'number') {
         AppData.student.puntos = 0;
       }
-      
+     
+      // Render initial state
       app.renderStudentPanel();
       app.renderCases();
       app.renderRewards();
-      
+     
+      // Show welcome notification
       setTimeout(() => {
         NotificationSystem.show('🎯 ¡Bienvenido a Casos de Estudio! Selecciona un caso para comenzar.', 'info');
       }, 500);
     }
 
+    // Start the application when DOM is ready
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initializeApp);
     } else {
       initializeApp();
     }
+
   </script>
 </body>
 </html>
