@@ -232,17 +232,6 @@ $env:GEMINI_API_KEY = "TU_CLAVE"
 export GEMINI_API_KEY="TU_CLAVE"
 ```
 
-El proyecto también contempla `OPENAI_API_KEY` como nombre de respaldo por compatibilidad histórica, pero la configuración recomendada es `GEMINI_API_KEY`.
-
-Archivos de comprobación disponibles:
-
-- `Admin/modulo/check_env.php`: revisa si la variable de entorno está disponible.
-- `Admin/modulo/check_key.php`: muestra el estado de la clave.
-- `Admin/modulo/test_gemini.php`: prueba el flujo del chatbot.
-- `Admin/modulo/test_chat.html`: prueba manual de la interfaz.
-
-No dejes estas herramientas de diagnóstico expuestas en un servidor público.
-
 ## Base de datos
 
 La conexión central está en `conexion.php` y usa `utf8mb4`. Además de las tablas funcionales, la API del chatbot puede crear automáticamente algunas tablas auxiliares:
